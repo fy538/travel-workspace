@@ -64,7 +64,7 @@ adds the final three-repository merge tuple and critical-path timings. Reliabili
 improved, but faster end-to-end delivery is not yet demonstrated. This evidence
 reorders section 5 without removing the native-quality work.
 
-**Demonstrated preflight gap and repair — October 2:** workspace #57's first Reliability attempt (`37030676363`) rejected unknown execution tags and missing primary lanes in three newly packaged artifact flows. All four command-syntax shards and Merge ready passed; those passes did not certify metadata. Corrective app [PR #215](https://github.com/fy538/travel-app/pull/215) merged at `0f607bf2cef95dd4cd91c6fc9bbad10aa282a535` after all nine required checks passed. Native command bodies remain identical. Central now routes the existing Maestro inventory/metadata gate before broad local suites for changed flow/policy/package/child-pin inputs, with required Python and Node dependencies. The repair preflight passed 9,289 app cases and 193 workspace tests in 125.604s; focused routing/inventory coverage passed 33. Both old hosted runs had completed before cancellation was attempted, so no runner saving from cancellation is claimed. The final workspace retry uses the accepted corrective app pin. Keep this failure, repair and all run timings in the natural-change sample; do not call this contract/tooling candidate a prose-only positive.
+**Demonstrated preflight gap and repair — October 2:** workspace #57's first Reliability attempt (`37030676363`) rejected unknown execution tags and missing primary lanes in three newly packaged artifact flows. All four command-syntax shards and Merge ready passed; those passes did not certify metadata. Corrective app [PR #215](https://github.com/fy538/travel-app/pull/215) merged at `0f607bf2cef95dd4cd91c6fc9bbad10aa282a535` after all nine required checks passed. Native command bodies remain identical. Central now routes the existing Maestro inventory/metadata gate before broader local suites when flow, policy, package or child-pin inputs change, with the required Python and Node dependencies. The repair preflight passed 9,289 app cases and 193 workspace tests in 125.604s; focused routing/inventory coverage passed 33. The exact accepted-pin preflight later passed in 31.745s with 193 workspace tests and the governance gate selected; the app suite was not selected because app base equaled app HEAD. Both first-attempt hosted runs had completed before cancellation was attempted, so no runner saving is claimed. Workspace [PR #57](https://github.com/fy538/travel-workspace/pull/57) merged at `992f7fb573a393c023a5177dc4f9145b89c0c52e`. Keep this failure, repair and run timings in the natural-change record; this was not eligible prose-only pilot work and does not establish a speedup.
 
 ## Recommendation
 
@@ -603,7 +603,7 @@ Do not start a new integration or cleanup queue alongside this section.
 
 | Order | Work | Status and dependency | First beneficiaries |
 | --- | --- | --- | --- |
-| 1 | Package 3A/3B/3C: reduce measured feedback and integration cost | The isolated advisory workflow, unrelated-label guard and early preflight checks are merged. PR #54 is the first natural eligible post-isolation sample (`n=1`); required checks remain authoritative. Keep the pilot advisory and continue the natural ten-change sample before any wider adoption or claim of savings. | All integrations |
+| 1 | Package 3A/3B/3C: reduce measured feedback and integration cost | The isolated advisory workflow, unrelated-label guard and early preflight checks are merged. PR #54 remains the first natural eligible post-isolation sample (`n=1`). The October 2 Maestro metadata failure and selector-routing repair are a separate correctness receipt, not another eligible pilot sample; keep required checks authoritative and measure the repair on the next natural flow change before considering any further gate change. Continue the natural ten-change sample; no overall speedup is established. | All integrations |
 | 2 — independently when needed | Package 1: reliable targeted native QA | One targeted Home capture passed; broader Home/Places wrong-state replay remains open. Prioritize a specific native blocker for the current Artifact/Orchestration assignments when the assigned device is available. | Orchestration and Artifact |
 | 3 | Package 2: proportionate review and shorter task context | Tooling landed; changed review scope still requires clean cases and known-defect detection, including the unresolved replay. | All lanes, especially mobile work |
 | As encountered | Package 6: reconcile obsolete operating assumptions and active documentation | The central four-roadmap reconciliation resolves stale integration ownership, baselines and producer availability. Fix remaining contradictions in affected owners; do not repeat a global inventory or archive pass without an observed navigation cost. Three earlier archive migrations are complete. | All lanes |
@@ -2385,6 +2385,58 @@ bundles reading status or log tails. Those counts are not elapsed overhead or
 token-cost measurements; they support simplifying coordination, not a quantified
 savings claim. Fix the critical path and candidate readiness before introducing
 another monitoring layer.
+
+### October 2 natural-change integration and preflight sample
+
+App [PR #214](https://github.com/fy538/travel-app/pull/214) and follow-up
+[PR #215](https://github.com/fy538/travel-app/pull/215) each ran the app's
+`verify:merge` suite once in Merge readiness. Their separate CI `Test` and
+`Logic QA journeys` jobs were skipped, so this sample does not show a duplicate
+full app-suite run within either PR. The two PRs are separate candidates, and
+their runner times should not be read as a same-candidate retry.
+
+| Candidate and hosted runs | Selected runner occupancy | Critical-path wall time | Result and boundary |
+| --- | ---: | ---: | --- |
+| App #214: [CI 37029175430](https://github.com/fy538/travel-app/actions/runs/37029175430), [Merge readiness 37029175353](https://github.com/fy538/travel-app/actions/runs/37029175353) | 1,319s (21m59s) | 621s (10m21s) | Eight non-skipped CI jobs plus scope, tests, static and final gate; the selected app checks passed. |
+| App #215: [CI 37032172500](https://github.com/fy538/travel-app/actions/runs/37032172500), [Merge readiness 37032172743](https://github.com/fy538/travel-app/actions/runs/37032172743) | 1,356s (22m36s) | 638s (10m38s) | Same broad shape on a later candidate; the selected app checks passed. |
+| Workspace #57 first attempt: [Reliability 37030676363](https://github.com/fy538/travel-workspace/actions/runs/37030676363), [Merge readiness 37030676412](https://github.com/fy538/travel-workspace/actions/runs/37030676412), [final contract job](https://github.com/fy538/travel-workspace/actions/runs/37030676363/job/110918359984) | 1,444s (24m04s) | 306s (5m06s) to the final failure | Reliability failed on three flow metadata headers after all syntax shards and Merge readiness passed. |
+| Workspace #57 accepted retry: [Reliability 37033807108](https://github.com/fy538/travel-workspace/actions/runs/37033807108), [Merge readiness 37033807091](https://github.com/fy538/travel-workspace/actions/runs/37033807091) | 1,767s (29m27s) | 387s (6m27s) to the final required result | Required checks passed on corrected app pin `0f607bf2`; PR #57 merged at 16:33:22Z. |
+
+Across the two #57 attempts, selected runner occupancy was 3,211s (53m31s).
+From the first Reliability start at 15:58:08Z to merge at 16:33:22Z was 35m14s;
+that elapsed interval includes the gap between attempts and is not runner time.
+The attempted cancellations came after the relevant runs completed: zero jobs
+were cancelled, so there was no cancellation saving.
+
+The hosted scope was contract and syntax validation, not native visual QA. The
+app's `Visual evidence contracts` job checked scenario and derived-artifact
+contracts; it did not capture screenshots or launch a simulator. The workspace
+Maestro shards checked command syntax, while Maestro Cloud smoke was skipped by
+the configuration gate. No screenshot capture, simulator execution or Cloud
+smoke ran in these candidates. The earlier manual native proof elsewhere in
+this roadmap remains its own, separately bounded evidence.
+
+The first workspace failure named a concrete defect: three app flow
+headers used an unknown execution tag and omitted their primary lane. The
+corrective preflight on workspace `cf93ce32`, backend `c5ff69a8`, app
+`128b3ba1` passed 9,289 app cases and 193 workspace tests in 125.604s; 33 focused
+routing/inventory tests passed. The final accepted-pin preflight on workspace
+`71bf9675`, backend `c5ff69a8`, app `0f607bf2` passed in 31.745s with 193
+workspace tests and selected `maestro-flow-governance-check`. Its app suite was
+not selected because the app base equaled its HEAD. The earlier local preflight
+on the failing candidate had passed 186 workspace tests in 30.737s but had not
+selected flow inventory/governance. These runtimes use different tuples and
+selections; their differences are not a controlled estimate of the repair's
+cost or savings. The failing hosted inventory step itself took about 0.82s.
+
+The bounded repair is now landed: route the existing metadata/inventory check
+before broad local verification when its inputs change. The next natural flow
+change should record whether this gate catches a defect before publication,
+whether compliant and malformed inputs behave as expected, tool-failure
+handling, and its local runtime. Keep current hosted required checks in place
+until repeated evidence supports a change. Do not create work to inflate the
+sample. The optional roadmap-prose pilot skipped on #57 because the change was
+ineligible; it is not a pilot result. No productivity saving has been proven.
 
 ### Research implications and next execution
 
