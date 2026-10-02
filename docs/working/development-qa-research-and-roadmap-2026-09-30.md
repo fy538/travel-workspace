@@ -699,18 +699,65 @@ socket binds; the same gate passed with local loopback access. Both records and
 logs remain in `/private/tmp/vesper-e1-verification-records.json` and
 `/private/tmp/vesper-e1-verification-logs/` on this host.
 
-The implementation and headless acceptance are ready for the device trial, but
-E1 is not complete: this lane's runtime has no assigned device and Connectivity
-owns the reserved QA SE. Connectivity's registered C1 lane reports that the
-authenticated native interruption remains blocked until an approved signed-in
-Clerk QA session is available; real-session preflight evidence therefore
-remains headless only. Central has queued a single approximately 30-minute
-request, conditional on both explicit device release and session readiness. Do
-not start, reset, or probe the owner's device while either condition is unmet.
-Next action is one prerequisite-receipt trial in that bounded window, then
-update this record with the native evidence. E1.3 remains pending until a
-natural broad app candidate qualifies. Central retains publication, hosted
-checks, and merge.
+**Frozen E1 candidate and recorder follow-on — October 2:** before this
+follow-on, the original candidate refs were preserved at workspace
+`6f56789e097d103606e77c921df77b831535d7b7`, backend
+`28a72b0643ae168a4976c1dfe7861a7c1022267c`, and app
+`60f0a31c698ed5836756fc7e486fc1d09d504cc0` on
+`codex/eng-eff-verification-evidence-20261002`. The separate branch
+`codex/eng-eff-tool-versions-20261002` starts from those exact three commits;
+the original refs remain unchanged for central integration. Workspace commit
+`aab567ca` preserves the historical `primary_command` record and adds an
+explicit `transitive_tool_versions: unknown` receipt when child processes
+aren't traced. It records Make 3.81 for the selected top-level command without
+claiming that version identifies Node, npm, Python subprocesses or the complete
+toolchain. Focused recorder tests passed (35), and Ruff passed. A first full
+explicit-base run retained the sandbox's four loopback-permission failures;
+the same input then passed with loopback access in 203.535 seconds: 1,298 app
+suites / 9,289 tests, 201 workspace tests, API contracts and selected docs
+checks. The clean committed-head rerun and exact result are recorded below.
+
+**Read-only native prerequisite window — October 2:** Connectivity released
+the assigned iPhone SE (3rd generation), UDID
+`51A7A2C0-49CB-487E-A056-A771361EFA9B`, for one bounded window from
+`2026-10-02T21:55:37Z` to `2026-10-02T22:07:05Z`. Before claiming it, registered
+lane manifests were checked: no lane held this UDID; Home/Places had a separate
+reservation for `AF31B886-E837-4962-834A-5CBAD5C306DB`. Read-only simulator
+inspection resolved the assigned device and installed `com.fyan.vesper`
+version `1.0.0`, build `1`, matching the source identity. The check still does
+not establish a native build fingerprint.
+
+On this lane, host API `http://127.0.0.1:50571` and Metro
+`http://127.0.0.1:50572` were unavailable. The real-mode doctor wrote the
+sanitized receipt
+`travel-app/.maestro/runs/_preflight/2026-10-02T22-05-46-333Z-home-root.json`
+with status `blocked` and failure codes `metro` and `api`; mode and approved
+session remained `unknown`. A read-only Maestro hierarchy query returned
+success but exposed neither the supported live-mode nor sign-in/session marker,
+so no absent/present session claim was inferred. The doctor exited at static
+preflight before its link-opening observations; no UI navigation, screenshot,
+Keep/Save or other product mutation ran. Its receipt has zero screenshot files.
+The release context reported Vesper at Welcome, which remained untouched.
+This is valid negative evidence for unavailable host prerequisites and honest
+unknowns, not a passed authenticated native trial. The device assignment was
+cleared from this lane manifest at `2026-10-02T22:07:05Z`.
+
+The headless readiness tests still cover valid, missing and unknown session
+signals and the stop-before-Keep/Save result. This device window did not exercise
+that UI session signal: the required no-navigation boundary and unavailable
+API/Metro prevented it. E1.2's authenticated native observation remains
+unverified; do not convert this negative receipt into an authenticated pass.
+
+**Conditional E1.3 candidate — October 2:** central identified natural app PR
+[#216](https://github.com/fy538/travel-app/pull/216), app head
+`8088501a6121acaac68b6691e7334d943382b230`, workspace dependency
+`8babb0d125c0e1c104f80d8a0c22063684365f04`, backend
+`114e6657d5390d2ee2c3162e63ce4829e8062dcd`. Its dependency-pin changes make it
+eligible for one successful serial baseline and one successful sharded run via
+the existing experiment workflow after E1.1's clean gate. Both runs must use
+this immutable tuple, dependency policy and runner class; retain failed attempts
+and the exact test union. No required-check changes or new PR are in scope.
+Central retains publication, normal hosted checks and merge.
 
 **Ownership:** workspace recorder and QA tooling/app preflight only, plus the
 existing tests/runbooks affected. Connectivity owns product capture/session
