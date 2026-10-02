@@ -154,7 +154,8 @@ The cleanup fixture only runs for declared DB tests under that opt-in. Record
 skips and quarantine; `--run-quarantined` removes the historical xfail mask.
 
 `land-worktree.sh` checks branch identity, cleanliness and integration with
-origin/main, then runs `make verify` before optionally publishing branches.
+origin/main, then runs `make verify-changed` with explicit workspace/backend/app
+`origin/main` bases before optionally publishing branches.
 Integrate upstream and refresh immutable cross-repo pins deliberately; it never
 rebases one repo behind the other repos' pins, pushes main, mutates a canonical
 checkout or deletes a lane. Partial multi-repo pushes cannot be atomic; retain

@@ -20,123 +20,32 @@ depends_on:
 
 # Vesper program roadmap
 
-**Remaining-work scope — October 2:** the founder asked to finish the remaining
-implementation and integration, explicitly excluding model evaluation.
-Workspace [PR #57](https://github.com/fy538/travel-workspace/pull/57) is accepted
-at `992f7fb573a393c023a5177dc4f9145b89c0c52e`; Eng Efficiency's measured
-integration receipt [PR #58](https://github.com/fy538/travel-workspace/pull/58)
-is accepted at `2e3e66416998823615d978eb8fd4e667917b333d`. Both passed their
-normal required hosted checks. App `0f607bf2` already includes the conditional
-Expo tutorial guard; the distinct source commit `89f7bae1d` does not require a
-duplicate implementation or merge. The disabled selected-source provider
-support from owner backend `d62e00a05` is accepted in backend
-[PR #246](https://github.com/fy538/travel-agent/pull/246), merge
-`28a72b0643ae168a4976c1dfe7861a7c1022267c`, after every normal required
-hosted check passed on repaired candidate `2f3f4ff94`. Its five previously
-failing database scenario setups were reproduced and repaired solely by
-storing the fixture GPS fix before timed blocks exist; production matching
-and exact confirmation assertions remain unchanged. This workspace update
-includes the accepted child pin and Connectivity receipt `a323180d`: the
-real-local-API attempt is blocked before capture by the missing signed-in
-Clerk QA session on the assigned simulator. No
-token-count/generation calls or quality evaluation are scheduled in this round;
-the historical pilot plans below are deferred. Do not keep a lane executing
-synthetic replays to imitate missing authenticated or model-quality evidence.
+**Current plan — October 2, after the engineering-efficiency investigation:**
+the [next activation round](#next-activation-round--october-2-roadmap-goals)
+owns the four lanes' assignments. Connectivity's detailed goal is in
+[section 5](#c1-supported-capture-and-existing-root-continuity); the other
+three owners maintain their milestones in their existing specialist roadmaps.
+This document update prepares execution; it does not activate a chat Goal or
+claim that a lane has begun work. Model evaluation remains excluded.
 
-**Current integration acceptance — October 2:** app [PR #214](https://github.com/fy538/travel-app/pull/214) merged through passing required hosted checks at `e715953796ff7c3b09b82444aa5d68f85f697f52`. It combines Connectivity's private Keep recovery/session fencing, Artifact's read-only exact-result consumer, and the conditional Expo readiness correction. Local explicit-base preflight at workspace `a71153af` / backend `c5ff69a8` / app `c7d7d7f52` passed 9,289 app tests, one snapshot, 186 workspace tests and contracts/types in 124.374s. App #213's capture candidate is included. Matching workspace governance, generated contracts and child pins accompany this update; its protected landing remains separate.
+**Verified starting tuple:** GitHub main and canonical local HEADs agree at
+workspace `f7421368851d33e9582a579b0485ddc2b0d596e3`, backend
+`28a72b0643ae168a4976c1dfe7861a7c1022267c`, app
+`0f607bf2cef95dd4cd91c6fc9bbad10aa282a535`. The October 2 planning inspection
+found no open PRs in those repositories. This is the code baseline before this
+roadmap edit, not a claim that these new goals are implemented. Canonical child
+checkouts are clean; existing workspace audit edits and the dirty Home and
+product-direction owner work remain preserved. Recheck at activation.
 
-Native mock-mode Keep → Life entry → exact original → viewer → Undo removal passed (one primary and three extra frames). Unsupported expected persona failed while actual Default Alex/mock mode remained selected. Tutorial-present dismissal and real authenticated interrupted binary recovery remain unverified; mock receipts do not establish production acceptance. The reader stays internal/default-off and read-only. Adaptive Context now has a securely configured local credential, but its owner reports Anthropic token counting rejected for insufficient provider credit. No generation or model output occurred; independent human judgments remain open. The separate provider-routing candidate is not part of this accepted integration and does not authorize a paid OpenAI substitution.
-
-**Bounded authenticated native attempt — October 2:** on the assigned QA SE
-simulator (`51A7A2C0-49CB-487E-A056-A771361EFA9B`), I cleared the persisted
-mock-mode override and confirmed the app pointed at the lane-local API
-(`127.0.0.1:56986`). The isolated API was healthy with `SKIP_AUTH=false`, the
-approved Clerk test issuer/JWKS configuration, and AI, search and background
-loops disabled. After Clerk session checking, the app showed its first-run
-screen with “I already have an account”; no authenticated QA session was
-available. No Keep was submitted, no owner data was written, and no auth bypass
-or credentials were used. This attempt is **blocked before capture (0/1)**;
-restore an approved signed-in Clerk QA session on this assigned simulator
-before retrying. It does not replace the separate synthetic-auth local API
-receipt or establish native interrupted recovery.
-
-`fy538` approved only node-forge GHSA-86w9-cpqp-85rv/source 1240912/version 1.4.0 through October 9 UTC. All 26 safeguard/parser tests and actual registry audit passed. Expiry, changed identity, new high/critical findings and tooling failures remain blocking. This is risk acceptance, not a fix or release/deployment permission. Earlier checkpoints below are historical; this record supersedes their app/security/device status. Owner checkouts remain preserved.
-
-**Corrective acceptance — October 2:** app [PR #215](https://github.com/fy538/travel-app/pull/215) landed at `0f607bf2cef95dd4cd91c6fc9bbad10aa282a535` with all nine required hosted checks passing. Workspace #57's first Reliability attempt rejected three flow headers despite passing command-syntax shards; the metadata-only correction preserves every native command. Local preflight now selects the existing full flow-governance gate for changed flow/policy/package/child-pin inputs. Its repair preflight passed 9,289 app tests and 193 workspace tests; the failed hosted attempt remains a failure record. The workspace pin now names the actual accepted corrective app revision, and its refreshed protected landing remains separate.
-
-**Completed handoff checkpoint — October 2:** Connectivity's committed backend
-pending-capture replay fix (`6c9b4c51a`) and Adaptive Context's atomic research
-recovery fix (`7a6a2900`) are combined in central backend
-[PR #244](https://github.com/fy538/travel-agent/pull/244), candidate
-`0e7048120414c1f18c5a0e39c50c10afc9fc24f7`. It merged normally at `eda35d6de90ac8c4056dec93630206a2cb6ffa96` after
-all required hosted checks passed; local explicit-base preflight also passed. Do not repeat their completed local
-implementation goals while central integration owns acceptance.
-
-The independent Eng Efficiency preflight follow-on is locally ready at
-`cb3378f6`: feature-flag registration and generated-state drift checks now run
-before expensive selected suites. Central explicit-base verification passed
-186 tooling tests and contracts in 41.824s. Protected workspace
-[PR #53](https://github.com/fy538/travel-workspace/pull/53) merged at
-`799cf00a9a36954b6a486ed7d95b86d0d5958402` after all required hosted checks
-passed. Connectivity's second committed recovery handoff is workspace
-`97f44ac3`, backend `0c7c7c374`, app `528fbac4e`: binary upload response loss and pre-upload interruption,
-process restart and exact 75-byte/hash original readback have a local real-API
-receipt with synthetic authentication and an S3 protocol stub. Native interrupted
-recovery remains a separate device-bound gap. These new candidates do not change
-accepted-main child pins or certify app-main adoption. The backward-compatible
-persisted-receipt finalizer is in backend
-[PR #245](https://github.com/fy538/travel-agent/pull/245), candidate `f266e325`,
-merged normally at `c5ff69a8d34e34e094b31258b5683a297d45a8e6` after all
-required and selected aggregate checks passed. Hosted database acceptance passed
-1,516 cases / 38 skipped plus canonical suites of 444 and 376 cases; skipped
-names are not enumerated in the retained summary. The capture app candidate
-`7cf04bada` (source `03fd900c`) and matching snapshots remain a review tuple,
-not accepted main. Central broad verification passed 22,304 offline backend
-cases (14 skipped / 53 expected passes), 9,276 app cases and 186 workspace
-cases; the accepted workspace-tooling delta passed a separate 186-case preflight.
-The measurement ledger records that the children stayed fixed while the
-workspace advanced during the first run; do not represent it as one immutable
-full-tuple run. Original failed/synthetic/native evidence boundaries remain.
-
-Artifact's completed idle Expo/API and isolated database/vector services were
-verified and stopped; volumes/evidence were preserved. Its QA SE reservation was
-explicitly released and assigned to Connectivity for the bounded native recovery
-proof. Home's separate device remains reserved. No paused candidate is deleted
-and no device is shared concurrently. Two subsequent native attempts stopped at
-Expo developer-menu readiness before capture (0/1); they do not certify the
-recovery flow. Eng Efficiency now owns one bounded Package 1 launch/readiness
-cause investigation, with Connectivity remaining the sole device executor.
-Finish with intended readiness and recovery receiving evidenced while a real
-wrong product state still fails; preserve security checks and stop blind retries.
-
-**Readiness correction handoff — October 2, 12:44 UTC:** Eng Efficiency's
-`89f7bae1d`, adopted in Connectivity `3b97eb5b3` and central app `a20195808`,
-closes the specifically observed Expo tutorial only when its text is visible,
-then preserves the seeded mock/persona/frozen-clock checks. Central final-head
-explicit-base verification passed 9,276 app tests, lint/types and contracts in
-102.743s; focused readiness tests and the changed-flow Maestro parser passed.
-Connectivity could not run the device cases because the Mac was locked.
-Tutorial-present, tutorial-absent and wrong-state native evidence therefore
-remain open; the earlier 0/1 capture receipt is not replaced by a headless pass.
-The next action is Connectivity's bounded device trial after local access is
-available, rather than another implementation or blind replay. App security
-acceptance and real interrupted binary recovery remain separate gates.
-
-Connectivity's app session-fencing handoff `84e875cb5` extends the existing
-Keep-to-original candidate in app
-[PR #213](https://github.com/fy538/travel-app/pull/213). Artifact's app
-`76cfc1443` and workspace `5c17d29a` implement the thin default-off result
-reader; the API projection must land with matching generated app types, rather
-than independently against accepted app `acf5bd837`. At that earlier checkpoint both app tracks were blocked by Security audit;
-the current integration acceptance above supersedes this local-only status.
-Production acceptance remains separate. Existing unfinished
-Home/Places work and staged owner edits remain outside the handoff.
-
-The completed Connectivity lane's temporary API and isolated Postgres/Qdrant
-services were verified and stopped centrally; volumes and all owner checkouts
-were preserved. No provider, release flag or security exception was enabled.
-
-
+**Already accepted:** private Keep recovery/fencing and persisted upload
+receipts; the GET-only exact research-result reader; selected-source atomic
+settlement/restart/elapsed-time correctness and disabled provider support;
+verification routing, workflow cancellation and native readiness repairs.
+Their hosted acceptance and limited native/provider evidence are retained in
+[the historical integration receipts](#historical-integration-receipts--october-2).
+Authenticated native recovery remains blocked by the missing approved Clerk QA
+session. No live model evaluation, activation, deployment or new security
+exception follows from this plan.
 
 Build the complete product on the connected system already implemented.
 The execution model remains **three autonomous product lanes in three
@@ -271,84 +180,112 @@ improvements; Orchestration continues D2 without adding a new integration gate.
 The detailed measurements and boundaries remain in the
 [completed integration review](development-qa-research-and-roadmap-2026-09-30.md#9-completed-integration-review).
 
-### Next activation round — October 2 infrastructure continuation
+<a id="next-activation-round--october-2-infrastructure-continuation"></a>
 
-This is the current activation plan. The October 1 reconciliation below is
-historical and does not assign another replay of the completed round. Connectivity
-is the Home/Places **Orchestration** domain in this file. The four lanes pursue
-longer-lived outcomes through the ordered, bounded milestones below; the plan
-does not itself dispatch chats or require them to run for the whole night.
+### Next activation round — October 2 roadmap goals
 
-**Inspected accepted baseline:** workspace `877b7be3f5911fbd8143262266e130e674b98b8e`
-(PRs #48/#49), backend `355a8c11df54fee27f8de3b86196b606a64a071c` (PR #243),
-app `acf5bd837fe3725b00d9744727f513a601fb2498` (PR #212). Adaptive Context
-implementation and Artifact backend/evidence have landed. Artifact app PR #214
-at `fe927de04f40d1d0d1af86af121286bba6f20461` and Connectivity app PR #213
-at `4f0bafc5982868d0384da78e241461dd460239c2` remain open; the required
-security audit is their observed remaining failure. Their local completion does
-not make them accepted-main dependencies. Recheck these dated identities at intake.
+**Operating decision:** give each existing lane one longer-lived outcome,
+comprising the finite milestones below. Milestone completion updates the owner
+record and advances execution without a new central assignment. Longer ownership
+must retain focused feedback, small reviewable commits and coherent integration
+candidates. There is no minimum run time and no target to keep all chats busy.
 
-| Lane | Longer-term infrastructure outcome | Next bounded milestone and finish | Ordered continuation |
+| Lane / goal | Roadmap finish line | Sequence inside the same assignment | Actual dependency / stopping point |
 | --- | --- | --- | --- |
-| Connectivity / Orchestration | A supported contribution survives interruption and reopens the same authorized original. | D1 recovery through the existing in-app private text Keep: drop a response after server persistence, restart the client, retry the same attempt, and verify one logical submission plus exact original/open/return. Add a changed-session case that cannot publish the previous owner’s receipt or erase their recoverable draft. | After this proof, cover one second interruption boundary in the same flow, such as restart after a submission ID is journaled but before upload/finalization completes. Reuse existing journal and owner APIs; stop before a new capture door, sharing policy or native entitlement dependency. |
-| Artifact | Existing focused readers consume an exact eligible addition without compromising original-only value. | P3 read-only adoption of the existing selected-source result GET: generated contract, typed transport/data facade and explicit exact-result binding to the selected original. Prove addition/no-addition/missing/expired/revoked/wrong-account states through the real local API with controlled results; no generation dispatch. | Connect that data seam to the existing reader behind the existing disabled feature boundary, preserving exact-original and return behavior. Native acceptance uses a local fixture with an explicit work ID; do not invent production result discovery or a new presentation hierarchy. |
-| Adaptive Context | Bounded selected-source execution remains correct across interruption and elapsed time. | R3 post-dispatch recovery and publication-time validation in the existing producer/gateway/ledger. Establish which failure boundaries lack evidence, then test cancellation, interrupted settlement/store and source/work expiry during an in-flight call. Repair reproduced gaps; preserve held/unknown usage until an authoritative outcome exists. | Verify restart/reconciliation against the same work identity and one finite test allocation, with no second dispatch or stale return. Keep R2/R7 actual-output/human-quality acceptance separate; no new queue, paid calls, allocation policy or activation. |
-| Eng Efficiency | Reliable feedback and protected landing consume less avoidable waiting and runner capacity. | Timebox a security-remediation investigation for the shared app blocker, then repair the observed label-trigger/cancellation interaction in the advisory verification trial without weakening required checks. | Exercise relevant PR event sequences and a naturally occurring eligible change plus rejection/failure cases. Measure every attempt; decide whether to continue or stop the pilot from evidence, not job count. Required-scope adoption remains a separate decision. |
+| **Connectivity — C1** | [D1 supported capture plus bounded D2 continuity](#c1-supported-capture-and-existing-root-continuity) | Establish acceptance prerequisites; complete existing Home/Places exact-open/return and changed-source scenarios; perform authenticated interrupted text/photo Keep when the approved session exists; repair discovered defects. | Native authentication gates that proof only. D2 uses landed original/current-owner supply, no new root sections. Stop after the named scenarios; signing, email-provider setup and new capture formats stay outside C1. |
+| **Artifact — A1** | [P1/P2 private reader and Collection data coherence](artifact-experience-engineering-roadmap-2026-09-29.md#a1-private-reader-and-collection-data-coherence) | Reproduce the cross-cache mutation seam; fix any confirmed gap; connect correction/source/alias lifecycle readback; cover delayed responses and existing reader behavior. | Existing private contracts suffice. No Collection member UI, shared audience, new retention or generated-content quality work. Authenticated device acceptance is recorded separately from the provider-free implementation goal. |
+| **Adaptive Context — AC1** | [R1 selected-source public-acquisition prerequisites](product-map/adaptive-context-and-research-roadmap-2026-09-29.md#ac1-selected-source-public-acquisition-prerequisites) | Reconcile existing proofs and the missing selected-object authority; implement only admitted disclosure gaps; exercise the existing acquisition adapter provider-free; preserve provenance and honest unsupported evidence; identify exact remaining result/accounting admission dependencies. | No production selected-source public dispatch or result-contract widening until its evidence and allocation policy are resolved. Existing private producer rejection stays intact. Stop before live activation or any new disclosure decision. |
+| **Eng Efficiency — E1** | [Verification identity and native prerequisites](development-qa-research-and-roadmap-2026-09-30.md#e1-verification-identity-and-native-prerequisites) | Implement trustworthy measurement identity; implement early native prerequisite receipts; run a comparable existing sharding experiment only when a natural broad candidate is available. | First two milestones are mandatory and independently useful. Device inspection is serialized with Connectivity. Sharding is conditional evidence, not permission to change required checks or a reason to keep the goal waiting indefinitely. |
 
-**Why these assignments changed:** current producer and PostgreSQL tests already
-cover a real reservation/settlement, concurrent allocation denial, ambiguous
-timeout holds and same-key replay denial. Rebuilding those mechanisms is not a
-new R3 milestone. The producer captures its clock before awaiting generation
-and passes it to final storage; expiry during a call and interruption between
-settlement and storage deserve explicit investigation, not an asserted defect
-without reproduction. The app has no selected-source result consumer, and the
-GET/POST remain dark with no declared consumers. Artifact adoption therefore
-includes operation governance and regenerated types, not hand-written wire
-models. Existing capture tests and the Swift journal harness cover component
-and storage behavior; a dropped-response/restart real-transport proof is a
-distinct boundary from the already recorded happy-path receiving rehearsal.
+**Activation readiness:** A1 and E1 have independently executable code-backed
+starting points. C1 can run its D2 cases while its authenticated D1 gate is
+blocked. AC1 begins with a bounded admission check because its generic request,
+identity and acquisition helpers already exist; a missing product/disclosure
+policy must become a specific decision, not another unused adapter. Do not
+promise four uninterrupted coding streams or start a lane solely to fill time.
 
-**Independence and stopping rules:**
+**Why this round differs:** the previous recovery/reader/accounting assignments
+are accepted and must not be rebuilt. Inspection of `data/keptThings.ts` and
+`data/consumerCollections.ts` identifies distinct mutation invalidation and
+composed-member caches: that seam needs reproduction, not an assertion that a
+bug has already been proven. The selected-source producer explicitly rejects
+public research because its result cannot yet bind public evidence; a disclosure
+adapter alone cannot close R1. Verification measurement currently records Git
+state after commands and permits sibling fallback; native identity checks are
+coarser than full build compatibility. These are concrete starting points.
 
-- Reuse each outcome’s owner worktree. Refresh accepted dependencies there,
-  preserving the owner’s unmerged app candidate; record a dependency on PR #213
-  or #214 explicitly rather than representing it as landed or duplicating it.
-- Each milestone ends with a clean committed candidate, focused acceptance,
-  an explicit-base merge preflight and a brief receipt of remaining limits.
-  Central integration owns publication, shared conflicts, pins and landing.
-  Security-blocked app work may be handed over without falsely claiming a merge.
-- Continue only to the listed independent follow-on. Stop when it needs founder
-  policy, unavailable credentials, paid authorization, a design decision or
-  external signing access. A passed audit with no implementation gap is a valid
-  finish; do not add abstractions or tests merely to occupy the session.
-- Artifact owns result-consuming API governance/generated-file changes for
-  this round; Adaptive Context preserves the published wire shape unless a
-  concrete incompatibility requires an explicit handoff. Connectivity owns
-  capture callers/journal recovery. Eng Efficiency owns workflow and dependency
-  verification. Do not independently edit another lane’s reader or transport.
-- Use synthetic disposable data for unattended fault injection. One owner uses
-  a particular simulator/runtime at a time; other lanes continue headless work.
-  Real Clerk authentication, remote services, physical-device behavior and
-  human usefulness remain separate, honestly named evidence boundaries.
-- Preserve original-first behavior and accepted authority. No new Collection
-  presentation, automatic joins/sharing, paid dispatch, background generation,
-  provider deployment or security exception is authorized by this update.
+**Assignment and consolidation contract for all four goals:**
 
-**Founder authorization checkpoint — October 2:** the founder approved the
-Orchestrator and all four lanes to carry out the discussed work. Hourly
-coordination, routine implementation, roadmap publication and protected merges
-are authorized. The frozen model pilot is approved within its existing $0.50
-cap. General delegation does not identify the exact configuration and impact
-of a security exception; automatic action review requires that concrete
-candidate before a control is changed. Continue independent work while such
-proposals are prepared.
+1. At activation, the owner records the roadmap goal ID, the roadmap revision,
+   fresh three-repo bases, owned paths, prerequisites and completion evidence in
+   its current goal block. Reconcile actual main and owner work first. A delivered
+   message, an edited roadmap and an active persistent chat Goal are distinct;
+   confirm activation once, without starting a reciprocal status loop.
+2. Work through the listed milestones autonomously. Adapt implementation steps
+   to evidence; do not silently expand the outcome, lower acceptance, mark an
+   unavailable proof passed, or interpret every later roadmap package as assigned.
+   A no-defect finding with existing sufficient evidence can close that subcase.
+3. Keep a concise current record here or in the specialist owner: milestone,
+   stable candidate revisions, evidence with limits, outstanding dependency and
+   next permitted action. Preserve dated receipts under history. Do not append
+   another progress document or report after every small test.
+4. Central watches integration and resolves cross-lane boundaries. Owners do not
+   poll central or each other. Ordinary debugging, tests and independent next
+   milestones need no new assignment. Escalate changed authority/design, missing
+   external prerequisites or an actual shared-file/interface conflict once.
+5. Consolidate when the goal has a coherent candidate, when a ready interface
+   unlocks another lane, or when divergence/conflict risk justifies an earlier
+   slice. An intermediate merge does not end the broader lane goal. Continue
+   only independent work while central reviews a frozen commit; any replacement
+   candidate must name its new revision and superseded evidence.
+6. Central owns compatible publication, required hosted checks, child pins and
+   protected landing. Owner-ready, locally verified, accepted on main and native/
+   product acceptance remain separate states. If a goal requires an unavailable
+   proof it remains blocked at that boundary; finish independent milestones, then
+   stop useful work rather than manufacture synthetic substitutes.
 
-The owner roadmaps hold the detailed Artifact, Adaptive Context and efficiency
-acceptance. D1 below remains Connectivity’s owner package; D2/D3 remain longer-term
-work after this durability milestone. The model pilot stays blocked on secure
-Anthropic access, followed by human review. The founder has explicitly approved
-its existing $0.50 maximum and recorded attempt limits; approval is no longer
-the missing dependency. Do not keep regenerating synthetic review packs while waiting.
+**Shared ownership and sequencing:** A1 owns app kept-Thing/Collection caches,
+reader internals, and any necessary generated-contract adoption. C1 owns capture
+callers and Home/Places route/return behavior; it consumes Artifact's existing
+reader interface. AC1 initially owns backend public-request/acquisition adapter
+and provenance tests without changing published app contracts. E1 owns workspace
+measurement and app QA preflight tooling, not product session architecture. If
+an API change becomes necessary, central selects one generated-file owner and
+lands backend, workspace snapshots and app types together; no parallel schema
+edits. Agree shared boundaries before code work; do not copy unmerged sibling
+implementations.
+
+Connectivity holds the existing QA SE device reservation until explicitly
+released. E1 prepares headless checks first and requests one bounded device
+window; Artifact runs native cases afterward or on an independently assigned
+device. Home's separate reservation and staged work must be reconciled by its
+owner, never reset centrally. Services and disposable databases stay lane-local.
+No new lane/worktree is needed merely for the next milestone; reuse the owner
+with clean accepted bases after preserving its outstanding work.
+
+**Deferred:** actual-model/human usefulness evaluation, automatic generation,
+new native Collection presentation, sharing/retention policy, catalog licensing,
+semantic indexing, new capture doors, production activation and deployment.
+Current node-forge risk acceptance is limited to the recorded advisory/version/
+owner through October 9 UTC; it is not remediation. E1 includes its due-date
+check, with no automatic renewal or weakened gate.
+
+**Measure this operating change:** on the next ten natural handoffs record
+assignment/ready/first-integration/merge times, blocking cause, reassignment
+messages, rework and defects. Keep feedback elapsed time separate from summed
+runner time; compare similar change classes. Native prerequisite yield is
+measured on up to five naturally needed attempts, not manufactured runs. The
+sample is a bounded learning exercise, not evidence for a global percentage.
+
+**Research basis:** OpenAI's [Goals guidance](https://developers.openai.com/cookbook/examples/codex/using_goals_in_codex)
+supports an outcome with verifiable completion and explicit boundaries; its
+[execution-plan guidance](https://developers.openai.com/cookbook/articles/codex_exec_plans)
+supports continuation between independently verifiable milestones. DORA's
+[small-batch guidance](https://dora.dev/capabilities/working-in-small-batches/)
+warns against regrouping work into large downstream batches. The application
+here is longer lane ownership with smaller verified increments, not a promised
+optimal run duration or productivity multiplier. Existing owner files carry the
+plan; no new orchestration service or parallel status registry is proposed.
 
 <a id="next-activation-round--october-1-reconciliation"></a>
 
@@ -678,11 +615,50 @@ representative families, not a decision to narrow Vesper to one behavior loop.
 
 ## 5 Orchestration execution plan
 
-**Current order:** D0’s shared-baseline work is complete. The October 2
-activation gives Connectivity a bounded D1 interrupted-capture durability
-milestone; D2 remains the longer-term receiving outcome and D3 its practical-help
-continuation. Use the current activation table for the next task rather than
-replaying the historical D2 acceptance rounds below.
+**Current order:** D0 and the D1 recovery implementation are accepted. C1 below
+is the only next Connectivity assignment: finish its named D1 acceptance and
+D2 existing-supply continuity boundaries. D2's wider composition/design and D3
+remain later packages, not automatic follow-ons.
+
+### C1 Supported capture and existing root continuity
+
+**Goal:** carry the accepted capture/original infrastructure through current
+Home/Places opening and return, and establish authenticated interrupted private
+Keep on the assigned device. Finish the finite cases below without asking for
+a new assignment between them. This goal is planned, not activated by this edit.
+
+**Start / evidence:** backend upload finalization reads persisted server-owned
+receipts; app recovery journals preserve text/photo bytes and owner/session
+identity. Lost HTTP response and process restart already have synthetic-owner
+API/database evidence. Native mock Keep/open/viewer/Undo is recorded. The last
+real-auth device attempt stopped before capture (0/1) at a missing approved
+Clerk session. Source-specific Places navigation and Home return are implemented;
+the three-person additional-friend path has component/backend evidence but no
+dedicated native acceptance. Do not repeat their existing proofs as new work.
+
+| Milestone | Work and observable finish | Dependency / evidence limit |
+| --- | --- | --- |
+| C1.1 Prerequisites and ownership | Record selected device/runtime, accepted tuple, mock/real mode and presence/absence of the required approved session. Confirm the historical Home staged architecture-test edit with its owner before reusing that checkout. Consume the current QA tooling; do not wait for E1 or implement a duplicate doctor. | No credentials in receipts; do not reset accounts, device data or another owner's work. Missing auth blocks C1.3, not C1.2. |
+| C1.2 Existing root-to-original continuity | Through current root/projection/route owners, cover: exact Source and return position for the additional-friend path beside a two-person Places comparison; source withdrawal/revision change between root read and open; an account change or late response during return. Reuse existing passing cases, reproduce gaps and repair only confirmed defects. Retained unrelated eligible originals and the originating root remain usable. | No new section, card hierarchy, research producer or artificial recurring supply. Synthetic API/DB plus focused app evidence is useful but is labeled separately from authenticated native evidence. Capture/review the exact existing flow when visible behavior changes. |
+| C1.3 Authenticated private capture | Once the approved QA session exists, run text and one currently supported photo through response-loss/restart/retry at the actual native journal/transport boundary. Verify one logical submission, identical Source identity/revision and original bytes, current-owner receipt, and denial/suppression after a session change. Repair discovered defects through existing owners. | Use disposable authorized QA data and isolated services. No synthetic identity override may satisfy this gate. Preserve prior failures and stop repeated identical prerequisite failures. |
+
+**Finish:** a clean committed candidate and focused evidence for C1.2; the exact
+C1.3 native/authenticated receipt is required before calling the whole goal
+complete. If authentication or local device access is still unavailable after
+independent work, hand off the ready implementation and record C1.3 blocked.
+Do not mark that missing proof passed or keep the lane polling. Central may
+integrate C1.2 independently without redefining C1.3 as complete.
+
+**Owning seams:** app capture journal/session hooks, receipt callers and existing
+Home/Places routes; backend Intake only for reproduced custody/transport defects.
+Artifact owns reader internals/Thing/Collection caches; E1 owns QA runner changes.
+A discovered cross-owner defect gets one concrete reproduction/interface handoff,
+then the lane continues independent cases. Use D1/D2 owner contracts and Task
+Intake verification; no full-surface recapture for a headless routing change.
+
+**Stop after C1:** no automatic progression into new input formats, Share
+Extension signing, email delivery, Home world-fact production, Life presentation
+or practical-action policy. Those require their own ready roadmap milestone.
 
 ### D0 Rebaseline and prepare execution
 
@@ -2253,3 +2229,204 @@ and [acceptance round](../archive/vesper-program-roadmap-history-through-2026-09
 Historical [connected experience record](../archive/vesper-program-roadmap-history-through-2026-09-25.md),
 [discovery/receiving round](../archive/vesper-program-roadmap-history-through-2026-09-25.md#current-round--meaning-based-discovery-and-exact-original-receiving)
 and [execution order](../archive/vesper-program-roadmap-history-through-2026-09-25.md#execution-order-and-event-triggered-reviews).
+
+## Historical integration receipts — October 2
+
+These dated receipts preserve attempts, revisions and past blockers. Their
+“current”, “next” and pending-PR wording describes the recorded checkpoint, not
+the active queue. The October 2 roadmap goals above supersede those assignments.
+
+**Remaining-work scope — October 2:** the founder asked to finish the remaining
+implementation and integration, explicitly excluding model evaluation.
+Workspace [PR #57](https://github.com/fy538/travel-workspace/pull/57) is accepted
+at `992f7fb573a393c023a5177dc4f9145b89c0c52e`; Eng Efficiency's measured
+integration receipt [PR #58](https://github.com/fy538/travel-workspace/pull/58)
+is accepted at `2e3e66416998823615d978eb8fd4e667917b333d`. Both passed their
+normal required hosted checks. App `0f607bf2` already includes the conditional
+Expo tutorial guard; the distinct source commit `89f7bae1d` does not require a
+duplicate implementation or merge. The disabled selected-source provider
+support from owner backend `d62e00a05` is accepted in backend
+[PR #246](https://github.com/fy538/travel-agent/pull/246), merge
+`28a72b0643ae168a4976c1dfe7861a7c1022267c`, after every normal required
+hosted check passed on repaired candidate `2f3f4ff94`. Its five previously
+failing database scenario setups were reproduced and repaired solely by
+storing the fixture GPS fix before timed blocks exist; production matching
+and exact confirmation assertions remain unchanged. This workspace update
+includes the accepted child pin and Connectivity receipt `a323180d`: the
+real-local-API attempt is blocked before capture by the missing signed-in
+Clerk QA session on the assigned simulator. No
+token-count/generation calls or quality evaluation are scheduled in this round;
+the historical pilot plans below are deferred. Do not keep a lane executing
+synthetic replays to imitate missing authenticated or model-quality evidence.
+
+**Current integration acceptance — October 2:** app [PR #214](https://github.com/fy538/travel-app/pull/214) merged through passing required hosted checks at `e715953796ff7c3b09b82444aa5d68f85f697f52`. It combines Connectivity's private Keep recovery/session fencing, Artifact's read-only exact-result consumer, and the conditional Expo readiness correction. Local explicit-base preflight at workspace `a71153af` / backend `c5ff69a8` / app `c7d7d7f52` passed 9,289 app tests, one snapshot, 186 workspace tests and contracts/types in 124.374s. App #213's capture candidate is included. Matching workspace governance, generated contracts and child pins accompany this update; its protected landing remains separate.
+
+Native mock-mode Keep → Life entry → exact original → viewer → Undo removal passed (one primary and three extra frames). Unsupported expected persona failed while actual Default Alex/mock mode remained selected. Tutorial-present dismissal and real authenticated interrupted binary recovery remain unverified; mock receipts do not establish production acceptance. The reader stays internal/default-off and read-only. Adaptive Context now has a securely configured local credential, but its owner reports Anthropic token counting rejected for insufficient provider credit. No generation or model output occurred; independent human judgments remain open. The separate provider-routing candidate is not part of this accepted integration and does not authorize a paid OpenAI substitution.
+
+**Bounded authenticated native attempt — October 2:** on the assigned QA SE
+simulator (`51A7A2C0-49CB-487E-A056-A771361EFA9B`), I cleared the persisted
+mock-mode override and confirmed the app pointed at the lane-local API
+(`127.0.0.1:56986`). The isolated API was healthy with `SKIP_AUTH=false`, the
+approved Clerk test issuer/JWKS configuration, and AI, search and background
+loops disabled. After Clerk session checking, the app showed its first-run
+screen with “I already have an account”; no authenticated QA session was
+available. No Keep was submitted, no owner data was written, and no auth bypass
+or credentials were used. This attempt is **blocked before capture (0/1)**;
+restore an approved signed-in Clerk QA session on this assigned simulator
+before retrying. It does not replace the separate synthetic-auth local API
+receipt or establish native interrupted recovery.
+
+`fy538` approved only node-forge GHSA-86w9-cpqp-85rv/source 1240912/version 1.4.0 through October 9 UTC. All 26 safeguard/parser tests and actual registry audit passed. Expiry, changed identity, new high/critical findings and tooling failures remain blocking. This is risk acceptance, not a fix or release/deployment permission. Earlier checkpoints below are historical; this record supersedes their app/security/device status. Owner checkouts remain preserved.
+
+**Corrective acceptance — October 2:** app [PR #215](https://github.com/fy538/travel-app/pull/215) landed at `0f607bf2cef95dd4cd91c6fc9bbad10aa282a535` with all nine required hosted checks passing. Workspace #57's first Reliability attempt rejected three flow headers despite passing command-syntax shards; the metadata-only correction preserves every native command. Local preflight now selects the existing full flow-governance gate for changed flow/policy/package/child-pin inputs. Its repair preflight passed 9,289 app tests and 193 workspace tests; the failed hosted attempt remains a failure record. The workspace pin now names the actual accepted corrective app revision, and its refreshed protected landing remains separate.
+
+**Completed handoff checkpoint — October 2:** Connectivity's committed backend
+pending-capture replay fix (`6c9b4c51a`) and Adaptive Context's atomic research
+recovery fix (`7a6a2900`) are combined in central backend
+[PR #244](https://github.com/fy538/travel-agent/pull/244), candidate
+`0e7048120414c1f18c5a0e39c50c10afc9fc24f7`. It merged normally at `eda35d6de90ac8c4056dec93630206a2cb6ffa96` after
+all required hosted checks passed; local explicit-base preflight also passed. Do not repeat their completed local
+implementation goals while central integration owns acceptance.
+
+The independent Eng Efficiency preflight follow-on is locally ready at
+`cb3378f6`: feature-flag registration and generated-state drift checks now run
+before expensive selected suites. Central explicit-base verification passed
+186 tooling tests and contracts in 41.824s. Protected workspace
+[PR #53](https://github.com/fy538/travel-workspace/pull/53) merged at
+`799cf00a9a36954b6a486ed7d95b86d0d5958402` after all required hosted checks
+passed. Connectivity's second committed recovery handoff is workspace
+`97f44ac3`, backend `0c7c7c374`, app `528fbac4e`: binary upload response loss and pre-upload interruption,
+process restart and exact 75-byte/hash original readback have a local real-API
+receipt with synthetic authentication and an S3 protocol stub. Native interrupted
+recovery remains a separate device-bound gap. These new candidates do not change
+accepted-main child pins or certify app-main adoption. The backward-compatible
+persisted-receipt finalizer is in backend
+[PR #245](https://github.com/fy538/travel-agent/pull/245), candidate `f266e325`,
+merged normally at `c5ff69a8d34e34e094b31258b5683a297d45a8e6` after all
+required and selected aggregate checks passed. Hosted database acceptance passed
+1,516 cases / 38 skipped plus canonical suites of 444 and 376 cases; skipped
+names are not enumerated in the retained summary. The capture app candidate
+`7cf04bada` (source `03fd900c`) and matching snapshots remain a review tuple,
+not accepted main. Central broad verification passed 22,304 offline backend
+cases (14 skipped / 53 expected passes), 9,276 app cases and 186 workspace
+cases; the accepted workspace-tooling delta passed a separate 186-case preflight.
+The measurement ledger records that the children stayed fixed while the
+workspace advanced during the first run; do not represent it as one immutable
+full-tuple run. Original failed/synthetic/native evidence boundaries remain.
+
+Artifact's completed idle Expo/API and isolated database/vector services were
+verified and stopped; volumes/evidence were preserved. Its QA SE reservation was
+explicitly released and assigned to Connectivity for the bounded native recovery
+proof. Home's separate device remains reserved. No paused candidate is deleted
+and no device is shared concurrently. Two subsequent native attempts stopped at
+Expo developer-menu readiness before capture (0/1); they do not certify the
+recovery flow. Eng Efficiency now owns one bounded Package 1 launch/readiness
+cause investigation, with Connectivity remaining the sole device executor.
+Finish with intended readiness and recovery receiving evidenced while a real
+wrong product state still fails; preserve security checks and stop blind retries.
+
+**Readiness correction handoff — October 2, 12:44 UTC:** Eng Efficiency's
+`89f7bae1d`, adopted in Connectivity `3b97eb5b3` and central app `a20195808`,
+closes the specifically observed Expo tutorial only when its text is visible,
+then preserves the seeded mock/persona/frozen-clock checks. Central final-head
+explicit-base verification passed 9,276 app tests, lint/types and contracts in
+102.743s; focused readiness tests and the changed-flow Maestro parser passed.
+Connectivity could not run the device cases because the Mac was locked.
+Tutorial-present, tutorial-absent and wrong-state native evidence therefore
+remain open; the earlier 0/1 capture receipt is not replaced by a headless pass.
+The next action is Connectivity's bounded device trial after local access is
+available, rather than another implementation or blind replay. App security
+acceptance and real interrupted binary recovery remain separate gates.
+
+Connectivity's app session-fencing handoff `84e875cb5` extends the existing
+Keep-to-original candidate in app
+[PR #213](https://github.com/fy538/travel-app/pull/213). Artifact's app
+`76cfc1443` and workspace `5c17d29a` implement the thin default-off result
+reader; the API projection must land with matching generated app types, rather
+than independently against accepted app `acf5bd837`. At that earlier checkpoint both app tracks were blocked by Security audit;
+the current integration acceptance above supersedes this local-only status.
+Production acceptance remains separate. Existing unfinished
+Home/Places work and staged owner edits remain outside the handoff.
+
+The completed Connectivity lane's temporary API and isolated Postgres/Qdrant
+services were verified and stopped centrally; volumes and all owner checkouts
+were preserved. No provider, release flag or security exception was enabled.
+
+### Historical infrastructure-continuation assignment — superseded
+
+This is the current activation plan. The October 1 reconciliation below is
+historical and does not assign another replay of the completed round. Connectivity
+is the Home/Places **Orchestration** domain in this file. The four lanes pursue
+longer-lived outcomes through the ordered, bounded milestones below; the plan
+does not itself dispatch chats or require them to run for the whole night.
+
+**Inspected accepted baseline:** workspace `877b7be3f5911fbd8143262266e130e674b98b8e`
+(PRs #48/#49), backend `355a8c11df54fee27f8de3b86196b606a64a071c` (PR #243),
+app `acf5bd837fe3725b00d9744727f513a601fb2498` (PR #212). Adaptive Context
+implementation and Artifact backend/evidence have landed. Artifact app PR #214
+at `fe927de04f40d1d0d1af86af121286bba6f20461` and Connectivity app PR #213
+at `4f0bafc5982868d0384da78e241461dd460239c2` remain open; the required
+security audit is their observed remaining failure. Their local completion does
+not make them accepted-main dependencies. Recheck these dated identities at intake.
+
+| Lane | Longer-term infrastructure outcome | Next bounded milestone and finish | Ordered continuation |
+| --- | --- | --- | --- |
+| Connectivity / Orchestration | A supported contribution survives interruption and reopens the same authorized original. | D1 recovery through the existing in-app private text Keep: drop a response after server persistence, restart the client, retry the same attempt, and verify one logical submission plus exact original/open/return. Add a changed-session case that cannot publish the previous owner’s receipt or erase their recoverable draft. | After this proof, cover one second interruption boundary in the same flow, such as restart after a submission ID is journaled but before upload/finalization completes. Reuse existing journal and owner APIs; stop before a new capture door, sharing policy or native entitlement dependency. |
+| Artifact | Existing focused readers consume an exact eligible addition without compromising original-only value. | P3 read-only adoption of the existing selected-source result GET: generated contract, typed transport/data facade and explicit exact-result binding to the selected original. Prove addition/no-addition/missing/expired/revoked/wrong-account states through the real local API with controlled results; no generation dispatch. | Connect that data seam to the existing reader behind the existing disabled feature boundary, preserving exact-original and return behavior. Native acceptance uses a local fixture with an explicit work ID; do not invent production result discovery or a new presentation hierarchy. |
+| Adaptive Context | Bounded selected-source execution remains correct across interruption and elapsed time. | R3 post-dispatch recovery and publication-time validation in the existing producer/gateway/ledger. Establish which failure boundaries lack evidence, then test cancellation, interrupted settlement/store and source/work expiry during an in-flight call. Repair reproduced gaps; preserve held/unknown usage until an authoritative outcome exists. | Verify restart/reconciliation against the same work identity and one finite test allocation, with no second dispatch or stale return. Keep R2/R7 actual-output/human-quality acceptance separate; no new queue, paid calls, allocation policy or activation. |
+| Eng Efficiency | Reliable feedback and protected landing consume less avoidable waiting and runner capacity. | Timebox a security-remediation investigation for the shared app blocker, then repair the observed label-trigger/cancellation interaction in the advisory verification trial without weakening required checks. | Exercise relevant PR event sequences and a naturally occurring eligible change plus rejection/failure cases. Measure every attempt; decide whether to continue or stop the pilot from evidence, not job count. Required-scope adoption remains a separate decision. |
+
+**Why these assignments changed:** current producer and PostgreSQL tests already
+cover a real reservation/settlement, concurrent allocation denial, ambiguous
+timeout holds and same-key replay denial. Rebuilding those mechanisms is not a
+new R3 milestone. The producer captures its clock before awaiting generation
+and passes it to final storage; expiry during a call and interruption between
+settlement and storage deserve explicit investigation, not an asserted defect
+without reproduction. The app has no selected-source result consumer, and the
+GET/POST remain dark with no declared consumers. Artifact adoption therefore
+includes operation governance and regenerated types, not hand-written wire
+models. Existing capture tests and the Swift journal harness cover component
+and storage behavior; a dropped-response/restart real-transport proof is a
+distinct boundary from the already recorded happy-path receiving rehearsal.
+
+**Independence and stopping rules:**
+
+- Reuse each outcome’s owner worktree. Refresh accepted dependencies there,
+  preserving the owner’s unmerged app candidate; record a dependency on PR #213
+  or #214 explicitly rather than representing it as landed or duplicating it.
+- Each milestone ends with a clean committed candidate, focused acceptance,
+  an explicit-base merge preflight and a brief receipt of remaining limits.
+  Central integration owns publication, shared conflicts, pins and landing.
+  Security-blocked app work may be handed over without falsely claiming a merge.
+- Continue only to the listed independent follow-on. Stop when it needs founder
+  policy, unavailable credentials, paid authorization, a design decision or
+  external signing access. A passed audit with no implementation gap is a valid
+  finish; do not add abstractions or tests merely to occupy the session.
+- Artifact owns result-consuming API governance/generated-file changes for
+  this round; Adaptive Context preserves the published wire shape unless a
+  concrete incompatibility requires an explicit handoff. Connectivity owns
+  capture callers/journal recovery. Eng Efficiency owns workflow and dependency
+  verification. Do not independently edit another lane’s reader or transport.
+- Use synthetic disposable data for unattended fault injection. One owner uses
+  a particular simulator/runtime at a time; other lanes continue headless work.
+  Real Clerk authentication, remote services, physical-device behavior and
+  human usefulness remain separate, honestly named evidence boundaries.
+- Preserve original-first behavior and accepted authority. No new Collection
+  presentation, automatic joins/sharing, paid dispatch, background generation,
+  provider deployment or security exception is authorized by this update.
+
+**Founder authorization checkpoint — October 2:** the founder approved the
+Orchestrator and all four lanes to carry out the discussed work. Hourly
+coordination, routine implementation, roadmap publication and protected merges
+are authorized. The frozen model pilot is approved within its existing $0.50
+cap. General delegation does not identify the exact configuration and impact
+of a security exception; automatic action review requires that concrete
+candidate before a control is changed. Continue independent work while such
+proposals are prepared.
+
+The owner roadmaps hold the detailed Artifact, Adaptive Context and efficiency
+acceptance. D1 below remains Connectivity’s owner package; D2/D3 remain longer-term
+work after this durability milestone. The model pilot stays blocked on secure
+Anthropic access, followed by human review. The founder has explicitly approved
+its existing $0.50 maximum and recorded attempt limits; approval is no longer
+the missing dependency. Do not keep regenerating synthetic review packs while waiting.

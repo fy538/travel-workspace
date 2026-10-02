@@ -3,7 +3,7 @@ doc_type: contract
 status: active
 owner: founder / engineering
 created: 2026-05-01
-last_verified: 2026-09-30
+last_verified: 2026-10-02
 why_new: Promote the existing workspace index into the canonical documentation entry point.
 supersedes: []
 source_of_truth_for: [workspace-docs-navigation]
@@ -44,15 +44,21 @@ Three things follow from that table and are worth stating once:
 - **Lighting a flag outside its declared `gate:` is a scope change**, not a
   config change.
 
-The September 30 program assigns three autonomous implementation lanes with
-one active coherent assignment per lane. The program owns their boundaries and
-Orchestration's queue; Strategy and Strategy Technical own their respective
-package details and receipts. Each executes in a complete coordinated worktree
-against landed dependencies, without routine inter-chat dispatch. The Home H1
-package and integration roadmap preserve supporting detail and evidence, not
-additional queues. These plans do not replace product, permissions, generated
-current-state signals or release authorities. Read the relevant owner contract
-and verify Git before work; the roadmap assignment itself does not start work.
+The October 2 [program goals](working/vesper-program-roadmap.md#next-activation-round--october-2-roadmap-goals)
+assign four execution owners: Connectivity (capture/Home/Places), Artifact
+(private objects/readers/Collections), Adaptive Context (context/research), and
+[Eng Efficiency](working/development-qa-research-and-roadmap-2026-09-30.md#e1-verification-identity-and-native-prerequisites)
+(verification/QA tooling). Connectivity's detailed plan lives in the program
+roadmap; the other three have specialist roadmaps. Central integration owns
+cross-lane consolidation, not another product implementation queue. Each owner
+can progress through its named goal's milestones without repeated dispatch.
+
+Current goal blocks supersede historical assignments and receipts; wider roadmap
+packages are not all active. The H1 package and integration roadmap remain
+supporting references. An edited roadmap does not activate a persistent chat
+Goal, establish required evidence or authorize deployment. Read the relevant
+owner contract and verify current Git before work. Product/permission decisions,
+generated current-state signals and release authorities remain separate.
 
 ## Current strategy review
 
