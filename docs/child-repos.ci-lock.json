@@ -1,5 +1,5 @@
 {
   "travel-agent": "f5f34cac89a87480e11e9f3a4ff430ad730baa1a",
-  "travel-app": "57823f0896dc8b31ca3a16319dda3505762a6b79",
-  "_comment": "Coordinated QA evidence candidates; required hosted checks remain authoritative, and authenticated user acceptance is still separate."
+  "travel-app": "c895df7e4cf4522859c3d577cae1ded2b0dbe4ab",
+  "_comment": "Reviewed opt-in sharding control candidate; unchanged test target policy and required checks; no measured speedup implied."
 }

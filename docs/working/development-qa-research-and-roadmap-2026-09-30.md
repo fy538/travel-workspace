@@ -621,6 +621,29 @@ time. These observations motivate E1; they are not new benchmark results.
 | E1.2 Early native prerequisite receipt — mandatory | Extend the existing QA intake/preflight to record assigned device, installed identity with known/unknown compatibility limits, API/Metro reachability, intended/observed mock-or-real mode and presence/absence/unknown of the required approved session. Establish session readiness through supported app/test signals, without extracting credentials or logging tokens/user data. Surface the actionable missing prerequisite before product mutations. | Missing-session real acceptance stops before Keep/Save; mock QA remains usable under its own declared requirements; wrong mode/persona still fails. Prove valid, violating and tool-unavailable cases. One serialized device trial verifies the receipt's actual environment; headless tests alone do not certify native compatibility or login. Do not promise full build-fingerprint coverage in this milestone. |
 | E1.3 Comparable broad app sharding — conditional | On the next naturally required broad app candidate, reuse `.github/workflows/app-test-sharding-experiment.yml`. Compare one successful baseline and successful shards with the same revision, dependency/coverage policy and runner class; retain every failed attempt. | Exact test union and failure propagation preserved. Record queue, install, test, aggregation and total runner occupancy separately. One passing sample is exploratory; repeat comparable natural cases before recommending adoption. If no eligible candidate exists, leave this experiment pending without creating dummy PRs or prolonging E1. Required-check changes need their own concrete reviewed candidate. |
 
+**E1.3 support gap and finish criterion — October 2.** The natural app
+candidate at PR #216 head `8088501a6121acaac68b6691e7334d943382b230` is now
+merged, but the existing experiment is pull-request-only and gates all three
+jobs on the historical head branch `codex/eng-eff-3a-app-tests`; it cannot
+replay that merged candidate by immutable revision. Add an optional manual
+dispatch that accepts only a full 40-character app commit SHA, validates it
+before starting test jobs, and checks the app checkout against that SHA. Run
+workflow-control helpers and their tests from the workflow revision in a separate
+checkout; the historical candidate is not required to contain future helpers.
+Record workflow revision separately from the tested app SHA and workspace SHA;
+keep the candidate's own test selection and shard union unchanged. Each comparison
+must keep using the workspace SHA already pinned in the candidate's
+`.github/ci-lock.json` (`8babb0d125c0e1c104f80d8a0c22063684365f04`) and verify
+the workspace checkout, without changing the PR path, required checks,
+permissions, secrets, runner class, Node/npm install, coverage policy or shard
+commands. Reject branch, tag, abbreviated and malformed refs before baseline
+or shard execution. Finish the hosted experiment only after one manual run at
+the natural candidate SHA has successful target validation, one full baseline,
+two successful shards and exact test-union evidence; preserve every attempt's
+run/job IDs, result, queue time, install time, test time, aggregation time and
+total runner occupancy, including failures, cancellations and reruns. One
+successful sample remains exploratory and does not justify default sharding.
+
 **Goal finish:** E1.1 and E1.2 are implemented, their stated representative
 acceptance is executed, and a coherent committed candidate has passed the
 appropriate explicit-base preflight. A missing mandatory native trial remains
