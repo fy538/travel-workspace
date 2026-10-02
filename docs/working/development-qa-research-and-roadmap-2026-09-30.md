@@ -663,10 +663,16 @@ Measurement labels are `e1-recorder-regression`,
 
 The implementation and headless acceptance are ready for the device trial, but
 E1 is not complete: this lane's runtime has no assigned device and Connectivity
-owns the reserved QA SE. Next action is to use one bounded device window after
-Connectivity releases it, run one prerequisite-receipt trial, then update this
-record with the native evidence. E1.3 remains pending until a natural broad app
-candidate qualifies. Central retains publication, hosted checks, and merge.
+owns the reserved QA SE. Connectivity's registered C1 lane reports that the
+authenticated native interruption remains blocked until an approved signed-in
+Clerk QA session is available; real-session preflight evidence therefore
+remains headless only. Central has queued a single approximately 30-minute
+request, conditional on both explicit device release and session readiness. Do
+not start, reset, or probe the owner's device while either condition is unmet.
+Next action is one prerequisite-receipt trial in that bounded window, then
+update this record with the native evidence. E1.3 remains pending until a
+natural broad app candidate qualifies. Central retains publication, hosted
+checks, and merge.
 
 **Ownership:** workspace recorder and QA tooling/app preflight only, plus the
 existing tests/runbooks affected. Connectivity owns product capture/session
