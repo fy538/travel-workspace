@@ -45,12 +45,16 @@ source revocation; `test_candidate_owner_lifecycle_postgres.py` covers correctio
 Undo, retry and persisted reader behavior. Preserve this coverage instead of
 rebuilding those owners or assigning every listed scenario as absent.
 
-**Concrete investigation seam:** `data/consumerCollections.ts` caches composed
-member pages containing Thing projections. `data/keptThings.ts` merge/reversal
-mutations invalidate Thing projection/index prefixes, while composed Collection
-pages have their own query prefix. This code inspection identifies a potential
-stale-read boundary; it is not an executed defect reproduction. Determine whether
-existing broader invalidation already closes it before making a change.
+**Reproduced investigation seam — October 2:** composed Collection member pages
+have a separate query key from singular/batch Thing projections. A mounted
+Collection member read remained stale after a successful merge: its Thing
+projection stayed at revision 1 when authoritative readback had advanced to
+revision 2. The fix centralizes owner-session-scoped private Thing, index and
+composed-member refresh after merge/reversal; verified source revocation also
+prunes only the exact revoked submission from cached projections before refresh.
+Cancellation guards prevent an older in-flight composition from writing back
+after a source or account transition. Focused app regressions cover merge,
+reversal, cross-account isolation and delayed detail/batch responses.
 
 | Milestone | Implementation and completion evidence |
 | --- | --- |
@@ -58,6 +62,24 @@ existing broader invalidation already closes it before making a change.
 | A1.2 Source and correction lifecycle | Connect current private Collection membership/Thing batch reads with source revocation and alias reversal through real owner routes/disposable Postgres. Keep independent originals eligible; removal from a Collection must not delete a Thing. Combine existing correction Save/refetch/Undo route evidence with current app invalidation; add only missing cross-boundary cases. Preserve exact source identity, expected revisions, safe retries and denial. |
 | A1.3 Delayed reads and owner transitions | Exercise a pending member-batch/reader response across account or session changes, and across a source/revision change followed by authoritative readback. Prove cached old content/actions cannot be reinstated by late responses once invalidation/current authority is known. Respect existing refresh/offline semantics; do not promise instantaneous remote revocation or invent push infrastructure. |
 | A1.4 Reviewable candidate | Verify changed app behavior and real backend parity at their stated boundaries; regenerate contracts only if actual wire changes require it. Run the explicit-base preflight once the coherent candidate is stable. When visible existing reader behavior changes, retain its required scoped native evidence or clearly leave that acceptance blocked. Hand off fixed revisions and a concise case/evidence matrix. |
+
+**A1 evidence — October 2:** app regression suites passed (3 suites / 24 tests)
+for composed-member merge/reversal refresh, account isolation, delayed reads,
+and exact source-revocation pruning. Disposable-Postgres owner-route coverage
+passed with the existing correction/Undo, merge/reversal, revocation and
+Collection lifecycle suites (20 tests total). No API wire shape changed, so
+generated contract synchronization was not needed. The app changes only query
+coherence/cancellation and have no visible presentation effect; no native
+visual capture was triggered.
+
+**Separate authenticated acceptance gate — OPEN / NOT RUN:** signed-in
+Clerk-backed mobile Save → canonical readback → Undo → readback has not been
+established by this A1 work. The backend route tests used the lane's disposable
+local database and `SKIP_AUTH`; they prove their route/persistence boundary,
+not authenticated app-to-service behavior. No approved Clerk session or device
+was assigned to this lane. Keep this gate open until that evidence is available;
+do not infer closure from the route tests, mock app tests, or prior synthetic
+native runs.
 
 **Goal completion boundary:** A1's mandatory outcome is verified private
 implementation/data coherence plus the reviewable candidate; it does not certify
