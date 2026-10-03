@@ -197,6 +197,19 @@ order. Once both candidates are ready, central checks whole-Thing deletion
 suppresses an influenced result and runs the combined explicit-base preflight.
 An A2 handoff is not a gate for AC2's earlier milestones.
 
+
+**Combined A2/AC2 central check — October 3:** central preserved both shared
+reader and exclusive mutation owner fences, and reconciled the two unlanded
+migrations as `pubapr01 -> keptthing03 -> selresult04`. A fresh explicitly
+disposable database upgraded successfully. After both review corrections were
+combined, selected-source producer/readback, kept-Thing and Collection database
+suites passed **49 tests**. They include membership removal and actual
+whole-Thing deletion racing both publication and exact readback, direct lock
+probes, stale-result erasure and rejection of late persistence. This is
+provider-free database evidence; it is not model, native or blob-worker proof.
+The log is `/private/tmp/vesper-a2-ac2-final-postgres.log`. Final measured
+cross-repo preflight and hosted acceptance remain separate.
+
 **Finish:** a clean committed request-to-readback implementation with evidence
 for the named authority/revision boundaries and honest retrieval limits, ready
 for central integration. Production remains dark. No provider/model calls,

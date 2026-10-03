@@ -116,6 +116,18 @@ Workspace checks completed, including the cross-repo contract audit. Therefore
 this is a reviewable integration candidate, **not a green local merge
 preflight**; do not describe that gate as passed.
 
+
+**Reader correction after central review:** owner app `959a44e79` (central
+`6e5515a7e`) resets mounted same-account canonical Artifact, Intake submission,
+lifecycle, interpretation, selected-research and affected Thing readers after
+whole-Thing deletion. Removing a query alone could leave an active observer
+showing its prior data; cancelling and resetting clears that state while current
+reads finish. The owner reported 20 tests across three focused suites, typecheck
+and ESLint passing. Central reviewed the exact diff and account-key predicates;
+tests cover mounted content, delayed responses and preservation of another
+account's cache. The combined central preflight and hosted acceptance are
+separate and remain pending at this receipt.
+
 The transaction proves immediate source revocation and Intake handoff, not
 physical object-store deletion. If retained sources have external blob refs,
 their cleanup remains the existing outbox/worker's responsibility; no worker
