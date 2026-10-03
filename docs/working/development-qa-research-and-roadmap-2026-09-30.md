@@ -778,6 +778,56 @@ that UI session signal: the required no-navigation boundary and unavailable
 API/Metro prevented it. E1.2's authenticated native observation remains
 unverified; do not convert this negative receipt into an authenticated pass.
 
+**Second read-only native prerequisite window — October 2 local / October 3
+UTC:** on the current E1 lane tuple—workspace
+`5ff6d913b4cff4d1425776275c775e247e4464b6`, backend
+`f5f34cac89a87480e11e9f3a4ff430ad730baa1a`, and app
+`35537620848bedf860aa9e273b0d9c0fed309651`—one separate, unowned simulator,
+Vesper Native 0915 (`666FA85F-C2C2-4D7A-8B83-F4BDDB3FA32D`, iOS 18.2), was
+claimed from `2026-10-03T00:31:37Z` through its early release at
+`2026-10-03T00:44:51Z` (scheduled end `00:51:37Z`). The manifest claim is
+released and the device was restored to shutdown. The QA SE and Home/Places
+device reservations were left untouched. Installed bundle `com.fyan.vesper`,
+version `1.0.0`, build `1` matched the source bundle/version; native build
+fingerprint and JavaScript/native compatibility were unknown at intake.
+
+The trial used the existing lane API, Expo/Metro and infrastructure with auth
+enabled and AI, web search, model loops and embedding prewarm disabled. Host
+API health returned 200 and Metro was reachable from the host. The API's
+simulator/LAN reachability was not established. The documented read-only command
+`npm run qa:surface -- home-root --doctor --mode=real` ran twice, first with its
+default Metro address and then with
+`VESPER_METRO_URL=http://192.168.1.153:50572`. It wrote
+`travel-app/.maestro/runs/_preflight/2026-10-03T00-39-27-134Z-home-root.json`
+and
+`travel-app/.maestro/runs/_preflight/2026-10-03T00-42-54-648Z-home-root.json`.
+Both receipts are `blocked` with failure codes `mode` and `device`; intended
+mode is real, observed mode and approved-session status are `unknown`. Both
+receipts resolve the device and installed identity and establish only
+host-scoped API/Metro reachability. Metro reported
+`[Worklets] Mismatch between JavaScript part and native part of Worklets (0.7.4
+vs 0.12.1)`. The locked JavaScript side is `0.7.4`; the installed native side
+is `0.12.1`. This explains why the app bundle and supported mode/session markers
+could not load. It does not establish whether a session exists. No login,
+account inspection, Keep/Save, provider/model request, screenshot or product
+mutation occurred; no screenshot files were produced.
+
+`npm run native-compatibility` passed for the locked Expo 55 / React Native
+0.83 dependency pair, which establishes the package-lock compatibility
+contract only. Xcode 26.5 and CocoaPods 1.16.2 were present, but the app's
+existing build configuration requires `RNMAPBOX_MAPS_DOWNLOAD_TOKEN`, absent
+from the checked process and app configuration sources. No prebuild, native
+build, install or reinstall was attempted. Local native build preparation is
+blocked until that existing input is made available; no dependency upgrade or
+cloud build is proposed. After preparing a local simulator Debug app, the
+reviewable next device action is an in-place `simctl install` on this same
+separate simulator, with the existing 250 MB app bundle backed up for restore
+using another in-place install. Do not use `simctl uninstall`. In-place restore
+does not reverse data migrations or writes caused by launching the new build,
+so app-data preservation is not guaranteed. This remains a proposed next action,
+not an installation authorization or E1.2 pass. Preserve the earlier QA SE
+failure above as a separate unavailable-host-prerequisite attempt.
+
 **Conditional E1.3 candidate — October 2:** central identified natural app PR
 [#216](https://github.com/fy538/travel-app/pull/216), app head
 `8088501a6121acaac68b6691e7334d943382b230`, workspace dependency
