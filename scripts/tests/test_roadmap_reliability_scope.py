@@ -48,13 +48,17 @@ def candidate_fixture(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
 
 
 def make_candidate_fixture(
-    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, *, checker_test: bool
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    *,
+    checker_test: bool,
+    checker_test_content: str = "def test_checker_contract():\n    assert True\n",
 ):
     root = tmp_path / "workspace"
     agent = root / "travel-agent"
     app = root / "travel-app"
     agent_file = CHECKER_TEST if checker_test else "README.md"
-    agent_sha = init_repo(agent, agent_file, "def test_checker_contract():\n    assert True\n")
+    agent_sha = init_repo(agent, agent_file, checker_test_content)
     checker = agent / "scripts/check-sample.py"
     checker.parent.mkdir(parents=True, exist_ok=True)
     checker.write_text("def check():\n    return True\n", encoding="utf-8")
@@ -162,13 +166,87 @@ def test_allowlisted_prose_uses_existing_doc_checks_and_referenced_checker_test(
     assert plan["scope"] == "working-roadmap-prose"
     assert plan["changed_paths"] == [ROADMAP]
     assert "travel-agent" in plan["dependencies"]
-    assert any(
-        command["repo"] == "agent"
-        and command["argv"] == ["python3", "-m", "pytest", CHECKER_TEST]
+    checker_command = next(
+        command
         for command in plan["commands"]
+        if command["repo"] == "agent" and command["argv"][-1] == CHECKER_TEST
     )
+    assert checker_command["argv"][1].endswith("/scripts/run_required_pytest.py")
+    assert checker_command["argv"][2:5] == [
+        "--cwd",
+        str(candidate_fixture["agent"]),
+        "--",
+    ]
+    assert {item["key"] for item in checker_command["prerequisites"]} == {
+        "backend-python-313"
+    }
     assert any(command["argv"] == ["make", "docs-links-check", "docs-spine-check", "docs-canon-check"]
                for command in plan["commands"])
+
+
+def test_postgres_checker_scope_plan_declares_offline_subset(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+):
+    fixture = make_candidate_fixture(
+        tmp_path,
+        monkeypatch,
+        checker_test=True,
+        checker_test_content="@pytest.mark.requires_postgres\ndef test_checker_contract(): pass\n",
+    )
+
+    plan = classify(fixture)
+
+    assert plan["eligible"] is True
+    checker_command = next(
+        command
+        for command in plan["commands"]
+        if command["repo"] == "agent" and command["argv"][-1] == CHECKER_TEST
+    )
+    assert {item["key"] for item in checker_command["prerequisites"]} == {
+        "backend-python-313",
+        "lane-disposable-postgres",
+    }
+    assert checker_command["environment"] == {
+        "PYTEST_ADDOPTS": (
+            '-m "not requires_postgres and not requires_dogfood_wedge '
+            'and not requires_api_keys"'
+        )
+    }
+
+
+def test_run_plan_applies_and_reports_postgres_offline_subset(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+):
+    fixture = make_candidate_fixture(
+        tmp_path,
+        monkeypatch,
+        checker_test=True,
+        checker_test_content="@pytest.mark.requires_postgres\ndef test_checker_contract(): pass\n",
+    )
+    plan = classify(fixture)
+    real_run = scope.subprocess.run
+    executed: list[tuple[tuple[str, ...], str | None]] = []
+
+    def run(argv, **kwargs):
+        if argv[0] == "git":
+            return real_run(argv, **kwargs)
+        env = kwargs.get("env")
+        executed.append((tuple(argv), None if env is None else env.get("PYTEST_ADDOPTS")))
+        return type("Result", (), {"returncode": 0})()
+
+    monkeypatch.setattr(scope.subprocess, "run", run)
+
+    result = scope.run_plan(plan, root=fixture["root"])
+
+    assert result == 0
+    checker = next(item for item in executed if item[0][-1] == CHECKER_TEST)
+    assert checker[1] == (
+        '-m "not requires_postgres and not requires_dogfood_wedge '
+        'and not requires_api_keys"'
+    )
+    assert "database cases were not run here" in capsys.readouterr().out
     assert any(command["argv"] == ["make", "docs-inventory-check", "docs-status-check", "docs-child-governance-check"]
                for command in plan["commands"])
 

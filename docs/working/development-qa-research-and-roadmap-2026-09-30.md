@@ -688,41 +688,71 @@ adoption or broad verifier rewrite is assigned.
 
 ### E3 Documentation checker prerequisite repair
 
-**Status: proposed, not activated.** A docs-only preflight on October 3 selected
-two backend checker test files from references elsewhere in the changed CI
-runbook. Documentation checks passed, but both test selections stopped during
-collection because the required disposable database inputs were absent. The
-measured command failed in 3.892 seconds; this is an environment-selection
-failure, not evidence that the checker assertions failed. Retained log:
-`/private/tmp/vesper-regroup-20261003/logs/app-three-week-window-docs-20261003T161140Z.log`.
+**Goal:** preserve the documentation-targeted checker tests while making their
+backend interpreter and database requirements visible before pytest starts.
+The retained mixed-documentation run
+(`/private/tmp/vesper-regroup-20261003/logs/app-three-week-window-docs-20261003T161140Z.log`)
+showed collection correctly refuse because the selector had chosen system
+`python3` without identifying the required disposable PostgreSQL target.
 
-Read-only inspection found that the workspace selector reads the changed
-Markdown file's complete text, maps checker references to tests, and emits bare
-Python pytest commands. The selected backend files contain database-marked
-cases; the backend collection guard correctly refuses to run them without an
-explicit disposable target. Child dependency installation alone does not supply
-that target. Keep the guard intact.
+**E3 repair receipt — October 3:** the exercised tuple was workspace
+`c0a90bcef179036b58de1d8de8a1fb503aa0b8ba`, backend
+`815f72e7f5c72c86c792ef68c97d0bc88a3ea593`, and app
+`4bbee04e84abce7b2470d8cb4c2279a5502f7149`.
 
-**Bounded finish:**
+- Backend checker references now select the lane's Python 3.13 environment
+  (or configured CI Python 3.13), pass through `run_required_pytest.py`, and
+  include prerequisites in both the readable plan and plan JSON. A selected
+  test containing the registered `requires_postgres` marker declares the
+  isolated disposable-Postgres requirement; unreadable marker inventory fails
+  closed. Before execution, the selector validates the interpreter and requires
+  `TEST_DATABASE_DISPOSABLE=1` plus a loopback database on the port assigned in
+  this lane's `.workspace-lane.json`. It rejects the Compose development
+  database, URL redirects and libpq overrides without printing credentials.
+- The exact repository offline marker filter remains usable for hosted
+  merge-ready checks and reports that database cases were excluded. Other
+  missing or invalid prerequisites block the selected checker before pytest;
+  independent selected checks still run. The existing required-pytest runner
+  continues to reject unexpected skips. The advisory roadmap-prose scope
+  consumer now uses the same canonical checker command and records its
+  prerequisites; its Postgres-backed checker plan carries the exact offline
+  filter and reports the deferred database cases, with full Reliability still
+  authoritative.
+- The mixed selector was exercised with a Markdown fixture referencing both
+  `scripts/check_check_constraints.py` and
+  `scripts/check_migration_lifecycle.py` on the tuple above. Documentation
+  links, spine and canon checks passed;
+  `tests/scripts/test_check_check_constraints.py` passed 23/23 and
+  `tests/scripts/test_check_migration_lifecycle.py` passed 30/30. The run used
+  macOS 25.5 arm64, backend Python 3.13.0 / pytest 9.1.1, and a fresh database
+  in this lane's isolated Postgres service. Docker reported its configured
+  linux/amd64 image running on arm64; the service became healthy. The targeted
+  selector tests passed 35/35, required-pytest runner tests 2/2, and advisory
+  roadmap-scope tests 25/25. Ruff and `git diff --check` passed.
+- **Explicit-base preflight:** `make verify-changed
+  WORKSPACE_BASE_REF=c0a90bcef179036b58de1d8de8a1fb503aa0b8ba
+  AGENT_BASE_REF=815f72e7f5c72c86c792ef68c97d0bc88a3ea593
+  APP_BASE_REF=4bbee04e84abce7b2470d8cb4c2279a5502f7149` passed in 56.572
+  seconds. It ran 212 workspace tooling tests, cross-repository contracts and
+  the three documentation gates. All three input revisions were stable and
+  matched the tuple above. This code-plus-documentation selection did not
+  rerun the database checker suites; their mixed-selection run is recorded
+  above. Measurement record and log:
+  `/private/tmp/vesper-e3-verification-records.json` and
+  `/private/tmp/vesper-e3-verification-logs/e3-final-explicit-base-preflight-after-integration-fix-20261003T173225Z.log`.
 
-1. Reproduce the plan from a minimal documentation fixture containing the same
-   reference class; record exact child revisions and selected prerequisites.
-2. Make the plan expose the necessary interpreter and database prerequisites
-   before execution. Reuse the existing offline/database test owners and
-   disposable-service tooling. Choose the smallest correction that preserves
-   required selected coverage; do not silently drop database cases or use an
-   ambient development database.
-3. Cover an offline-only checker, a mixed offline/database checker, absent or
-   invalid prerequisites, and subprocess/tool failure. Execute the mixed path
-   against an explicitly disposable database, not just a mocked plan.
-4. Run measured explicit-base preflight and report command/selection/setup
-   outcomes. Compare only comparable runs. Stop after the verified repair;
-   broad selector redesign, sharding adoption and repeated E2 diagnostics are
-   outside this proposed assignment.
+**Central review follow-through — October 3:** three additional negative
+regressions reproduced an incorrect offline exemption for case-changed markers,
+a later overriding marker option, and changed Boolean grouping. The selector
+now recognizes only the exact repository offline-filter argument vector. Those
+altered inputs must pass normal disposable-database prerequisite validation;
+they cannot inherit the offline exemption. The new cases fail on the original
+E3 candidate and pass with this correction. This is a checker-input boundary
+repair; no product or hosted check requirement is weakened.
 
-This can run independently of the proposed Collection interaction work once
-assigned. It reduces a demonstrated source of late setup surprises; no quantified
-speedup is claimed yet.
+**Finish:** retain this change as a clean, committed candidate after the
+measured explicit-base preflight. Hosted checks and central integration remain
+the acceptance boundary; this receipt does not claim either has completed.
 
 ### October 3 next-round readiness findings
 
