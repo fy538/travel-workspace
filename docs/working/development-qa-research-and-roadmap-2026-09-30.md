@@ -754,6 +754,36 @@ repair; no product or hosted check requirement is weakened.
 measured explicit-base preflight. Hosted checks and central integration remain
 the acceptance boundary; this receipt does not claim either has completed.
 
+**M0 hosted-interpreter follow-up — October 3:** Reliability job
+`111270997808` exposed a second hardcoded interpreter in
+`scripts/m0_reachability_report.py`: `travel-agent/.venv/bin/python` does not
+exist on the hosted runner, which installs Python 3.13 through
+`actions/setup-python` instead. The occasion gate now shares
+`resolve_backend_python` with `verify-changed`, selecting the lane venv, the
+configured Python 3.13 executable, or the named `python3.13` fallback. A spawn
+`OSError` is retained in the report as `error` with no fabricated process exit
+code; the report still exits nonzero, and a checker that starts and exits
+nonzero remains a `fail` with its captured output.
+
+- `scripts/tests/test_m0_reachability_report.py` and the resolver tests in
+  `scripts/tests/test_verify_changed.py` passed **42/42**, covering local venv,
+  setup Python 3.13, named fallback, missing executable, and checker failure.
+- On the lane tuple workspace `e420f3d39ddf869a1a76e567ac36f81a29c77386`,
+  backend `815f72e7f5c72c86c792ef68c97d0bc88a3ea593`, app
+  `175c0f41ab69d8b48f0ae975e7c7291a4711e45d`, `make m0-reachability-report`
+  passed all five gates in **15.815s**. The reporter used Python 3.14.6 and the
+  local backend venv used Python 3.13.0; this report needs no database or
+  service. A separate Python 3.13.15 process with no venv selected its own
+  configured executable, matching the hosted setup branch. Measurement record:
+  `/private/tmp/vesper-eff-m0-verification.json`; final log:
+  `/private/tmp/vesper-eff-verification-logs/eng-eff-m0-report-final-20261003T191932Z.log`.
+- The measured change-aware preflight passed 214 workspace tests and the
+  cross-repository contract checks, but exited 2 because four existing
+  `test_workspace_runtime.py` cases could not bind loopback sockets in this
+  sandbox (`PermissionError`). Those cases are unverified here and remain
+  unchanged; central will run the permitted final preflight. Its exact log is
+  `/private/tmp/vesper-eff-verification-logs/eng-eff-m0-interpreter-prereq-preflight-20261003T191342Z.log`.
+
 ### October 3 next-round readiness findings
 
 The central review found no open PR backlog at accepted workspace `cd161ecd`,

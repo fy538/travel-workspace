@@ -10,6 +10,7 @@ generated-state contracts actually executable from the workspace root?
 from __future__ import annotations
 
 import argparse
+import importlib
 import json
 import subprocess
 import sys
@@ -18,17 +19,27 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parent.parent
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+resolve_backend_python = importlib.import_module(
+    "scripts.verify_changed"
+).resolve_backend_python
 
-GATES: tuple[tuple[str, tuple[str, ...]], ...] = (
-    ("api-coverage", (sys.executable, "scripts/api_contract_audit.py")),
-    ("contract", ("./scripts/contract-check.sh",)),
-    ("flags", (sys.executable, "scripts/check_flag_registry.py")),
-    (
-        "occasion-behavior",
-        ("travel-agent/.venv/bin/python", "scripts/check_occasion_behavior_contract.py"),
-    ),
-    ("generated-state", (sys.executable, "scripts/render_current_state.py")),
-)
+
+def gate_commands() -> tuple[tuple[str, tuple[str, ...]], ...]:
+    return (
+        ("api-coverage", (sys.executable, "scripts/api_contract_audit.py")),
+        ("contract", ("./scripts/contract-check.sh",)),
+        ("flags", (sys.executable, "scripts/check_flag_registry.py")),
+        (
+            "occasion-behavior",
+            (
+                resolve_backend_python(ROOT / "travel-agent"),
+                "scripts/check_occasion_behavior_contract.py",
+            ),
+        ),
+        ("generated-state", (sys.executable, "scripts/render_current_state.py")),
+    )
 
 
 def run_gate(name: str, command: tuple[str, ...], timeout: float) -> dict[str, object]:
@@ -62,9 +73,18 @@ def run_gate(name: str, command: tuple[str, ...], timeout: float) -> dict[str, o
             "duration_seconds": round(time.monotonic() - started, 3),
             "output_tail": output[-2000:],
         }
+    except OSError as exc:
+        return {
+            "name": name,
+            "command": " ".join(command),
+            "status": "error",
+            "returncode": None,
+            "duration_seconds": round(time.monotonic() - started, 3),
+            "output_tail": f"{type(exc).__name__}: {exc}"[-2000:],
+        }
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--json", action="store_true", help="emit machine-readable JSON")
     parser.add_argument(
@@ -73,9 +93,9 @@ def main() -> int:
         default=180.0,
         help="per-gate timeout in seconds (default: 180)",
     )
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
 
-    results = [run_gate(name, command, args.timeout) for name, command in GATES]
+    results = [run_gate(name, command, args.timeout) for name, command in gate_commands()]
     if args.json:
         print(json.dumps({"gates": results}, indent=2))
     else:
