@@ -234,10 +234,20 @@ accepting those images:
   exporter at `:nth-match(.p, N)`: shared anatomy, no-photo, large text, the
   Board 09 entry frame, and Board 14 discovery, visit and arrangement frames.
   App `c5c7f9f70` records the transport and diagnostic in the provenance file.
+- A bounded `--wait-ms=2000` rerender was checked against the audit evidence
+  (`/private/tmp/vesper-entity-reference-audit.json`): every selected frame had
+  a visible identity block, resolved source list and no clipping before its PNG
+  was accepted. The output hashes and dimensions remain stable.
 - Every corrected image was inspected. Each is an uncropped 348/393 CSS-pixel
   phone frame with identity, facts, body, sources/actions and closing content;
   no unresolved component placeholder remains. The manifest now contains
   seven pairs and exact selector/output hashes.
+
+Two source-board inconsistencies are recorded for Claude Design review only:
+Board 14 R3 cites source 1 while listing 2, 3 and D, and Board 14 R1 says no
+reservation pressure while its closing TABLE row says Reserve / weekends fill.
+The lane made no design-file or product correction and treats neither fixture
+statement as runtime truth.
 
 This correction supersedes the four broad-board PNGs from the first repair.
 The promoted images remain L1 structural references and do not claim native,
