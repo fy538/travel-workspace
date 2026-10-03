@@ -15,14 +15,12 @@ source_of_truth_for: []
 **Current package — October 3 central Goal:** private Ask app #222 and its
 route-policy follow-through app #223/workspace #75 are accepted. Backend #250's
 test receipt awaits its own hosted acceptance; do not repeat CTX1 or widen the
-request scope. Next is [G4](../vesper-program-roadmap.md#central-execution-goal--october-3):
-map Entity board 16 and the newer one-field direction to existing request,
-retry/readback/expiry/invalidation and return owners. Produce an exact supported
-versus unsupported matrix and minimal owner/API/decision dependencies. The
-finish is a provider-free contract handoff, not a new public-place request API,
-note store, durable Chat transcript or model evaluation. Entity owns UI changes;
-central owns integration and the shared Goal. When the handoff is complete,
-stop unless central names a demonstrated defect within the admitted boundary.
+request scope. The [G4](../vesper-program-roadmap.md#central-execution-goal--october-3)
+provider-free contract/gap handoff is recorded in §13.9 below, delivered in
+owner commit `abbfeb7560cf2fc06cd7f8310740821e9384cb23` and reviewed centrally.
+Its documentation acceptance is tracked by central integration. Entity owns
+the detail decision; field-specific public work needs a separately admitted
+owner and contract. Stop here unless central names an executable package.
 
 **Current assignment — October 3:** AC1's provider-free permission contract is
 accepted in backend #248/workspace #65. AC2's one explicitly selected private
