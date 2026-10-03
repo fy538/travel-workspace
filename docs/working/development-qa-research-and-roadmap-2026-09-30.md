@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Eng Efficiency
 created: 2026-09-30
-last_verified: 2026-10-02
+last_verified: 2026-10-03
 expires: 2026-10-30
 why_new: Combines the September 30 trace audit and engineering research with this lane's improvement sequence; the September 7 instruction audit is historical, the native-quality plan owns product presentation, and the CI runbook describes adopted operations rather than pending work.
 supersedes: []
@@ -12,15 +12,25 @@ source_of_truth_for: []
 
 # Faster development with trustworthy QA
 
+**Current status — October 3:** E1 tooling and the single optional sharding
+comparison receipt are accepted. The final native failure receipt is accepted
+through workspace [PR #67](https://github.com/fy538/travel-workspace/pull/67).
+The founder has deferred successful native and signed-in validation for now;
+it remains unverified. The implementation/integration round is closed under that
+revised scope, and the central monitor is paused. The
+[program operating contract](vesper-program-roadmap.md#orchestration-operating-contract)
+owns future assignment and monitoring behavior. Earlier activation instructions
+and finish criteria below are historical and do not restart E1.
+
 **Current integration receipt — October 2:** readiness correction and native wrong-persona rejection are included in combined app [PR #214](https://github.com/fy538/travel-app/pull/214), accepted merge `e715953796ff7c3b09b82444aa5d68f85f697f52`. Connectivity's mock-mode Life Keep/original/viewer/Undo flow passed (one primary and three extra frames). Unsupported expected persona failed at its exact identity assertion while Default Alex/mock mode stayed selected. Tutorial-present dismissal and authenticated interruption remain separately unverified.
 
-The founder approved only the exact node-forge exception below through October 9 UTC; 26 checker/parser tests and actual registry audit passed, with required hosted checks preserved. Final local integration preflight ran once on immutable tuple `a71153af/c5ff69a8/c7d7d7f52` in 124.374s (9,289 app tests, 186 workspace tests, contracts/types). These are measured receipts, not an overall productivity percentage. E1 in section 5 now owns the next assignment. Collect further pilot evidence only from natural changes; do not duplicate the completed investigation or claim a vulnerability fix.
+The founder approved only the exact node-forge exception below through October 9 UTC; 26 checker/parser tests and actual registry audit passed, with required hosted checks preserved. Final local integration preflight ran once on immutable tuple `a71153af/c5ff69a8/c7d7d7f52` in 124.374s (9,289 app tests, 186 workspace tests, contracts/types). These are measured receipts, not an overall productivity percentage. E1 in section 5 records that assignment and its subsequent evidence. Collect further pilot evidence only from natural changes; do not duplicate the completed investigation or claim a vulnerability fix.
 
 **Decision:** What should Vesper change about building, testing and reviewing work?
 **Research cutoff:** October 1, 2026, with October 2 targeted code, hosted-run
 and upstream-advisory rechecks. **Planning and execution update:** October 2,
 following the founder’s request for independently executable overnight goals. [Section 5](#5-improvement-roadmap) remains the
-single execution queue. Begin with E1’s verification identity and native prerequisites;
+single execution queue. Its October 2 assignment began with E1’s verification identity and native prerequisites;
 fix obsolete assumptions when they obstruct current work and retire an old
 implementation family only when its maintenance burden justifies the work.
 Keep the existing native QA and same-coverage test improvements; unfinished
@@ -588,7 +598,47 @@ help diagnosis; diagnostic capture does not imply a new baseline or approval gat
 
 ## 5. Improvement roadmap
 
+### October 3 orchestration trace review
+
+**Evidence boundary:** the central chat contains 19 scheduled observations from
+October 3 01:04 through 04:04 UTC (October 2 9:04 p.m. through October 3 12:04 a.m.
+Eastern), after PR #67 merged at 01:00:47 UTC. They repeatedly observed the same
+accepted revisions and completed owner turns. Later `notLoaded` transitions
+replayed old handoffs; they were not new implementation. These observations
+produced no new implementation or integration outcome. This is a count from the
+visible trace, not a measurement of compute time, spend or all earlier activity.
+
+The monitor repeatedly read roadmap blocks, checked the same repository heads
+and rewrote a temporary checkpoint while native prerequisites remained absent.
+The root Goal was correctly marked blocked after its required audit. A later
+resume produced another three-turn audit of the same external blocker. The trace
+does not establish why it was resumed. After the founder deferred validation,
+central closed the implementation round with those checks explicitly unverified.
+
+| Observed friction | Adopted response owned by the program roadmap |
+| --- | --- |
+| Full status reconstruction despite unchanged terminal chats | Check compact owner changes first; inspect Git, hosted evidence and relevant roadmap sections when a changed handoff or new assignment needs them. |
+| Native prerequisites kept the whole round unfinished after code landed | Record implementation, accepted merge and native acceptance separately; explicit human deferral does not imply a pass. Check the finish line's prerequisites before activation. |
+| Long prompts replayed historical constraints and receipts | Keep one program operating contract, lane-specific milestones, compact Goals and a short monitor pointing to existing evidence. |
+| Owners exhausted their admitted work before a successor was ready | Prepare finite independent milestone chains; overlap central integration with independent owner work. Do not fill time with repeats or unauthorized scope. |
+
+**Measurement for the next natural round:** extend the existing handoff receipts,
+without another reporting system. Record assignment, first ready candidate,
+integration start and accepted-merge times; distinguish external waiting and
+integration waiting. Record verification reruns at unchanged inputs and their
+reason/duration with `scripts/measure_verification.py`. Count monitoring rounds
+and those that led to a new handoff review, dependency resolution, assignment,
+merge or necessary escalation. A routine snapshot/checkpoint is not such an
+action. Compare similar change classes, keep missing timestamps unknown and
+report regressions/rework alongside elapsed time. These rules are adopted;
+their efficiency benefit remains unmeasured. Preserve the existing single-case
+sharding result without a general speedup or default-adoption claim.
+
 ### E1 Verification identity and native prerequisites
+
+**Assignment closed with deferred proof — October 3:** preserve the original
+criteria below for an explicitly resumed validation task. Do not reactivate this
+completed implementation assignment or its native prerequisite loop automatically.
 
 **Current goal — planned October 2:** make the existing verification recorder
 identify the inputs it actually tested, and make native acceptance reveal missing

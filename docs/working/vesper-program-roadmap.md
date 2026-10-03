@@ -3,7 +3,7 @@ doc_type: current_status
 status: active
 owner: founder / Orchestration lane
 created: 2026-09-07
-last_verified: 2026-10-02
+last_verified: 2026-10-03
 why_new: Owns the existing program's lane boundaries and the Orchestration execution plan; specialist roadmaps own their own packages and receipts.
 supersedes:
   - single-lane dispatch and current assignments in earlier versions of this roadmap
@@ -20,7 +20,25 @@ depends_on:
 
 # Vesper program roadmap
 
-**Current execution checkpoint — October 3, 00:10 UTC:** the C1.2 route-continuity,
+**Current decision — October 3:** the founder deferred native and signed-in
+validation for now. The October 2 implementation/integration round is closed;
+C1.3 interrupted capture, Artifact Save/readback/Undo and successful E1 native
+mode/session acceptance remain **deferred and unverified**. Resume them only on
+explicit human instruction. Do not pursue their credential/sign-in requests,
+device probes or build/install preparation in the meantime. Automated
+correctness checks and required hosted merge checks still apply to new work.
+The central Goal is complete under this revised scope; the existing scheduled
+monitor is paused. This does not establish native or release acceptance.
+
+The final E1 failure receipt landed through workspace
+[PR #67](https://github.com/fy538/travel-workspace/pull/67) at
+`3a5b6c90a25c7ce821293a522873ce140ec7f411`, after the accepted-state
+roadmap correction in [PR #66](https://github.com/fy538/travel-workspace/pull/66).
+The last inspected accepted backend/app revisions are `8fecebb37` / `355376208`;
+there were no open PRs across the three repositories. Reconcile actual accepted
+main and owner work before assigning the next implementation outcome.
+
+**Accepted implementation receipt — October 3, 00:10 UTC:** the C1.2 route-continuity,
 A1 private data-coherence and AC1 provider-free evidence prerequisites landed
 through required hosted checks: backend [PR #247](https://github.com/fy538/travel-agent/pull/247)
 at `f5f34cac89a87480e11e9f3a4ff430ad730baa1a`, app
@@ -75,8 +93,8 @@ QA API, Metro and infrastructure were stopped, preserving database volumes;
 prior runtime-ready observations are stale. Connectivity recovery and Artifact
 Save/readback/Undo still lack approved signed-in QA acceptance. E1's device trial
 recorded unavailable services and unknown session/mode; it does not establish a
-successful native prerequisite receipt. Resume those finite checks only with an
-approved session and freshly verified serialized runtime/device ownership.
+successful native prerequisite receipt. The October 3 decision above defers
+those checks; the missing evidence remains visible.
 
 Before another implementation round, give each owner an ordered chain of admitted
 milestones and an independent fallback before shared-device, authentication or
@@ -85,11 +103,11 @@ work. Longer runs do not authorize skipping acceptance or inventing work after
 the admitted chain ends. These pending evidence boundaries remain visible rather
 than becoming repeated synthetic tests or implied product acceptance.
 
-The existing central orchestrator is active on its current ten-minute schedule.
-It assigns ordered independent milestones when useful work exists and preserves
-specific external blockers. Active implementation turns do not imply that every
-chat's persistent Goal is active: blocked Goals require user/system resume.
-Do not repeat completed slices merely to keep a lane running.
+The existing central orchestrator retains its ten-minute schedule but is paused.
+If resumed, follow the [operating contract](#orchestration-operating-contract)
+below. Active implementation turns do not imply that every chat's persistent
+Goal is active; blocked Goals require user/system resume. A status check or
+delivered message is not a new assignment or evidence of implementation progress.
 
 **Assignment plan — October 2, after the engineering-efficiency investigation:**
 the [next activation round](#next-activation-round--october-2-roadmap-goals)
@@ -251,9 +269,53 @@ improvements; Orchestration continues D2 without adding a new integration gate.
 The detailed measurements and boundaries remain in the
 [completed integration review](development-qa-research-and-roadmap-2026-09-30.md#9-completed-integration-review).
 
+### Orchestration operating contract
+
+This section owns cross-lane operating rules. The
+[efficiency roadmap](development-qa-research-and-roadmap-2026-09-30.md#october-3-orchestration-trace-review)
+owns the observed costs and follow-up measurements. Keep each fact in its owner;
+do not copy the full history into every Goal or scheduled prompt.
+
+| Location | What belongs there |
+| --- | --- |
+| Program roadmap | Lane ownership, admitted outcomes, dependencies, consolidation and monitoring rules, and explicit human deferrals. |
+| Specialist roadmap | The lane's ordered milestones, completion evidence, current candidate and dependency boundary. Connectivity uses this program's C1 section. |
+| Persistent chat Goal | A compact assignment: roadmap goal ID/revision, outcome, owned scope, evidence, ordered milestones, independent fallback if available, and blocked stopping condition. A longer run needs ready work; elapsed activity is not its finish line. |
+| Scheduled task | A short operational instruction pointing here, the four chat IDs and latest checkpoint reference. Its role is detecting changes and coordinating actionable work. |
+| Existing evidence records | Exact revisions, commands, timings and failures. These support claims but do not redefine completion. |
+
+Before activation, check prerequisites for the whole admitted chain, including
+external inputs needed by its finish line. Name independent work that can proceed
+while central integrates a ready slice. If none exists, report that boundary;
+do not promise uninterrupted execution. Use the assignment/consolidation contract
+below and prepare a successor only when it has a concrete approved outcome.
+
+When the monitor is active, start with one compact observation per owner using
+the previous cursor. Inspect a handoff once, then verify its exact Git and hosted
+state. Fetch only owners omitted by an early-return snapshot. A `notLoaded`
+status with the same completed turn is not a new handoff. Re-read roadmaps when
+assigning work or when their revision or human direction changes. Unchanged
+terminal owners do not justify repeated full repository audits, credential
+probes or rewritten status receipts. Use a live job handle for an actual pending
+merge/check; a stopped chat is not a live process to wait on.
+
+If every owner is terminal and the only remaining work needs external input,
+surface the specific dependency once, preserve the Goal's blocked/complete state
+and keep unchanged observations quiet. A genuinely resumed blocked Goal follows
+the required fresh blocked audit; monitoring alone does not resume it. Scheduling
+changes use the automation tool and existing authorization; never silently
+reactivate a paused monitor. Explicitly deferred proof remains unverified and
+does not gate independent implementation unless the new outcome requires it.
+
 <a id="next-activation-round--october-2-infrastructure-continuation"></a>
 
 ### Next activation round — October 2 roadmap goals
+
+**Historical assignment scope:** this round's implementation is accepted and its
+remaining native proof was deferred by the October 3 decision above. The following
+milestones retain their evidence requirements for any explicit resumption; they
+are not a new activation queue. Select the next admitted implementation outcomes
+against current accepted code before activating another round.
 
 **Operating decision:** give each existing lane one longer-lived outcome,
 comprising the finite milestones below. Milestone completion updates the owner
@@ -326,11 +388,11 @@ lands backend, workspace snapshots and app types together; no parallel schema
 edits. Agree shared boundaries before code work; do not copy unmerged sibling
 implementations.
 
-Connectivity holds the existing QA SE device reservation until explicitly
-released. E1 prepares headless checks first and requests one bounded device
-window; Artifact runs native cases afterward or on an independently assigned
-device. Home's separate reservation and staged work must be reconciled by its
-owner, never reset centrally. Services and disposable databases stay lane-local.
+Native validation is currently deferred. If explicitly resumed, verify fresh
+device ownership and runtime availability before assigning a bounded serialized
+window; historical reservations and releases do not establish current ownership.
+Home's separate reservation and staged work must be reconciled by its owner.
+Services and disposable databases stay lane-local.
 No new lane/worktree is needed merely for the next milestone; reuse the owner
 with clean accepted bases after preserving its outstanding work.
 
