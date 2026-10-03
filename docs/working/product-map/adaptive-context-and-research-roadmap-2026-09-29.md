@@ -78,9 +78,9 @@ not authorize a live run or block completion of this implementation slice.
 
 ### AC1 Selected-source public-acquisition prerequisites
 
-**Current goal — planned October 2, conditional admission:** implement and verify the provider-free
-R1 disclosure/acquisition prerequisite for an exact selected object, using
-existing public-request and bounded acquisition owners. Finish the finite
+**Current goal — adopted October 2, provider-free implementation:** implement
+and verify the R1 disclosure/acquisition prerequisite for an exact selected
+object, using existing public-request and bounded acquisition owners. Finish the finite
 milestones below; do not reimplement accepted R3 recovery, tune prompts, collect
 model outputs or activate public dispatch. The [program baseline and rules](../vesper-program-roadmap.md#next-activation-round--october-2-roadmap-goals)
 own common starting revisions and consolidation. Editing this roadmap does not
@@ -109,9 +109,9 @@ exclusion, truncation, URL-only leads, deadline/cancellation and dispatch counts
 search, no generated query fan-out and source-bound output. AC1.1 must identify
 a missing connected owner boundary beyond these existing mechanisms. Do not add
 an unused forwarding wrapper or repeat this suite as new implementation progress.
-If the only remaining gap requires an unadopted disclosure/result policy, prepare
-that exact decision in this goal block and stop implementation at that boundary.
-AC1 is not yet promised to be a long uninterrupted coding run.
+The former policy blocker was resolved by the October 2 decision in
+`contribution-and-consequence.md` §6.1; this slice implements its separate
+preview/approval owner without widening the private selected-source route.
 
 **AC1.1 investigation receipt — October 2:** the existing public-request type
 and one-attempt acquisition adapter are bounded and have no reproduced defect.
@@ -156,11 +156,8 @@ network calls, or model calls were run. API/OpenAPI/mobile types and the private
 selected-source result contract were unchanged. Hosted database/CI checks remain
 separate; central owns publication and merge.
 
-The adopted contribution contract already makes provider contact a T2 boundary:
-prepare one exact effect and ask once; explicit language does not bypass provider
-contact. It does not yet define the selected-object confirmation payload or how
-that grant binds to execution/result owners. Before connecting this caller, the
-Product/Chat interaction owner should adopt or revise this conservative proposal:
+The [contribution contract §6.1](../../systems/contribution-and-consequence.md#61-selected-source-public-lookup--decision-of-october-2)
+now adopts the selected-object confirmation and execution boundary:
 
 1. Every selected-object public lookup gets one T2 confirmation, including when
    the person says “research this.” Preview the exact normalized provider-facing
@@ -170,46 +167,91 @@ Product/Chat interaction owner should adopt or revise this conservative proposal
 2. The approval is for one bounded lookup and is bound server-side to the
    authenticated viewer, exact selected source revision/span, exact normalized
    request, purpose and provider. Any change to those terms needs a new approval;
-   denial or expiry causes zero public dispatch. Product must set the approval's
-   expiry/revocation behavior; the request's existing 8–15 second acquisition
-   deadline is not an approval lifetime.
+   denial or expiry causes zero public dispatch. An unused approval expires ten
+   minutes after approval; the request's existing 8–15 second acquisition
+   deadline is a separate provider-call limit.
 3. Public results remain a transient answer with explicit URL/source-kind/date
    provenance for this slice. Do not attach them to the persisted private
    selected-source result or broaden that result contract until its owner adopts
    evidence binding, claim-support, retention and correction behavior. A URL
    candidate/snippet remains distinct from fetched, verified evidence.
 
-Affected owners: Product/Chat interaction (T2 preview and approval), the
-selected-source route/producer (grant validation and zero-dispatch denial), the
+The implementation uses a separate server-side approval record containing only
+the authenticated viewer, exact selected source reference/revision/span, a
+digest of the normalized public request, purpose/provider, a hash of the opaque
+one-use token, status and lifecycle timestamps. It stores no source text,
+private instruction, notes, OCR, conversation history, raw public query, or
+provider result. Preview and approval are independently owner-checked; changed
+request/selection, stale source, cancellation, account mismatch, replay or
+expiry invalidates dispatch. A dispatched request cannot be recalled; before a
+transient result is returned, the owner-held source is revalidated under the
+same source-first lock order. Revocation, revision change or lost retention
+while acquisition is in flight invalidates the approval and suppresses the
+result. Approval expiry alone does not invalidate a dispatch that began within
+the approval window. Production dispatch remains default-off and additionally requires a real
+`ai.research.live` reservation; that capability is not currently
+enforcement-ready. This implementation does not alter that admission state.
+
+Affected owners: selected-source route and approval owner (grant validation and
+zero-dispatch denial), Intake exact-source owner (current revision/custody), the
 shared public-acquisition adapter (egress allowlist), and the result owner (any
-future persistence/readback). This packet is a proposed decision, not policy
-adoption. Until adopted, preserve the current fail-closed route/producer and do
-not connect public acquisition to selected-source production. AC1.1's
-investigation is complete; AC1 implementation is paused at this owner decision.
+future persistence/readback). The decision is adopted; execution must still
+preserve the existing private selected-source production rejection.
 
 | Milestone | Work and observable finish |
 | --- | --- |
-| AC1.1 Existing-proof and disclosure admission | First map the existing constructor/adapter proofs to the selected-object caller and identify the precise missing owner/authority boundary. Reuse the current work-item constructor; implement only a demonstrated gap within adopted semantics. Map an exact selected object/revision and one explicitly caller-approved public request into the existing acquisition boundary. Keep selected private text, notes, OCR, history and local subject identifiers outside provider arguments. Reuse the existing request limits; accept only a named public purpose and explicit public terms. A typed string is not proof of disclosure authority, and a keyword scrubber must not manufacture that authority. Unknown/unapproved inputs fail closed. |
-| AC1.2 Bounded provider-free connection | Exercise fact lookup and candidate discovery through the actual shared adapter with injected provider responses, optional local subject identity and no fabricated Place/Trip. Preserve the existing candidate-discovery public-location requirement. Prove missing authority causes zero dispatch; admitted fixture requests stay within current tool/SDK attempt and deadline limits; returned malicious text cannot introduce follow-up disclosure or fan-out. Include no-result, error and elapsed-deadline outcomes. No provider network call is permitted in this goal. |
-| AC1.3 Evidence and result boundary | Preserve URL, source kind, date and truncation metadata into the transient handoff. Keep a URL candidate/snippet distinct from fetched and verified evidence. Exercise an unsupported claim with a plausible citation and require abstention/unsupported treatment at the available structural boundary; do not claim semantic verification from quote matching. Preserve the selected-source production rejection and private result contract. Document the exact missing public-evidence binding and finite-allocation/recovery policy before a future producer can consume this handoff. |
-| AC1.4 Compatible committed handoff | Extend existing adapter/disclosure/answer-only tests, including negative egress/log/trace cases and zero unintended owner writes. Re-run affected existing caller compatibility and the explicit-base preflight. Commit the coherent backend slice with a concise map of implemented prerequisites versus unresolved public-result/production admission. No new queue, research engine or parallel evaluation harness. |
+| AC1.1 Exact preview and approval owner | Add a separate default-off selected-source public-lookup route. Preview one exact selected source revision/span and typed public request; expose exact normalized provider terms, purpose/provider and location/date/category. Approve explicitly and bind one random, one-use token server-side to viewer, source, request digest, purpose and provider. Persist neither private text nor raw request/result. Validate the exact Intake source through its owner. |
+| AC1.2 Invalidation and bounded provider-free connection | Cancellation, wrong account, changed request/selection, stale/revoked source, approval expiry, replay and races fail closed before dispatch. If source revision, revocation or retention changes during an already-started acquisition, revalidate at completion and withhold the transient result; approval expiry alone does not cancel a valid in-flight dispatch. Exercise fact lookup and candidate discovery through the actual shared adapter using injected provider responses only, with no fabricated Place/Trip. Preserve current limits and prove malicious output cannot trigger follow-up disclosure/fan-out. No provider network call is permitted in this goal. |
+| AC1.3 Evidence and result boundary | Preserve URL, source kind, date and truncation metadata into a transient response. Keep a URL candidate/snippet distinct from fetched and verified evidence. Preserve the selected-source private producer rejection and result contract. No result persistence, evidence attachment, semantic-support claim, or public-evidence binding is added. |
+| AC1.4 Compatible committed handoff | Extend focused approval, adapter and caller-compatibility tests, including negative egress/log/trace cases, one-time use, expiry, identity and zero unintended owner writes. Re-run the explicit-base preflight. Commit the coherent backend slice and this policy/roadmap receipt. No new queue, research engine, UI, or parallel evaluation harness. |
 
-**Implementation versus decision boundary:** build against explicitly approved
-public fixture inputs and existing supported semantics. If the selected-object
-adapter needs a new user disclosure agreement, persistence/retention rule or
-public evidence-owner contract, record the exact proposed fields, purpose,
-affected owner and unsupported cases for review; do not infer policy from a
-roadmap label. Continue independent adapter/provenance work. A blocked policy
-component does not authorize private text export, removal of route rejection or
-production allocation. A proposal alone cannot be marked implemented.
+**Implementation versus decision boundary:** build and test only against
+explicitly approved public fixture inputs and existing supported semantics.
+The adopted T2 disclosure boundary authorizes a separate server-side preview
+and one-use approval record; it does not authorize private-text export, removal
+of the existing private route's public-request rejection, production allocation,
+public-evidence persistence, or a native caller. If future work needs evidence
+binding, claim-support, retention, or correction behavior, specify those exact
+fields and owners for a separate decision rather than inferring them from this
+approval grant.
 
-**Completion:** existing acquisition owners support the provider-free seam,
-explicit denial and provenance cases are evidenced, compatibility is retained,
-and a stable candidate identifies the remaining admission contract. This closes
-AC1 only. Full R1 stays open for connected user disclosure, public evidence
-binding/claim support and admitted production callers; full R3 public accounting
-and live quality remain open. If a mandatory AC1 case depends on unresolved
-policy, label it blocked and stop after independent work, not “complete”.
+**Completion:** close AC1 only after the server-bound approval lifecycle,
+provider-free route/acquisition compatibility checks, disposable-Postgres
+identity/invalidation/concurrency tests, generated contract checks, and explicit
+base preflight all have recorded evidence. Current AC1 implementation evidence:
+62 focused provider-free tests pass, including fixture-backed result suppression
+when completion finds a stale source; 7 disposable-Postgres cases pass, including
+revocation/revision change during dispatch, one-time use, concurrency, pruning,
+and an in-flight dispatch completing after approval TTL. The final explicit-base
+`make verify-changed` passed for workspace
+`d1b4ddf18cefcc51cc247777ddd6ef4679e9691a`, backend
+`ca9c73eb0749d9b6222e22a9db61fcb620f3a6c9`, and app
+`0f607bf2cef95dd4cd91c6fc9bbad10aa282a535`: 22,342 backend tests passed, 14
+skipped, 53 xpassed; 193 workspace tests passed; full mypy, API projection and
+generated-type checks, flags, docs and cross-repository contracts passed. The
+first sandboxed attempt failed four workspace-runtime fixtures because loopback
+port binding was denied; the 11-test file passed with local loopback permitted,
+and the complete final preflight then passed under that same local-only boundary.
+No provider or model call was made. All routes remain default-off; production
+`ai.research.live` admission is still unavailable, no native caller exists, and
+full R1 still needs public-evidence binding/claim support. Full R3 public
+accounting and live quality remain open. Do not claim live-provider or
+user-quality evidence from fixtures.
+
+**AC1.5 completion-time source revalidation — October 2:** the final route now
+revalidates and locks the exact owner-held source before changing an in-flight
+approval to `completed`. Revocation, revision change or loss of retention
+invalidates the approval and suppresses the transient result; an approval whose
+dispatch began within its TTL may still finish after that TTL if its source is
+current. A fixture-backed route test confirms acquisition can occur while a
+failed final source check still prevents the result from being returned.
+
+Model configuration inspection confirms the dedicated
+`selected_source_synthesis` role resolves to `openai:gpt-6-luna` with the
+Responses endpoint, `low` reasoning effort, and a 6,000-token input cap. Its 37
+focused registry/routing/adapter tests pass. This is the existing selected-
+source-only assignment, not a global model change; no live model call or quality
+claim was made.
 
 **Ownership:** backend public request/acquisition adapters, disclosure tests and
 transient provenance. Do not edit Artifact readers or Connectivity roots. Keep
@@ -1193,10 +1235,13 @@ bounded discovery without inventing a Place/Trip/conversation.
   The Experience owner now applies the disposition mapper to a valid
   answer-only handoff and returns `current_answer` without source retention.
   This owner-return test is not a production public-research caller. R1 still
-  needs caller-independent disclosure from a selected object, public
-  fact-lookup and bounded-discovery acceptance, claim-support checks, and a
-  connected user disclosure boundary; the selected-source route still rejects
-  public lookup. No live provider or reusable-result owner is admitted here.
+  lacks a native caller and live-provider acceptance. The separate selected-
+  source API now implements the adopted exact T2 preview and one-use server
+  grant, but stays default-off and cannot dispatch without an enforcement-ready
+  `ai.research.live` reservation. The existing private selected-source route
+  still rejects public-request fields and keeps its result contract private.
+  Public-evidence binding, claim-support checks and any reusable-result owner
+  remain unadmitted here.
 - Own a small observable effort policy here, with R3 enforcing its resource
   allocation. Distinguish difficulty, urgency and consequence; choose existing
   evidence, targeted acquisition or bounded discovery. Stop when evidence
@@ -1525,7 +1570,7 @@ separate authorization.
 | Decision | Recommended posture | Blocks only |
 | --- | --- | --- |
 | Selected component and artifact identity | Reuse Source revision/locator and P1 mapping; no fake Trip or universal artifact table | Incompatible identity/schema implementations |
-| Lookup and candidate discovery admission | R1/P3 planning now includes both bounded purposes; specify the selected caller's public-field projection, evidence requirements and finite limits | New live/paid caller or disclosure behavior without its applicable admission; provider-free implementation and existing approved lookups can proceed |
+| Lookup and candidate discovery admission | R1/P3 planning includes both bounded purposes; the selected-source T2 preview/one-use grant is implemented separately and remains dark | Any live/paid caller, public-evidence binding, persistence, or broader disclosure without its own admission; provider-free implementation can proceed |
 | Catalog sources and display/caching rights | Select per medium through PC; use approved fields and house fallbacks | Real catalog art/facts from unapproved suppliers |
 | Automatic preparation | Separate cheap reconsideration from paid generation; permit only named adopted triggers | New ambient generation, not explicit research or pure reads |
 | Shared synthesis and saved derivatives | Apply current grants; do not infer synthesis from display or invent survival after withdrawal | Affected shared AI/retained derivative modes |

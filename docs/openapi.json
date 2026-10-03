@@ -34294,6 +34294,239 @@
         }
       }
     },
+    "/api/research/selected-source/public-lookup/previews": {
+      "post": {
+        "tags": [
+          "selected-source-public-lookup"
+        ],
+        "summary": "Preview Selected Source Public Lookup",
+        "description": "Return the exact terms that would be sent; this route never searches.",
+        "operationId": "preview_selected_source_public_lookup_api_research_selected_source_public_lookup_previews_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelectedSourcePublicLookupPreviewRequestV1"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectedSourcePublicLookupPreviewV1"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/research/selected-source/public-lookup/previews/{preview_id}/approve": {
+      "post": {
+        "tags": [
+          "selected-source-public-lookup"
+        ],
+        "summary": "Approve Selected Source Public Lookup",
+        "description": "Record one explicit confirmation and issue a short-lived one-use token.",
+        "operationId": "approve_selected_source_public_lookup_api_research_selected_source_public_lookup_previews__preview_id__approve_post",
+        "parameters": [
+          {
+            "name": "preview_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Preview Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectedSourcePublicLookupApprovalV1"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/research/selected-source/public-lookup/cancel": {
+      "post": {
+        "tags": [
+          "selected-source-public-lookup"
+        ],
+        "summary": "Cancel Selected Source Public Lookup",
+        "description": "Revoke an unused approval or suppress a dispatched transient result.",
+        "operationId": "cancel_selected_source_public_lookup_api_research_selected_source_public_lookup_cancel_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelectedSourcePublicLookupCancelRequestV1"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/research/selected-source/public-lookup/execute": {
+      "post": {
+        "tags": [
+          "selected-source-public-lookup"
+        ],
+        "summary": "Execute Selected Source Public Lookup",
+        "description": "Consume one exact approval and return only its transient public result.",
+        "operationId": "execute_selected_source_public_lookup_api_research_selected_source_public_lookup_execute_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelectedSourcePublicLookupExecuteRequestV1"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicResearchResult"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/social-circles/{circle_id}/together": {
       "get": {
         "tags": [
@@ -103013,6 +103246,332 @@
         "title": "PublicReason",
         "description": "A reason that is safe to show in any channel."
       },
+      "PublicResearchRequest": {
+        "properties": {
+          "contract_version": {
+            "type": "string",
+            "const": "public-research-request-v2",
+            "title": "Contract Version",
+            "default": "public-research-request-v2"
+          },
+          "purpose": {
+            "type": "string",
+            "enum": [
+              "fact_lookup",
+              "candidate_discovery",
+              "live_event_discovery"
+            ],
+            "title": "Purpose"
+          },
+          "public_query": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Public Query"
+          },
+          "public_location": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 100
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Public Location"
+          },
+          "event_category": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "electronic music events",
+                  "live music events",
+                  "festivals",
+                  "comedy shows",
+                  "theater events",
+                  "sports events"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Event Category"
+          },
+          "date_from": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Date From"
+          },
+          "date_to": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Date To"
+          },
+          "subject_type": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 80
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Subject Type"
+          },
+          "subject_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 255
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Subject Id"
+          },
+          "max_results": {
+            "type": "integer",
+            "maximum": 5.0,
+            "minimum": 1.0,
+            "title": "Max Results",
+            "default": 5
+          },
+          "deadline_seconds": {
+            "type": "number",
+            "maximum": 15.0,
+            "exclusiveMinimum": 0.0,
+            "title": "Deadline Seconds",
+            "default": 8.0
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "purpose"
+        ],
+        "title": "PublicResearchRequest",
+        "description": "Minimal public-only envelope admitted to one bounded web lookup.\n\n``public_query`` is deliberately separate from private context, OCR, and\nconversation history. Live-event requests use typed category/date fields\ninstead of caller-composed query text. Optional subject identity is local\ncorrelation only; it is never appended to the provider query. Callers must\nconstruct this envelope from information appropriate for public-provider\ndisclosure."
+      },
+      "PublicResearchResult": {
+        "properties": {
+          "contract_version": {
+            "type": "string",
+            "const": "public-research-result-v1",
+            "title": "Contract Version",
+            "default": "public-research-result-v1"
+          },
+          "purpose": {
+            "type": "string",
+            "enum": [
+              "fact_lookup",
+              "candidate_discovery",
+              "live_event_discovery"
+            ],
+            "title": "Purpose"
+          },
+          "provider": {
+            "type": "string",
+            "const": "tavily",
+            "title": "Provider",
+            "default": "tavily"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ok",
+              "no_results",
+              "unavailable",
+              "failed",
+              "deadline_exceeded"
+            ],
+            "title": "Status"
+          },
+          "reason_code": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Reason Code"
+          },
+          "provider_summary": {
+            "type": "string",
+            "maxLength": 2000,
+            "title": "Provider Summary",
+            "default": ""
+          },
+          "provider_summary_truncated": {
+            "type": "boolean",
+            "title": "Provider Summary Truncated",
+            "default": false
+          },
+          "sources": {
+            "items": {
+              "$ref": "#/components/schemas/PublicResearchSource"
+            },
+            "type": "array",
+            "maxItems": 5,
+            "title": "Sources"
+          },
+          "usage": {
+            "$ref": "#/components/schemas/PublicResearchUsage"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "purpose",
+          "status",
+          "reason_code"
+        ],
+        "title": "PublicResearchResult",
+        "description": "Transient public result; URL-only leads require separate verification."
+      },
+      "PublicResearchSource": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 180,
+            "title": "Title",
+            "default": ""
+          },
+          "title_truncated": {
+            "type": "boolean",
+            "title": "Title Truncated",
+            "default": false
+          },
+          "url": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Url"
+          },
+          "snippet": {
+            "type": "string",
+            "maxLength": 400,
+            "title": "Snippet",
+            "default": ""
+          },
+          "snippet_truncated": {
+            "type": "boolean",
+            "title": "Snippet Truncated",
+            "default": false
+          },
+          "published_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 80
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Published At"
+          },
+          "source_kind": {
+            "type": "string",
+            "enum": [
+              "search_snippet",
+              "url_candidate"
+            ],
+            "title": "Source Kind",
+            "default": "search_snippet"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "url"
+        ],
+        "title": "PublicResearchSource",
+        "description": "A bounded search excerpt or URL-only lead, never a fetched page."
+      },
+      "PublicResearchUsage": {
+        "properties": {
+          "tool_attempt_count": {
+            "type": "integer",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Tool Attempt Count",
+            "default": 0
+          },
+          "provider_sdk_dispatch_count": {
+            "type": "integer",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Provider Sdk Dispatch Count",
+            "default": 0
+          },
+          "provider_usage_reported_dispatch_count": {
+            "type": "integer",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Provider Usage Reported Dispatch Count",
+            "default": 0
+          },
+          "provider_reported_credits": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provider Reported Credits"
+          },
+          "tool_exception_count": {
+            "type": "integer",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Tool Exception Count",
+            "default": 0
+          },
+          "tool_cancelled_count": {
+            "type": "integer",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Tool Cancelled Count",
+            "default": 0
+          },
+          "tool_reported_error_count": {
+            "type": "integer",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Tool Reported Error Count",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "title": "PublicResearchUsage",
+        "description": "Tool-boundary counts and explicitly reported provider units."
+      },
       "PublicStorySection": {
         "properties": {
           "body": {
@@ -111781,6 +112340,264 @@
         ],
         "title": "SecondOccasionOutcome",
         "description": "Owner-private read model for one prior-memory application."
+      },
+      "SelectedSourcePublicLookupApprovalV1": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "selected-source-public-lookup-approval.v1",
+            "title": "Schema Version",
+            "default": "selected-source-public-lookup-approval.v1"
+          },
+          "preview_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Preview Id"
+          },
+          "approval_token": {
+            "type": "string",
+            "maxLength": 256,
+            "minLength": 32,
+            "title": "Approval Token"
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Expires At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "preview_id",
+          "approval_token",
+          "expires_at"
+        ],
+        "title": "SelectedSourcePublicLookupApprovalV1",
+        "description": "One-use bearer token returned only after the explicit approval action."
+      },
+      "SelectedSourcePublicLookupCancelRequestV1": {
+        "properties": {
+          "preview_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Preview Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "preview_id"
+        ],
+        "title": "SelectedSourcePublicLookupCancelRequestV1"
+      },
+      "SelectedSourcePublicLookupExecuteRequestV1": {
+        "properties": {
+          "preview_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Preview Id"
+          },
+          "approval_token": {
+            "type": "string",
+            "maxLength": 256,
+            "minLength": 32,
+            "format": "password",
+            "title": "Approval Token",
+            "writeOnly": true
+          },
+          "selection": {
+            "$ref": "#/components/schemas/SelectedSourcePublicLookupSelectionV1"
+          },
+          "public_request": {
+            "$ref": "#/components/schemas/PublicResearchRequest"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "preview_id",
+          "approval_token",
+          "selection",
+          "public_request"
+        ],
+        "title": "SelectedSourcePublicLookupExecuteRequestV1",
+        "description": "Exact terms to execute; any changed term invalidates the grant."
+      },
+      "SelectedSourcePublicLookupPreviewRequestV1": {
+        "properties": {
+          "selection": {
+            "$ref": "#/components/schemas/SelectedSourcePublicLookupSelectionV1"
+          },
+          "public_request": {
+            "$ref": "#/components/schemas/PublicResearchRequest"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "selection",
+          "public_request"
+        ],
+        "title": "SelectedSourcePublicLookupPreviewRequestV1",
+        "description": "A public-only request kept distinct from the selected private source."
+      },
+      "SelectedSourcePublicLookupPreviewV1": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "selected-source-public-lookup-preview.v1",
+            "title": "Schema Version",
+            "default": "selected-source-public-lookup-preview.v1"
+          },
+          "preview_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Preview Id"
+          },
+          "provider": {
+            "type": "string",
+            "const": "tavily",
+            "title": "Provider",
+            "default": "tavily"
+          },
+          "purpose": {
+            "type": "string",
+            "enum": [
+              "fact_lookup",
+              "candidate_discovery",
+              "live_event_discovery"
+            ],
+            "title": "Purpose"
+          },
+          "provider_query": {
+            "type": "string",
+            "maxLength": 700,
+            "minLength": 1,
+            "title": "Provider Query"
+          },
+          "public_location": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Public Location"
+          },
+          "event_category": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Event Category"
+          },
+          "date_from": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Date From"
+          },
+          "date_to": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Date To"
+          },
+          "selection_ref": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "text_span": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SelectedTextSpanV1"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "selected_source_sent": {
+            "type": "boolean",
+            "const": false,
+            "title": "Selected Source Sent",
+            "default": false
+          },
+          "private_instruction_sent": {
+            "type": "boolean",
+            "const": false,
+            "title": "Private Instruction Sent",
+            "default": false
+          },
+          "notes_ocr_history_sent": {
+            "type": "boolean",
+            "const": false,
+            "title": "Notes Ocr History Sent",
+            "default": false
+          },
+          "local_identifiers_sent": {
+            "type": "boolean",
+            "const": false,
+            "title": "Local Identifiers Sent",
+            "default": false
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Expires At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "preview_id",
+          "purpose",
+          "provider_query",
+          "selection_ref",
+          "expires_at"
+        ],
+        "title": "SelectedSourcePublicLookupPreviewV1",
+        "description": "Exact provider-facing disclosure terms shown before explicit approval."
+      },
+      "SelectedSourcePublicLookupSelectionV1": {
+        "properties": {
+          "source_ref": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "text_span": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SelectedTextSpanV1"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "source_ref"
+        ],
+        "title": "SelectedSourcePublicLookupSelectionV1",
+        "description": "Exact original and optional span the user selected in Life."
       },
       "SelectedSourceResearchConsumer": {
         "type": "string",
