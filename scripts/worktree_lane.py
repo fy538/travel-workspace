@@ -18,12 +18,14 @@ GIT_ENV = {
     for k, v in os.environ.items()
     if k not in {"GIT_DIR", "GIT_WORK_TREE", "GIT_COMMON_DIR", "GIT_INDEX_FILE"}
 }
+READONLY_GIT_ENV = {**GIT_ENV, "GIT_OPTIONAL_LOCKS": "0"}
+PATCH_COMPARISON_LIMIT = 1000
 
 
-def git(repo, *args, capture=True):
+def git(repo, *args, capture=True, env=GIT_ENV):
     return subprocess.run(
         ["git", "-C", str(repo), *args],
-        env=GIT_ENV,
+        env=env,
         check=True,
         text=True,
         stdout=subprocess.PIPE if capture else None,
@@ -76,7 +78,104 @@ def lane_repos(lane):
     ]
 
 
-def status(_args):
+def readonly_git(repo, *args):
+    """Run a Git query without hiding its failure status or diagnostics."""
+    return subprocess.run(
+        ["git", "-C", str(repo), *args],
+        env=READONLY_GIT_ENV,
+        check=False,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+    )
+
+
+def adoption(repo, base_ref):
+    """Compare a lane HEAD with a named, locally cached commit ref."""
+    if not base_ref.startswith("refs/"):
+        return {
+            "ancestry": "unknown (base ref must be a full refs/... name)",
+            "patches": "unknown (invalid base ref)",
+        }
+    format_check = readonly_git(repo, "check-ref-format", base_ref)
+    if format_check.returncode:
+        return {
+            "ancestry": "unknown (invalid base ref)",
+            "patches": "unknown (invalid base ref)",
+        }
+    ref = readonly_git(
+        repo, "rev-parse", "--verify", "--quiet", f"{base_ref}^{{commit}}"
+    )
+    if ref.returncode:
+        detail = ref.stderr.strip() or f"ref unavailable (exit {ref.returncode})"
+        return {"ancestry": f"unknown ({detail})", "patches": "unknown (base ref unavailable)"}
+
+    history = readonly_git(repo, "merge-base", "HEAD", base_ref)
+    if history.returncode == 1:
+        return {"ancestry": "unknown (no common history)", "patches": "unknown (no common history)"}
+    if history.returncode:
+        detail = history.stderr.strip() or f"history query failed (exit {history.returncode})"
+        return {"ancestry": f"unknown ({detail})", "patches": f"unknown ({detail})"}
+
+    ancestor = readonly_git(repo, "merge-base", "--is-ancestor", "HEAD", base_ref)
+    if ancestor.returncode == 0:
+        ancestry = "merged"
+    elif ancestor.returncode == 1:
+        ancestry = "not ancestor"
+    else:
+        detail = ancestor.stderr.strip() or f"ancestry query failed (exit {ancestor.returncode})"
+        ancestry = f"unknown ({detail})"
+
+    candidate_count = readonly_git(repo, "rev-list", "--count", f"{base_ref}..HEAD")
+    if candidate_count.returncode:
+        detail = candidate_count.stderr.strip() or (
+            f"patch candidate count failed (exit {candidate_count.returncode})"
+        )
+        patches = f"unknown (patch query failed: {detail})"
+    else:
+        try:
+            count = int(candidate_count.stdout.strip())
+        except ValueError:
+            patches = "unknown (Git returned an invalid patch candidate count)"
+        else:
+            if count > PATCH_COMPARISON_LIMIT:
+                patches = (
+                    f"unknown (patch comparison limit {PATCH_COMPARISON_LIMIT}; "
+                    f"{count} candidate commits)"
+                )
+            else:
+                comparison = readonly_git(repo, "cherry", "-v", base_ref, "HEAD")
+                if comparison.returncode:
+                    detail = comparison.stderr.strip() or (
+                        f"patch query failed (exit {comparison.returncode})"
+                    )
+                    patches = f"unknown (patch query failed: {detail})"
+                else:
+                    equivalent, remaining = [], []
+                    for line in comparison.stdout.splitlines():
+                        fields = line.split(maxsplit=2)
+                        if len(fields) < 2 or fields[0] not in {"-", "+"}:
+                            continue
+                        (equivalent if fields[0] == "-" else remaining).append(
+                            fields[1][:12]
+                        )
+                    patches = {"equivalent": equivalent, "remaining": remaining}
+    return {"ancestry": ancestry, "patches": patches}
+
+
+def summarize_ids(ids, limit=5):
+    shown = ", ".join(ids[:limit]) or "none"
+    if len(ids) > limit:
+        shown += f", and {len(ids) - limit} more"
+    return f"{len(ids)} [{shown}]"
+
+
+def status(args):
+    base_ref = getattr(args, "base_ref", None) or "refs/remotes/origin/main"
+    print(
+        f"Adoption diagnostics use cached ref {base_ref} (no fetch); "
+        "patch equivalence is informational only."
+    )
     seen = set()
     for entry in worktrees(repository(ROOT)):
         lane = Path(entry["worktree"])
@@ -103,7 +202,9 @@ def status(_args):
                     for item in worktrees(repository(source))
                 )
                 head = git(path, "rev-parse", "--short", "HEAD").strip()
-                dirty = bool(git(path, "status", "--porcelain").strip())
+                dirty = bool(
+                    git(path, "status", "--porcelain", env=READONLY_GIT_ENV).strip()
+                )
                 branch = git(path, "branch", "--show-current").strip() or "detached"
                 remote = f"refs/remotes/origin/{branch}"
                 published = subprocess.run(
@@ -114,21 +215,21 @@ def status(_args):
                     env=GIT_ENV,
                     check=False,
                 ).returncode == 0
-                merged = subprocess.run(
-                    [
-                        "git", "-C", str(path), "merge-base", "--is-ancestor",
-                        "HEAD", "refs/remotes/origin/main",
-                    ],
-                    env=GIT_ENV,
-                    check=False,
-                    stdout=subprocess.DEVNULL,
-                    stderr=subprocess.DEVNULL,
-                ).returncode == 0
+                comparison = adoption(path, base_ref)
+                patch_summary = comparison["patches"]
+                if isinstance(patch_summary, dict):
+                    patch_summary = (
+                        "equivalent patches "
+                        + summarize_ids(patch_summary["equivalent"])
+                        + "; remaining patches "
+                        + summarize_ids(patch_summary["remaining"])
+                    )
                 print(
                     f"  {name}: {head} {branch}, "
-                    f"{'dirty' if dirty else 'clean'}, "
+                    f"{'dirty (uncommitted changes excluded from patch comparison)' if dirty else 'clean'}, "
                     f"{'remote branch seen locally' if published else 'no local remote ref'}, "
-                    f"{'merged in cached origin/main' if merged else 'not known merged'}, "
+                    f"ancestry vs {base_ref}: {comparison['ancestry']}, "
+                    f"{patch_summary}, "
                     f"{'registered' if registered else 'not registered'}"
                 )
             except (ValueError, OSError, subprocess.CalledProcessError) as exc:
@@ -150,16 +251,22 @@ def create(args):
         if args.directory
         else ROOT.parent / f"{ROOT.name}--{args.name}"
     )
-    if lane.exists():
+    if lane.exists() or lane.is_symlink():
         raise ValueError(
             f"Lane path already exists; inspect it instead of silently reusing it: {lane}"
         )
+    if not lane.parent.is_dir():
+        raise ValueError(f"Lane parent directory does not exist: {lane.parent}")
+    branch_format = readonly_git(ROOT, "check-ref-format", "--branch", branch)
+    if branch_format.returncode:
+        raise ValueError(f"Invalid worktree branch name: {branch}")
     repos = [
         ("", ROOT),
         ("travel-agent", ROOT / "travel-agent"),
         ("travel-app", ROOT / "travel-app"),
     ]
     bases = {}
+    targets = {}
     for name, repo in repos:
         repository(repo)
         base = args.base or "HEAD"
@@ -167,35 +274,66 @@ def create(args):
             repo, "rev-parse", "--verify", f"{base}^{{commit}}"
         ).strip()
         # Fail before creating any lane if a requested branch already exists.
-        if (
-            subprocess.run(
-                [
-                    "git",
-                    "-C",
-                    str(repo),
-                    "show-ref",
-                    "--verify",
-                    "--quiet",
-                    f"refs/heads/{branch}",
-                ],
-                env=GIT_ENV,
-            ).returncode
-            == 0
-        ):
-            raise ValueError(f"{repo}: branch {branch} already exists")
-    for name, repo in repos:
-        target = lane / name if name else lane
-        git(
-            repo,
-            "worktree",
-            "add",
-            "-b",
-            branch,
-            str(target),
-            bases[name or "workspace"],
-            capture=False,
+        branch_check = readonly_git(
+            repo, "show-ref", "--verify", "--quiet", f"refs/heads/{branch}"
         )
-    pg, qr, grpc, api, expo = free_ports(5)
+        if branch_check.returncode == 0:
+            raise ValueError(f"{repo}: branch {branch} already exists")
+        if branch_check.returncode != 1:
+            detail = branch_check.stderr.strip() or f"Git exit {branch_check.returncode}"
+            raise ValueError(f"Could not check branch {branch} in {repo}: {detail}")
+        targets[name or "workspace"] = lane / name if name else lane
+
+    # Runtime prerequisites must succeed before the first worktree or branch is
+    # created. A denied allocator therefore leaves every repository untouched.
+    try:
+        ports = free_ports(5)
+        if (
+            not isinstance(ports, (list, tuple))
+            or len(ports) != 5
+            or any(
+                not isinstance(port, int) or not 1 <= port <= 65535
+                for port in ports
+            )
+            or len(set(ports)) != 5
+        ):
+            raise ValueError("allocator returned invalid or duplicate ports")
+    except Exception as exc:
+        raise ValueError(
+            f"Runtime allocation failed before worktree creation; no worktrees or "
+            f"branches were created: {exc}"
+        ) from exc
+
+    completed = []
+    for name, repo in repos:
+        key = name or "workspace"
+        target = targets[key]
+        try:
+            git(
+                repo,
+                "worktree",
+                "add",
+                "-b",
+                branch,
+                str(target),
+                bases[key],
+                capture=False,
+            )
+        except (OSError, subprocess.CalledProcessError) as exc:
+            prior = "; ".join(
+                f"{item['repo']} path={item['path']} branch={item['branch']}"
+                for item in completed
+            ) or "none"
+            raise ValueError(
+                f"Creation failed at stage {key} for path={target} branch={branch}: {exc}. "
+                f"Completed worktrees preserved: {prior}. The failed stage may also have "
+                "left partial artifacts; inspect its path and branch. No automatic cleanup "
+                "was attempted. Recovery: inspect git worktree list/status in each repo, "
+                "resolve or manually remove reviewed artifacts, then retry."
+            ) from exc
+        completed.append({"repo": key, "path": target, "branch": branch})
+
+    pg, qr, grpc, api, expo = ports
     runtime = {
         "schema_version": 1,
         "branch": branch,
@@ -213,7 +351,22 @@ def create(args):
             "device": None,
         },
     }
-    (lane / ".workspace-lane.json").write_text(json.dumps(runtime, indent=2) + "\n")
+    manifest_path = lane / ".workspace-lane.json"
+    try:
+        with manifest_path.open("x") as manifest_file:
+            json.dump(runtime, manifest_file, indent=2)
+            manifest_file.write("\n")
+    except (OSError, ValueError, TypeError) as exc:
+        preserved = "; ".join(
+            f"{item['repo']} path={item['path']} branch={item['branch']}"
+            for item in completed
+        )
+        raise ValueError(
+            f"Creation failed at stage manifest write ({manifest_path}): {exc}. "
+            f"Completed worktrees preserved: {preserved}. No automatic cleanup was "
+            "attempted. Recovery: inspect the manifest path and all three worktrees, "
+            "repair or remove reviewed artifacts manually, then retry."
+        ) from exc
     print(
         f"Coordinated lane: {lane}\nInstall dependencies in its child checkouts; select one exclusive device before native work."
     )
@@ -385,6 +538,11 @@ def main():
         help="Explicit base used in each repository; default records each current HEAD",
     )
     parser.add_argument("--directory", help="Coordinated workspace destination")
+    parser.add_argument(
+        "--base-ref",
+        default="refs/remotes/origin/main",
+        help="Named local ref for read-only status adoption checks (no fetch)",
+    )
     parser.add_argument("--owner", help="Person or task responsible for landing this lane")
     parser.add_argument("--outcome", help="Bounded result this lane will deliver")
     parser.add_argument(
