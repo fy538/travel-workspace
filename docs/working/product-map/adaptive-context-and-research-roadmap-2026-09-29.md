@@ -13,12 +13,15 @@ source_of_truth_for: []
 # Adaptive context and research engineering roadmap
 
 **Current assignment — October 3:** AC1's provider-free permission contract is
-accepted in backend #248/workspace #65. AC2 now has an owner-lane implementation
-candidate for one explicitly selected private Collection; its evidence and
-remaining acceptance boundary are recorded below. Central serialized
-integration/preflight is still pending, so this is not a landed or activated
-feature. Native acceptance and model evaluation remain deferred. Older
-checkpoints below are historical, not current bases.
+accepted in backend #248/workspace #65. AC2's one explicitly selected private
+Collection backend is accepted through backend #249 at `815f72e7`; central
+combined deletion-race evidence and preflight passed. Matching workspace #71
+remains pending app acceptance. This is implemented infrastructure, not an
+activated native request experience. The proposed request/selection design and
+its separate admission boundary live in the
+[program readiness queue](../vesper-program-roadmap.md#october-3-regroup-and-successor-readiness).
+Native acceptance and model evaluation remain deferred. Older checkpoints below
+are historical, not current bases.
 
 **Receiving integration checkpoint — October 2:** Artifact's exact read-only
 consumer is accepted through app [PR #214](https://github.com/fy538/travel-app/pull/214)

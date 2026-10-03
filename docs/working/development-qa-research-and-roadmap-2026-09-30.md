@@ -715,6 +715,24 @@ adding synthetic benchmark work or a new monitoring implementation.
 
 ### October 3 orchestration trace review
 
+**Regroup observation — October 3, 15:03 UTC:** the later capability round also
+exhausted its finite chains. Backend PR #249 and workspace PR #70 were accepted;
+app PRs #219/#220 and dependent workspace PR #71 still awaited the exact
+dependency-security decision. Repeated observations through 14:39 UTC did not
+produce implementation. At regroup, the monitor was already paused; central
+retained that state, changed its future cadence to hourly, and added an explicit
+terminal pause to the program operating contract. No central persistent Goal
+was registered. No productivity improvement is inferred from these changes.
+
+The read-only successor reviews exposed a separate scope-recovery problem:
+after context compaction, Adaptive Context turn
+`01a10243-64e6-75f3-9f7a-f4cae7bca7d4` returned to historical model configuration,
+and Eng Efficiency turn `01a10243-728a-7231-b066-504912007218` announced central
+integration. Their current-turn records showed the read-only assignment and no
+newer human instruction at inspection. Central sent one scope correction to
+each. This establishes observed assignment drift, not its underlying cause or
+proof of a repository mutation. The program contract owns the recovery rule.
+
 **Evidence boundary:** the central chat contains 19 scheduled observations from
 October 3 01:04 through 04:04 UTC (October 2 9:04 p.m. through October 3 12:04 a.m.
 Eastern), after PR #67 merged at 01:00:47 UTC. They repeatedly observed the same

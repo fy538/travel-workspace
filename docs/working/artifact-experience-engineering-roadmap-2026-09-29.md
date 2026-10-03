@@ -12,9 +12,14 @@ source_of_truth_for: []
 
 # Artifact experience engineering roadmap
 
-**Current assignment — October 3:** A2 below is the next implementation chain.
-A1 is accepted; its separate signed-in validation is deferred by the founder,
-not passed. Do not repeat it. The program's October 3 queue owns coordination.
+**Current assignment — October 3 regroup:** A2 backend is accepted through
+backend #249; app #220 still awaits the separate dependency-security decision.
+One bounded deletion-to-Life cache reproduction/repair follows the read-only
+successor review; until reproduced, the omitted refresh is a code-path finding,
+not an established user-visible failure. The proposed larger private Collection
+browsing chain and its design boundary live in the
+[program readiness queue](vesper-program-roadmap.md#october-3-regroup-and-successor-readiness).
+A1 is accepted; signed-in validation remains deferred, not passed. Do not repeat it.
 Historical P4 kept-answer editions are not admitted: the separate Artifact
 design owner has recorded a newer rejection of keeping Ask answers on Things.
 Reconcile that owner decision before any future implementation depending on P4.
