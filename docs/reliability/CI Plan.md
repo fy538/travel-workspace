@@ -108,8 +108,8 @@ preflight gap; it does not certify a faster overall delivery process.
 ### Shared app security-audit blocker — October 2, 2026
 
 App PRs [#213](https://github.com/fy538/travel-app/pull/213) and
-[#214](https://github.com/fy538/travel-app/pull/214) remain blocked because the
-required `Security audit` reports `node-forge` advisory
+[#214](https://github.com/fy538/travel-app/pull/214) were initially blocked because the
+required `Security audit` reported `node-forge` advisory
 [GHSA-86w9-cpqp-85rv](https://github.com/advisories/GHSA-86w9-cpqp-85rv).
 The app lockfile resolves `node-forge` 1.4.0 through its production Expo
 dependency graph. The bounded usage and upstream-remediation review is in the
@@ -127,6 +127,61 @@ nonblocking policy. Required hosted checks remain authoritative. This accepts
 bounded Expo tooling risk temporarily; it does not fix the vulnerability or
 authorize release or deployment. Recheck supported upstream remediation before
 expiry, and remove the exception when a compatible fix is accepted.
+
+**October 3 exact braces authorization:** for app PRs #219/#220, `fy538`
+explicitly approved the prepared exception for source `1240992`, package
+`braces`, locked version `3.0.3`, advisory
+[GHSA-vfj7-8cjw-p6xm](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm),
+affected range `<=3.0.3` and severity `high`. The existing checker matches every
+field and the installed lock identity. Approval/removal owner is `fy538`; the
+exception is valid through October 4 UTC and fails closed from
+2026-10-05T00:00:00Z. The observed path is Expo 55.0.31 → @expo/metro 55.1.2 →
+metro-file-map 0.83.8 → micromatch 4.0.8 → braces 3.0.3. GitHub still listed no
+patched version and npm's latest was 3.0.3 at the October 3 recheck.
+
+This temporarily accepts stack-exhaustion denial-of-service risk in the build
+tool path; native runtime exclusion remains unverified. It neither fixes the
+vulnerability nor authorizes deployment or production activation. Changed
+advisory/version/severity, additional findings, expiry and unavailable/malformed
+tooling retain their existing blocking behavior. The applied proposal passed
+35 checker/parser tests and the normal live registry audit locally; hosted
+checks still decide merge acceptance. Remove the exception when a supported
+patch is accepted, and do not extend it without a new exact approval.
+
+C2 candidate `27d5131bf0b5b45ce6a402244ef40f2d36107d79` passed the
+measured explicit-base preflight in 132.541 seconds, including 9,301 app tests.
+Its hosted [run 37132803643](https://github.com/fy538/travel-app/actions/runs/37132803643)
+failed before any job steps: GitHub reported failed account payments or a
+spending limit requiring attention. This is an external execution blocker,
+not a code-test result. The account owner must restore Actions access before a
+retry under the original policy. This earlier blocker was superseded only by
+the exact founder-approved merge exception below; no billing setting changed.
+
+**October 3 bounded hosted-check waiver — executed:** the founder separately
+approved disabling Actions for `fy538/travel-app` until explicitly re-enabled,
+and waiving only `main.required_status_checks` for PR #219 at `27d5131bf` and
+PR #220 at `0201d5f53`. Owner: `fy538`. Before the window, their combined tree
+passed measured explicit-base preflight in 88.960 seconds (5,111 selected app
+tests) and the existing expiry-bound live security audit. The preceding complete
+app suites and workspace evidence remain separately scoped receipts.
+
+Between 15:51:29 and 15:51:38 UTC, app Actions was disabled, those two exact heads
+were merged, and all nine original required checks plus strict up-to-date
+checking were restored. PR #219 merged as `8228bee81fefaca7735743353262dc3c4893e9fe`;
+PR #220 merged as `4bbee04e84abce7b2470d8cb4c2279a5502f7149`. The final app
+merge tree matches the locally tested combined tree exactly. The PR requirement,
+admin enforcement, force-push ban and branch-deletion ban were preserved and
+verified unchanged. The waiver ended immediately; future app PRs do not inherit it.
+This is local-evidence acceptance under an explicit waiver, not passing hosted
+app checks. With app Actions disabled and requirements restored, future app PRs
+will need an explicitly approved CI solution before they can merge normally.
+
+Workspace Actions/protection and backend Actions/protection were not changed.
+The workspace continues through its normal required hosted gate. Exact execution
+and before/after settings are retained in
+`/private/tmp/vesper-actions-bypass-proposal/execution.json` and its adjacent
+protection snapshots. No deployment or additional dependency-risk exception
+was authorized.
 
 Continue the prospective ten-change sample with naturally occurring changes;
 do not create a synthetic prose PR just to force another positive result. For

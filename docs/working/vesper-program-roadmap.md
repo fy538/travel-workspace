@@ -20,13 +20,19 @@ depends_on:
 
 # Vesper program roadmap
 
-**Next implementation round — October 3:** use the admitted C2, A2, AC2 and E2
-chains below. The founder approved one explicitly selected private Collection
-as request-time additional context, with no automatic library scanning, sharing,
-background generation or live model/provider calls. The prior round's native
-validation remains deferred. Assignment, persistent Goal activation and monitor
-activation must each be confirmed separately; this roadmap is not a claim that
-any lane has started. The prior monitor state below is a dated observation.
+**Regroup — October 3:** C2/A2/AC2/E2 implementation handoffs are complete.
+Backend #249 and E2 evidence are accepted. App #219/#220 are merged at
+`8228bee81` / `4bbee04e8` through the founder's exact, temporary hosted-check
+waiver after passing local evidence; this is not hosted app acceptance. All
+original app merge requirements were restored, and app Actions remains disabled
+until explicitly re-enabled. Matching workspace #71 retains its normal required
+hosted gate. The [CI Plan](../reliability/CI%20Plan.md) records scope and evidence.
+The A2 follow-through repaired a reproduced stale Life Collection count with
+late-response and account-isolation coverage. No larger overnight round is active.
+The [successor readiness queue](#october-3-regroup-and-successor-readiness)
+separates independently useful work from product decisions. No larger overnight
+implementation round is activated. The monitor is paused, with hourly cadence
+saved for any explicitly resumed run; no central persistent Goal is registered.
 
 **Current decision — October 3:** the founder deferred native and signed-in
 validation for now. The October 2 implementation/integration round is closed;
@@ -309,11 +315,48 @@ merge/check; a stopped chat is not a live process to wait on.
 
 If every owner is terminal and the only remaining work needs external input,
 surface the specific dependency once, preserve the Goal's blocked/complete state
-and keep unchanged observations quiet. A genuinely resumed blocked Goal follows
+and pause the scheduled monitor. The October 3 regroup authorizes this terminal
+stop; a paused monitor requires explicit human resumption. Do not spend repeated
+wakeups proving the same pending human decision. A genuinely resumed blocked Goal follows
 the required fresh blocked audit; monitoring alone does not resume it. Scheduling
 changes use the automation tool and existing authorization; never silently
 reactivate a paused monitor. Explicitly deferred proof remains unverified and
 does not gate independent implementation unless the new outcome requires it.
+
+After interruption or context compaction, recover the latest current-turn
+assignment before acting on a historical request. If a new commentary or action
+conflicts with that assignment, check for genuinely newer human steering and
+correct scope once before any mutation. A read-only readiness review cannot
+silently become model reconfiguration or central integration. The current
+roadmap goal, finite turn and persistent Goal remain separate records.
+
+### October 3 regroup and successor readiness
+
+The founder requested completing the current merges, reconciling the canonical
+checkout while preserving edits, and preparing a larger next overnight queue.
+The canonical checkouts now contain accepted workspace `fc23614d`, backend
+`815f72e7` and app `35537620`. Two unpublished documents and their index changes
+remain uncommitted. The original ten-file snapshot and checksum manifest are
+retained at `/private/tmp/vesper-regroup-20261003/canonical-preservation`.
+
+This is a preparation queue, not four active implementation Goals. Current
+small repairs cannot honestly guarantee overnight work; larger milestones need
+their own concrete design decisions. Native/signed-in validation and model
+evaluation remain deferred, and passing fixture cases do not replace that proof.
+
+| Owner | Ordered useful work | Activation boundary and fallback |
+| --- | --- | --- |
+| Connectivity | Reproduce the existing D2 friend/place contribution beside an already-eligible, separately attributed Source for the same canonical Place; repair only a demonstrated omission; verify exact original opening/return and removal of only the withdrawn reading. Existing owners are `backend/places/sections.py`, `section_projection.py`, `backend/root_projection/v2/places_runtime.py` and the current Places feed/navigation components. | A proposed bounded D2 investigation, not another C2 task. No new fetcher, generated synthesis, audience or root hierarchy. If current composition already works or there is no eligible Source, retain the useful friend note/Place door and stop. No guaranteed defect or longer chain is claimed. |
+| Artifact | Finish acceptance of the reproduced A2 deletion-to-Life cache repair first. Proposed larger chain: private Collection list in Life, a canonical member reader, and current-source opening plus stale/revoked/error handling. Existing owners are `data/keptThings.ts`, root projection invalidation, `data/consumerCollections.ts` and `LifeRootV1Screen.tsx`. | The A2 follow-through is within accepted deletion semantics. A native Collection browsing experience requires a concrete member-display and Remove/Delete interaction decision; the unpublished design handoff does not supply authority. Keep rows hidden until that decision, rather than adding a dead end. No third Artifact slice is admitted. |
+| Adaptive Context | Proposed larger chain: one explicit Collection choice in a selected-source request; exact request/revision binding through the existing API; existing result readback with stale, incomplete, unavailable and no-addition states. Use the selected-source request and reader owners; do not introduce a second context store. | Requires a concrete request/selection design. Keep the current read-only reader internal and the feature default-off meanwhile. No model-default rewrite, new answer persistence, automatic library scan, live calls or generation-quality claim. Repeated fixtures are not an independent implementation fallback. |
+| Eng Efficiency | Retain E2's accepted bounded findings and the corrected monitor stopping/recovery rules. Admit another tooling repair only from a demonstrated current defect with valid, violating and tool-failure acceptance cases and a measurable finish. | Do not repeat inconclusive leak/order probes, invent benchmark work, remove masks or create a new orchestration subsystem merely to occupy this lane. |
+
+Both app PRs are merged under the separate bounded waiver recorded in the CI
+Plan. Central lands compatible workspace pins through its normal required
+checks. It then reconciles these
+proposals with approved design, creates compact finite assignments with exact
+bases and fallback/stop rules, and reports Goal/monitor activation separately.
+No security exception, feature activation or new policy follows from this queue.
 
 ### October 3 implementation queue
 
@@ -360,6 +403,20 @@ terminal completion/blocked state, not invented work. Stop at the end of these
 chains; later roadmap packages and unmerged product-design drafts are not an
 automatic backlog. Native/signed-in and model proof remain deferred and must
 not hold these implementation Goals open.
+
+**Central integration checkpoint — October 3:** A2/AC2 backend
+[PR #249](https://github.com/fy538/travel-agent/pull/249) is accepted at
+`815f72e7f5c72c86c792ef68c97d0bc88a3ea593`; all seven normal required
+checks passed, including the database gate. Central combined evidence includes
+49 disposable-Postgres cases and a passing measured cross-repo preflight.
+C2 app [PR #219](https://github.com/fy538/travel-app/pull/219) and A2 app
+[PR #220](https://github.com/fy538/travel-app/pull/220) remain unmerged behind
+the existing dependency-security boundary; no exception has been applied.
+E2's bounded evidence is accepted through workspace
+[PR #70](https://github.com/fy538/travel-workspace/pull/70). All four owners
+finished their assigned finite chains. Central owns the remaining app checks,
+security decision and matching workspace acceptance; no successor work is
+assigned. Native/signed-in and model proof remain deferred, not passed.
 
 #### C2 Existing Places refresh failure
 

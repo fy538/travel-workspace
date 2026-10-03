@@ -13,10 +13,17 @@ source_of_truth_for: []
 # Adaptive context and research engineering roadmap
 
 **Current assignment — October 3:** AC1's provider-free permission contract is
-accepted in backend #248/workspace #65. AC2 below is the next implementation
-chain, following the founder's explicit approval of one selected private
-Collection as request-time context. Native acceptance and model evaluation
-remain deferred. Older checkpoints below are historical, not current bases.
+accepted in backend #248/workspace #65. AC2's one explicitly selected private
+Collection backend is accepted through backend #249 at `815f72e7`; central
+combined deletion-race evidence and preflight passed. Matching workspace #71
+retains its normal required hosted gate; app #220 is merged under the exact
+founder-approved waiver recorded in the [CI Plan](../../reliability/CI%20Plan.md).
+This is implemented infrastructure, not an
+activated native request experience. The proposed request/selection design and
+its separate admission boundary live in the
+[program readiness queue](../vesper-program-roadmap.md#october-3-regroup-and-successor-readiness).
+Native acceptance and model evaluation remain deferred. Older checkpoints below
+are historical, not current bases.
 
 **Receiving integration checkpoint — October 2:** Artifact's exact read-only
 consumer is accepted through app [PR #214](https://github.com/fy538/travel-app/pull/214)
@@ -119,10 +126,115 @@ request/work/result identities do not yet bind this Collection scope.
    API coverage and measured explicit-base preflight. The native Collection
    selector is outside this round; server/data behavior must be reviewable.
 
-Artifact A2 owns lifecycle mutations; AC2 consumes current authoritative reads
-and revisions without editing that mutation owner. Most work is independent.
-Once both candidates are ready, central checks whole-Thing deletion suppresses
-an influenced result. An A2 handoff is not a gate for AC2's earlier milestones.
+**Owner-lane implementation receipt — October 3 (not yet integrated).** The
+backend accepts an optional canonical, revision-pinned private Collection ref.
+It reads only that owner's current Collection members (maximum 100, Thing
+projections in batches of 50), derives up to two deterministic text-source
+dependencies, and binds request identity plus the private result row to a
+content-free digest of the Collection/membership, Thing, alias and source
+revisions used. That binding is rechecked before dispatch, persistence and
+exact readback; a stale result is withheld and erased. The no-Collection
+request/work identity remains unchanged. No mobile selector, other-Collection
+scan, public lookup, background work or model activation was added.
+
+Evidence in this lane: 58 focused provider-free tests, 23 tests against the
+lane's disposable Postgres database, one Alembic head, migration upgrade and
+`alembic check`, backend `make ci-static`, API coverage, and OpenAPI projection
+checks passed. The full OpenAPI snapshot records the optional request field;
+the app projection is unchanged (469 paths, 517 operations), with no
+`travel-app` diff. The generated type artifact therefore has no expected
+contract delta, but the actual type-generator/typecheck/schema-bridge command
+remains unverified. The 20 model-registry tests also passed: selected-source
+synthesis is already configured as `openai:gpt-6-luna` with the registered
+`low` Responses policy, and remains dark by default.
+
+The broad backend offline suite reported 22,356 passed, 14 skipped and 53
+quarantined xpasses, with one unrelated owner-read timing failure (146 ms
+against a 125 ms test threshold); that exact test passed when rerun alone. The
+workspace tooling suite reported 198 passed; its four loopback-dependent tests
+failed only under sandbox socket denial and then passed in an elevated isolated
+rerun. The explicit-base `verify-changed` composite was interrupted during a
+second static pass when central began its serialized broad integration run; it
+is not a passing preflight. The type-generator/schema-bridge portion of
+`contract-check` remains unverified because this lane has no app `node_modules`;
+projection equality and unchanged generated types are verified, but do not
+substitute for that command. Central must run the combined explicit-base
+preflight after the concurrent broad run and inspect Artifact A2's whole-Thing
+deletion case before integration. No hosted check, publication or deployment
+was performed.
+
+**Central review correction — October 3:** the independent review found that
+the async producer's two Collection freshness reads were synchronous and
+blocked its event loop. A focused test reproduced this on the caller thread;
+both checks now use the bounded `run_owner_read_blocking` path. New regressions
+also verify that a stale scope after reservation releases the undispatched
+unit, and that cancellation during that check waits for release while the
+physical read safely drains.
+
+The review also identified a validation-to-publication/readback race. The
+selected-result transaction now takes the shared owner identity-graph advisory
+fence, then a shared lock on the exact active Collection revision, then exact
+Intake source locks; those locks remain held through the transaction boundary.
+Disposable-Postgres tests pause after scope validation and before source
+locking, race a real Collection removal, and show that removal waits during
+both publication and readback. Once removal completes, the old result is
+withheld and erased. A separate database regression verifies the shared fence
+blocks the matching owner-key exclusive fence used by the adjacent A2 mutation
+lane. AC2 did not edit A2's checkout or mutation owner; central still owns
+combined integration review and whole-Thing deletion acceptance.
+
+Correction evidence: the producer/private-context/API offline set passed 59
+tests; the four targeted disposable-Postgres scope/race/fence cases passed;
+Ruff lint and format checks passed on all six changed backend/test files. This
+was a focused correction, not a rerun of the broad backend suite or the
+cross-repository preflight. The selected-source feature remains dark, and the
+application is still configured to use `gpt-6-luna` with low reasoning for
+this role; no model call or model evaluation was made. The backend follow-up
+commits are `d50c653fc` (correction) and `a6fb7b703` (direct lock probes); the
+workspace receipt is `3781672e`. These are local lane commits, not pushed or
+merged.
+
+Artifact A2 owns lifecycle mutations; AC2 adds only the matching shared
+identity-graph reader fence and consumes current authoritative reads/revisions.
+Its read order is advisory fence, Collection row, then source rows, matching
+A2's exclusive advisory fence before its submission/Thing/Collection mutation
+order. Once both candidates are ready, central checks whole-Thing deletion
+suppresses an influenced result and runs the combined explicit-base preflight.
+An A2 handoff is not a gate for AC2's earlier milestones.
+
+
+**Combined A2/AC2 central check — October 3:** central preserved both shared
+reader and exclusive mutation owner fences, and reconciled the two unlanded
+migrations as `pubapr01 -> keptthing03 -> selresult04`. A fresh explicitly
+disposable database upgraded successfully. After both review corrections were
+combined, selected-source producer/readback, kept-Thing and Collection database
+suites passed **49 tests**. They include membership removal and actual
+whole-Thing deletion racing both publication and exact readback, direct lock
+probes, stale-result erasure and rejection of late persistence. This is
+provider-free database evidence; it is not model, native or blob-worker proof.
+The log is `/private/tmp/vesper-a2-ac2-final-postgres.log`.
+
+The final measured cross-repo preflight passed in **311.533 seconds** at
+workspace `0f3dcd34`, backend `aadace0bd` and app `ff869940d`, with stable clean
+inputs: 9,299 app tests, 22,361 backend tests, 202 workspace tests, contracts,
+types and static checks passed. Fourteen backend tests skipped; the 53 existing
+quarantined identities in `tests/flaky_order_baseline.txt` reported XPASS and
+remain unchanged. The first central run mistakenly imposed `AI_MODE=off` on
+mocked offline tests and failed 116 cases; the standard offline retry passed
+without code changes. Both records are retained in
+`/private/tmp/vesper-a2-ac2-central-verification.json`. Offline full export,
+app projection, generated types, typecheck and API coverage also passed against
+the combined tuple, resolving the owner-lane generator limitation above.
+
+Backend [PR #249](https://github.com/fy538/travel-agent/pull/249) merged at
+`815f72e7f5c72c86c792ef68c97d0bc88a3ea593` on October 3 at 08:57:26 UTC.
+All seven normal required checks passed on candidate `aadace0bd`, including
+Merge readiness's offline and disposable-database jobs. This accepts AC2's
+backend implementation and the combined A2 deletion fence. The app consumer
+and generated deletion contract are published separately in
+[PR #220](https://github.com/fy538/travel-app/pull/220), merged as `4bbee04e8` under the founder-approved bounded hosted-check waiver
+recorded in the CI Plan. Matching workspace acceptance retains its normal gate. No live model,
+provider, native or object-store cleanup acceptance is inferred.
 
 **Finish:** a clean committed request-to-readback implementation with evidence
 for the named authority/revision boundaries and honest retrieval limits, ready
