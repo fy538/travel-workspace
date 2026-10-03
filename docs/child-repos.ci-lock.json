@@ -1,5 +1,5 @@
 {
-  "travel-agent": "aadace0bd4e7e8c767d1bfd46b14dec8bb18bd6f",
-  "travel-app": "0201d5f5303bdde1513cd11c258bb064ce37c2ec",
-  "_comment": "Reviewed A2/AC2 tuple: backend candidate accepted by PR249; app PR220 includes the deletion-to-Life correction and exact founder-approved temporary braces exception. App acceptance is blocked on GitHub Actions billing access and passing required checks; do not merge this workspace candidate first."
+  "travel-agent": "815f72e7f5c72c86c792ef68c97d0bc88a3ea593",
+  "travel-app": "4bbee04e84abce7b2470d8cb4c2279a5502f7149",
+  "_comment": "Accepted A2/AC2 backend PR249 and combined C2/A2 app PR219/220 merges. App hosted checks were explicitly waived by the founder for these exact two PRs only; local evidence and restored protections are recorded in the CI Plan. Workspace required hosted checks remain mandatory."
 }

@@ -12,12 +12,12 @@ source_of_truth_for: []
 
 # Artifact experience engineering roadmap
 
-**Current assignment — October 3 regroup:** A2 backend is accepted through
-backend #249; app #220 remains unmerged. The exact braces exception is now
-approved; hosted checks cannot start until GitHub account billing access is restored.
-The bounded follow-through reproduced a stale Life Collection count after
-deletion. A focused app correction refreshes the current persona/session only
-and fences delayed reads; hosted acceptance is still pending. The proposed larger private Collection
+**Current assignment — October 3 regroup:** A2 backend #249 and app #220 are
+merged. The app's exact temporary hosted-check waiver and restored protections
+are recorded in the [CI Plan](../reliability/CI%20Plan.md); local passing evidence
+is not hosted or native acceptance. The bounded stale Life Collection-count
+repair is included in app merge `4bbee04e8`, with session/persona fencing.
+The proposed larger private Collection
 browsing chain and its design boundary live in the
 [program readiness queue](vesper-program-roadmap.md#october-3-regroup-and-successor-readiness).
 A1 is accepted; signed-in validation remains deferred, not passed. Do not repeat it.

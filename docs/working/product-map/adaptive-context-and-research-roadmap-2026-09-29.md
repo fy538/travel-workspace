@@ -16,7 +16,9 @@ source_of_truth_for: []
 accepted in backend #248/workspace #65. AC2's one explicitly selected private
 Collection backend is accepted through backend #249 at `815f72e7`; central
 combined deletion-race evidence and preflight passed. Matching workspace #71
-remains pending app acceptance. This is implemented infrastructure, not an
+retains its normal required hosted gate; app #220 is merged under the exact
+founder-approved waiver recorded in the [CI Plan](../../reliability/CI%20Plan.md).
+This is implemented infrastructure, not an
 activated native request experience. The proposed request/selection design and
 its separate admission boundary live in the
 [program readiness queue](../vesper-program-roadmap.md#october-3-regroup-and-successor-readiness).
@@ -230,9 +232,8 @@ All seven normal required checks passed on candidate `aadace0bd`, including
 Merge readiness's offline and disposable-database jobs. This accepts AC2's
 backend implementation and the combined A2 deletion fence. The app consumer
 and generated deletion contract are published separately in
-[PR #220](https://github.com/fy538/travel-app/pull/220), where the existing
-required dependency-security boundary remains unresolved. Matching workspace
-acceptance is pending and must not precede app acceptance. No live model,
+[PR #220](https://github.com/fy538/travel-app/pull/220), merged as `4bbee04e8` under the founder-approved bounded hosted-check waiver
+recorded in the CI Plan. Matching workspace acceptance retains its normal gate. No live model,
 provider, native or object-store cleanup acceptance is inferred.
 
 **Finish:** a clean committed request-to-readback implementation with evidence

@@ -20,15 +20,15 @@ depends_on:
 
 # Vesper program roadmap
 
-**Regroup — October 3:** C2/A2/AC2/E2 owner handoffs are complete; A2/AC2
-backend work and E2 evidence are accepted. App #219/#220 and matching workspace
-#71 remain unmerged. The exact temporary braces exception is approved; C2
-passed local preflight, but GitHub refused to start its hosted checks because
-of account billing/spending limits. Required gates remain mandatory. The bounded A2
-follow-through reproduced an omitted Life Collection-count refresh and added
-a repair with late-response and account-isolation coverage. The final app
-candidate passed 9,301 tests and static/contract checks; all 202 workspace tests
-passed after a local port-binding permission retry with unchanged code.
+**Regroup — October 3:** C2/A2/AC2/E2 implementation handoffs are complete.
+Backend #249 and E2 evidence are accepted. App #219/#220 are merged at
+`8228bee81` / `4bbee04e8` through the founder's exact, temporary hosted-check
+waiver after passing local evidence; this is not hosted app acceptance. All
+original app merge requirements were restored, and app Actions remains disabled
+until explicitly re-enabled. Matching workspace #71 retains its normal required
+hosted gate. The [CI Plan](../reliability/CI%20Plan.md) records scope and evidence.
+The A2 follow-through repaired a reproduced stale Life Collection count with
+late-response and account-isolation coverage. No larger overnight round is active.
 The [successor readiness queue](#october-3-regroup-and-successor-readiness)
 separates independently useful work from product decisions. No larger overnight
 implementation round is activated. The monitor is paused, with hourly cadence
@@ -351,9 +351,9 @@ evaluation remain deferred, and passing fixture cases do not replace that proof.
 | Adaptive Context | Proposed larger chain: one explicit Collection choice in a selected-source request; exact request/revision binding through the existing API; existing result readback with stale, incomplete, unavailable and no-addition states. Use the selected-source request and reader owners; do not introduce a second context store. | Requires a concrete request/selection design. Keep the current read-only reader internal and the feature default-off meanwhile. No model-default rewrite, new answer persistence, automatic library scan, live calls or generation-quality claim. Repeated fixtures are not an independent implementation fallback. |
 | Eng Efficiency | Retain E2's accepted bounded findings and the corrected monitor stopping/recovery rules. Admit another tooling repair only from a demonstrated current defect with valid, violating and tool-failure acceptance cases and a measurable finish. | Do not repeat inconclusive leak/order probes, invent benchmark work, remove masks or create a new orchestration subsystem merely to occupy this lane. |
 
-The exact temporary security exception is approved. Central prepares the final
-app candidates and compatible workspace pins; landing awaits restored GitHub
-Actions billing access and all normal checks. It then reconciles these
+Both app PRs are merged under the separate bounded waiver recorded in the CI
+Plan. Central lands compatible workspace pins through its normal required
+checks. It then reconciles these
 proposals with approved design, creates compact finite assignments with exact
 bases and fallback/stop rules, and reports Goal/monitor activation separately.
 No security exception, feature activation or new policy follows from this queue.

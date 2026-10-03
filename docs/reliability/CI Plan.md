@@ -154,7 +154,34 @@ Its hosted [run 37132803643](https://github.com/fy538/travel-app/actions/runs/37
 failed before any job steps: GitHub reported failed account payments or a
 spending limit requiring attention. This is an external execution blocker,
 not a code-test result. The account owner must restore Actions access before a
-retry; no required check is waived and no billing setting was changed.
+retry under the original policy. This earlier blocker was superseded only by
+the exact founder-approved merge exception below; no billing setting changed.
+
+**October 3 bounded hosted-check waiver — executed:** the founder separately
+approved disabling Actions for `fy538/travel-app` until explicitly re-enabled,
+and waiving only `main.required_status_checks` for PR #219 at `27d5131bf` and
+PR #220 at `0201d5f53`. Owner: `fy538`. Before the window, their combined tree
+passed measured explicit-base preflight in 88.960 seconds (5,111 selected app
+tests) and the existing expiry-bound live security audit. The preceding complete
+app suites and workspace evidence remain separately scoped receipts.
+
+Between 15:51:29 and 15:51:38 UTC, app Actions was disabled, those two exact heads
+were merged, and all nine original required checks plus strict up-to-date
+checking were restored. PR #219 merged as `8228bee81fefaca7735743353262dc3c4893e9fe`;
+PR #220 merged as `4bbee04e84abce7b2470d8cb4c2279a5502f7149`. The final app
+merge tree matches the locally tested combined tree exactly. The PR requirement,
+admin enforcement, force-push ban and branch-deletion ban were preserved and
+verified unchanged. The waiver ended immediately; future app PRs do not inherit it.
+This is local-evidence acceptance under an explicit waiver, not passing hosted
+app checks. With app Actions disabled and requirements restored, future app PRs
+will need an explicitly approved CI solution before they can merge normally.
+
+Workspace Actions/protection and backend Actions/protection were not changed.
+The workspace continues through its normal required hosted gate. Exact execution
+and before/after settings are retained in
+`/private/tmp/vesper-actions-bypass-proposal/execution.json` and its adjacent
+protection snapshots. No deployment or additional dependency-risk exception
+was authorized.
 
 Continue the prospective ten-change sample with naturally occurring changes;
 do not create a synthetic prose PR just to force another positive result. For
