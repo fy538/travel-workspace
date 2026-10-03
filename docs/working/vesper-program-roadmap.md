@@ -37,12 +37,16 @@ backend `815f72e7f5c72c86c792ef68c97d0bc88a3ea593`, and app
 preserved; both child checkouts are clean. Acceptance does not mean every owner
 checkout has advanced, nor establish hosted app, native or release acceptance.
 
-**Execution state:** all four owner turns are terminal. No central persistent
-Goal is registered; the monitor is paused. The
-[successor readiness queue](#october-3-regroup-and-successor-readiness) proposes
-one connected product outcome and a demonstrated tooling repair, not four newly
-activated Goals. Older assignment language and revision tuples below are dated
-receipts, not permission to restart completed work.
+**Execution state — sprint preparation activated October 3:** the founder
+approved the proposed next step. Eng Efficiency is executing E3. Artifact completed its readiness pass and is
+executing COL1.1 member display/data prerequisites; Adaptive completed its
+packet and is implementing CTX1 exact-source request and temporary readback. Connectivity
+remains idle. Product implementation is admitted only where the packet resolves
+to existing accepted design and ordinary implementation choices; genuinely new
+product choices require the single consolidated decision packet below. The
+existing hourly monitor is active for this finite work and stops when no
+independent admitted milestone remains. No central persistent Goal is registered;
+each owner reports its actual Goal lifecycle separately.
 
 **Deferred evidence:** the founder deferred native/signed-in validation and
 model evaluation. C1.3 interrupted capture, Artifact Save/readback/Undo, and
@@ -381,6 +385,77 @@ repeated verification caused by changed inputs versus setup failures. No new
 monitoring service or claimed speedup is required. At the finite chain's end,
 stop or report the specific remaining decision; additional elapsed hours are
 not evidence of progress.
+
+### Collection sprint execution board — October 3
+
+**Sprint outcome:** browse an owner-private Collection, open a member and its
+exact original, and explicitly choose one private Collection as context for a
+request. Preserve owner authority and suppress stale readback after influencing
+content changes or is deleted. Implementation evidence is distinct from deferred
+native/signed-in/model-quality and release acceptance.
+
+| Package | Current state | Ordered milestones | Finish / dependency |
+| --- | --- | --- | --- |
+| COL1 — Artifact | COL1.1 display/data implementation active; visible navigation pending | Owner-authorized member display contract and bounded data composition first; Collection entry and member browsing; member/original navigation; Remove/Delete and unavailable-state behavior; focused evidence and clean handoff. | Display/data prerequisite is admitted independently. Root navigation and visual promotion wait for the interaction decision. Do not redo accepted A2 or add kept Ask answers from historical proposals. |
+| CTX1 — Adaptive | Authorized implementation in progress | Generated POST adapter and request state; private Artifact Ask entry with explicit original and optional one-Collection choice; temporary Chat-presented readback; deletion/revocation integration and clean handoff. | Existing selected-source request only, default-off. Preserve expiry; no generic Chat generation fallback or durable transcript/Thing answer. Independent of Life navigation. |
+| E3 — Eng Efficiency | Authorized implementation in progress | Reproduce documentation-selected prerequisite failure; minimal execution-plan correction; representative negative/tool-failure cases; actual disposable database run; measured preflight and clean handoff. | Independent of product decisions. The [specialist contract](development-qa-research-and-roadmap-2026-09-30.md#e3-documentation-checker-prerequisite-repair) owns the exact boundaries. |
+| Central | Packet and integration owner | Combine COL1/CTX1 decisions once; record interface/file boundaries; dispatch admitted milestones; integrate independent exact candidates and reconcile contracts/pins. | Preserve canonical edits and owner lanes. One changed handoff needs one inspection; normal waiting is not new work. |
+
+**Verified Artifact prerequisite:** current kept-Thing projections expose stable
+identity, revisions, aliases and authorized original references, but lack the
+semantic display fields needed for the newer member row. COL1.1 composes only
+currently authorized existing-owner facts into a bounded read projection; it
+must not duplicate semantic truth in Thing storage, manufacture missing facts
+or treat saved-at as occurred-at. The client adapter consumes generated types.
+Known/sparse/alias/deleted/revoked/wrong-viewer cases precede visible UI.
+
+The local design-owner record `2026-10-02-life-collection-page.md` supplies L13's
+row requirements but is untracked in the product-direction checkout; it is not
+an accepted-main file or a freshly inspected board. It leaves Life's two-versus-
+four readings open, whereas the September 29 decision specifies four. The
+recommended resolution is Collections, Time, Places, People, replacing Threads;
+central will ask once before changing root navigation. Do not promote the local
+record or its broader plan/map/shared features wholesale through this sprint.
+
+**Shared interaction packet — implementation defaults:**
+
+| Interaction | Contract for this sprint |
+| --- | --- |
+| Browse | Use owner-private Collection index/member APIs. Display only reliable owner facts; unknown forms use a plain readable row. Preserve exact Collection/Thing identity and revision. Root two-versus-four choice is the one pending founder decision. |
+| Member and original | Member opens the existing kept-Thing reader. Each currently authorized original opens through its existing source owner with exact revision; Back returns through Thing and Collection. Do not choose a sibling original silently. |
+| Remove / Delete | Remove affects this Collection membership only. Delete Thing applies the accepted private whole-Thing lifecycle. Delete Collection keeps its Things. Label the actual consequence; no broadening of deletion or retention policy. |
+| Ask entry | An eligible private Artifact's readable text original can open the bounded Ask view. If several originals qualify, choose one explicitly. Removing the original disables Send until an exact original is selected. |
+| Collection context | Default to source only. Optionally choose one current owner-private Collection; show its name and let the person remove it without losing the question. Backend derives eligible members; client never supplies an authoritative member list. Scope lasts for this request only. |
+| Send / retry / close | Use the selected-source POST with exact references, consumer chat, initial existing make-sense purpose and the person's instruction. Freeze scope and timestamp after Send; retries preserve that payload. Changes require a new explicit request. Close stops waiting; it does not promise server cancellation. |
+| Readback | Present the expiring exact result in a private Chat-style view, with no ordinary Chat-generation fallback or durable transcript. Keep explicit no-addition useful. Changed, incomplete, unavailable, expired and feature-off states preserve the question and never silently broaden scope or regenerate. |
+
+COL1 owns Collection/member display data, Life presentation and Thing/original
+navigation. CTX1 owns selected-source request adapters/state, private Ask entry
+and exact temporary result presentation. Shared generated contracts are reconciled
+centrally. The current Life-only result reader remains consumer-specific; adding
+Chat readback must not accidentally allow another consumer's result.
+
+COL1.1 and CTX1 are authorized implementation within the approved sprint. The
+one pending Life navigation choice gates only those root changes. Asking for
+normal retained Chat history, automatic context expansion or complete L13
+plan/map/shared features would be a separate scope decision; none is required
+for this chain. The earlier one-private-Collection scope question is resolved
+and must not be repeated.
+
+**Readiness packet contents:** authoritative design source and date; exact entry,
+member anatomy, tap/original destination, Remove/Delete effects, explicit context
+selection and cancellation; loading/empty/stale/revoked/unavailable states;
+existing versus missing contracts; owned files; evidence boundary; unresolved
+choices with one recommended default each. Existing one-private-Collection scope
+approval stands. An unavailable design export is missing evidence, not permission
+to adopt a conflicting historical mockup.
+
+**Handoff and continuation:** commit a coherent milestone with exact bases,
+changed files, evidence and the next independent step. Central may integrate it
+while its owner continues the next listed milestone. A finite chat turn ending
+is not the end of an unfinished executable chain. Conversely, a product decision
+with no independent work is a reason to stop and ask once. Keep any postponed
+visual/native acceptance visible; fixtures prove only their stated boundary.
 
 ### October 3 implementation queue
 
