@@ -112791,6 +112791,16 @@
               }
             ]
           },
+          "collection_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResourceRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "consumer": {
             "$ref": "#/components/schemas/SelectedSourceResearchConsumer"
           },

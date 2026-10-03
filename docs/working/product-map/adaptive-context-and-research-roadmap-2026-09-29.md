@@ -13,10 +13,12 @@ source_of_truth_for: []
 # Adaptive context and research engineering roadmap
 
 **Current assignment — October 3:** AC1's provider-free permission contract is
-accepted in backend #248/workspace #65. AC2 below is the next implementation
-chain, following the founder's explicit approval of one selected private
-Collection as request-time context. Native acceptance and model evaluation
-remain deferred. Older checkpoints below are historical, not current bases.
+accepted in backend #248/workspace #65. AC2 now has an owner-lane implementation
+candidate for one explicitly selected private Collection; its evidence and
+remaining acceptance boundary are recorded below. Central serialized
+integration/preflight is still pending, so this is not a landed or activated
+feature. Native acceptance and model evaluation remain deferred. Older
+checkpoints below are historical, not current bases.
 
 **Receiving integration checkpoint — October 2:** Artifact's exact read-only
 consumer is accepted through app [PR #214](https://github.com/fy538/travel-app/pull/214)
@@ -118,6 +120,43 @@ request/work/result identities do not yet bind this Collection scope.
 5. Synchronize OpenAPI/projection/types and prove unchanged app compatibility,
    API coverage and measured explicit-base preflight. The native Collection
    selector is outside this round; server/data behavior must be reviewable.
+
+**Owner-lane implementation receipt — October 3 (not yet integrated).** The
+backend accepts an optional canonical, revision-pinned private Collection ref.
+It reads only that owner's current Collection members (maximum 100, Thing
+projections in batches of 50), derives up to two deterministic text-source
+dependencies, and binds request identity plus the private result row to a
+content-free digest of the Collection/membership, Thing, alias and source
+revisions used. That binding is rechecked before dispatch, persistence and
+exact readback; a stale result is withheld and erased. The no-Collection
+request/work identity remains unchanged. No mobile selector, other-Collection
+scan, public lookup, background work or model activation was added.
+
+Evidence in this lane: 58 focused provider-free tests, 23 tests against the
+lane's disposable Postgres database, one Alembic head, migration upgrade and
+`alembic check`, backend `make ci-static`, API coverage, and OpenAPI projection
+checks passed. The full OpenAPI snapshot records the optional request field;
+the app projection is unchanged (469 paths, 517 operations), with no
+`travel-app` diff. The generated type artifact therefore has no expected
+contract delta, but the actual type-generator/typecheck/schema-bridge command
+remains unverified. The 20 model-registry tests also passed: selected-source
+synthesis is already configured as `openai:gpt-6-luna` with the registered
+`low` Responses policy, and remains dark by default.
+
+The broad backend offline suite reported 22,356 passed, 14 skipped and 53
+quarantined xpasses, with one unrelated owner-read timing failure (146 ms
+against a 125 ms test threshold); that exact test passed when rerun alone. The
+workspace tooling suite reported 198 passed; its four loopback-dependent tests
+failed only under sandbox socket denial and then passed in an elevated isolated
+rerun. The explicit-base `verify-changed` composite was interrupted during a
+second static pass when central began its serialized broad integration run; it
+is not a passing preflight. The type-generator/schema-bridge portion of
+`contract-check` remains unverified because this lane has no app `node_modules`;
+projection equality and unchanged generated types are verified, but do not
+substitute for that command. Central must run the combined explicit-base
+preflight after the concurrent broad run and inspect Artifact A2's whole-Thing
+deletion case before integration. No hosted check, publication or deployment
+was performed.
 
 Artifact A2 owns lifecycle mutations; AC2 consumes current authoritative reads
 and revisions without editing that mutation owner. Most work is independent.
