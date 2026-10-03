@@ -218,6 +218,31 @@ This closes G1's local reference-adoption package. The images remain L1
 structural authorities: current-build native screenshots, pixel comparison,
 Dynamic Type and VoiceOver evidence are still release gates.
 
+## G1 resolved-frame correction receipt
+
+Central review of the first PNGs found two concrete defects: `file://` blocked
+the runtime's sibling `dc-import` fetches, leaving `PlaceHead` and `FactPair`
+as blank hint boxes, and `#dc-root` captured the 1,560–1,820px board instead of
+an individual phone frame. The lane corrected the renderer input rather than
+accepting those images:
+
+- A temporary static server (`python3 -m http.server 4177 --directory
+  ~/Downloads/vesper-entity-object-handoff-lab/project`) returned 200 for each
+  sibling component; the browser diagnostic recorded the failed `file://`
+  fetches and the successful HTTP component responses.
+- App `37de44214` re-rendered seven resolved phone frames with the existing
+  exporter at `:nth-match(.p, N)`: shared anatomy, no-photo, large text, the
+  Board 09 entry frame, and Board 14 discovery, visit and arrangement frames.
+  App `c5c7f9f70` records the transport and diagnostic in the provenance file.
+- Every corrected image was inspected. Each is an uncropped 348/393 CSS-pixel
+  phone frame with identity, facts, body, sources/actions and closing content;
+  no unresolved component placeholder remains. The manifest now contains
+  seven pairs and exact selector/output hashes.
+
+This correction supersedes the four broad-board PNGs from the first repair.
+The promoted images remain L1 structural references and do not claim native,
+pixel-parity, Dynamic Type or VoiceOver acceptance.
+
 G2 remains open. The characterization test proves only that the current
 projection preserves stored paragraph order for discovery and explicit visit;
 it does not prove Board 14's purpose omission. Closing that gap requires an
@@ -415,7 +440,7 @@ No successor feature is automatically admitted when EP4 finishes.
 | Package | Current state | Completion evidence |
 | --- | --- | --- |
 | Planning | Lane and mini roadmap prepared | Three exact bases and isolated runtime allocation recorded above |
-| EP0 | Complete locally | Contract/route/test inspection, four rendered L1 references, source/runtime hashes and action boundary recorded above; current-build comparison remains pending |
+| EP0 | Complete locally | Contract/route/test inspection, seven resolved phone-frame L1 references, source/runtime hashes and action boundary recorded above; current-build comparison remains pending |
 | EP1 | Complete locally | Accessibility-label gap fixed in `TextVerb`; focused component regression passes; remaining reading variants rely on existing projection/shell evidence |
 | EP2 | Complete locally | 6 focused app suites / 43 tests passed; existing Keep/share/Ask and gated research/people contracts remain unchanged |
 | EP3 | Complete locally | 4 focused app suites / 95 tests and 4 focused backend files / 55 tests passed; exact route/return and lifecycle boundaries remain intact |
