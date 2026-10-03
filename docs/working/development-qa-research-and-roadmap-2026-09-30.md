@@ -12,22 +12,18 @@ source_of_truth_for: []
 
 # Faster development with trustworthy QA
 
-**Current queue — October 3 regroup:** E2 is closed with bounded findings,
-accepted through workspace #70. No attributable leak repair or quarantine
-removal was established. The proposed independent successor is
-[E3](#e3-documentation-checker-prerequisite-repair), based on a new observed
-preflight setup failure. It has not been assigned or executed. Native evidence
-remains deferred; historical E1/E2 instructions do not reactivate those tasks.
-
-**Current status — October 3:** E1 tooling and the single optional sharding
-comparison receipt are accepted. The final native failure receipt is accepted
-through workspace [PR #67](https://github.com/fy538/travel-workspace/pull/67).
-The founder has deferred successful native and signed-in validation for now;
-it remains unverified. The implementation/integration round is closed under that
-revised scope, and the central monitor is paused. The
-[program operating contract](vesper-program-roadmap.md#orchestration-operating-contract)
-owns future assignment and monitoring behavior. Earlier activation instructions
-and finish criteria below are historical and do not restart E1.
+**Current package — October 3 central Goal:** E3 is accepted in workspace #74;
+the shared delayed-read assertion repair is accepted in app #221. M0's narrow
+interpreter follow-up is delivered and centrally verified (39.118 s; 222
+workspace tests; five actual M0 gates passed), accepted in workspace #76 at `d0da807a` after all normal hosted checks passed.
+These are completed implementation handoffs, not tasks to rerun. The
+[central plan](vesper-program-roadmap.md#central-execution-goal--october-3) owns
+G0 acceptance and further dispatch. Eng Efficiency is on demand for a diagnosed
+shared verification failure; preserve assertions, natural-exit uncertainty and
+all failed receipts. No speculative sharding, quarantine removal, new broad QA
+project or native E1 probe is assigned. Native/signed-in/model evidence remains
+deferred, and the central monitor follows the shared Goal rather than this
+roadmap's historical activation text.
 
 **Current integration receipt — October 2:** readiness correction and native wrong-persona rejection are included in combined app [PR #214](https://github.com/fy538/travel-app/pull/214), accepted merge `e715953796ff7c3b09b82444aa5d68f85f697f52`. Connectivity's mock-mode Life Keep/original/viewer/Undo flow passed (one primary and three extra frames). Unsupported expected persona failed at its exact identity assertion while Default Alex/mock mode stayed selected. Tutorial-present dismissal and authenticated interruption remain separately unverified.
 

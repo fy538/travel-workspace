@@ -12,20 +12,17 @@ source_of_truth_for: []
 
 # Artifact experience engineering roadmap
 
-**Current assignment — October 3 regroup:** A2 backend #249 and app #220 are
-merged. The app's exact temporary hosted-check waiver and restored protections
-are recorded in the [CI Plan](../reliability/CI%20Plan.md); local passing evidence
-is not hosted or native acceptance. The bounded stale Life Collection-count
-repair is included in app merge `4bbee04e8`, with session/persona fencing.
-The proposed larger private Collection
-browsing chain and its design boundary live in the
-[program readiness queue](vesper-program-roadmap.md#october-3-regroup-and-successor-readiness).
-A1 is accepted; signed-in validation remains deferred, not passed. Do not repeat it.
-Historical P4 kept-answer editions are not admitted: the separate Artifact
-design owner has recorded a newer rejection of keeping Ask answers on Things.
-Reconcile that owner decision before any future implementation depending on P4.
+**Current package — October 3 central Goal:** COL1 member display, real-database
+lifecycle evidence and leaf Collection/member/original return are delivered to
+central. The combined preflight and 90 database cases pass; child acceptance
+and pins remain pending in the [central G0/G5 ledger](vesper-program-roadmap.md#central-execution-goal--october-3).
+Do not repeat the implementation or classify the older owner failure below as
+the final combined verdict. After acceptance, support G3 only for a demonstrated
+Thing/Collection custody, removal/deletion or original-return defect. Entity
+owns its presentation; Adaptive owns request authority. No automatic successor,
+retained Ask answers, broader sharing or native validation is assigned.
 
-**Current lane state — October 2:** A1 in [section 0](#a1-private-reader-and-collection-data-coherence)
+**Historical lane receipt — October 2:** A1 in [section 0](#a1-private-reader-and-collection-data-coherence)
 is implemented and verified in the frozen candidate tuple: workspace
 `f77e055045562d04774a447b45150c6eb8e01d32`, backend
 `3e66aed35856c8963220cf211ecceacd54859c84`, and app
@@ -38,7 +35,7 @@ passing. The accepted merge tuple is recorded in the
 gate remains open below. No new chat Goal is active; model evaluation remains
 excluded.
 
-Vesper should make an original worth keeping, opening and returning to, with
+The historical A1 scope below made an original worth keeping, opening and returning to, with
 optional intelligence that adds substance. A1 hardens existing private data and
 reader continuity while product design continues; it does not authorize a new
 Collection member experience. Earlier local/unmerged and quality-pilot wording

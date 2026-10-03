@@ -20,32 +20,22 @@ depends_on:
 
 # Vesper program roadmap
 
-**Current regroup — October 3:** the C2/A2/AC2/E2 round is closed. Places
-refresh-error handling, private whole-Thing deletion and its Life count repair,
-and explicitly selected private Collection context infrastructure are merged.
-Backend [#249](https://github.com/fy538/travel-agent/pull/249), app
-[#219](https://github.com/fy538/travel-app/pull/219) and
-[#220](https://github.com/fy538/travel-app/pull/220), and workspace
-[#71](https://github.com/fy538/travel-workspace/pull/71) are accepted at their
-recorded evidence boundaries. E2 completed its bounded investigations; it did
-not establish a leak fix or quarantine removal. No open PRs remained in the
-three repositories at this regroup's hosted inspection.
+**Current execution authority — October 3, central Goal regroup:** one central
+Goal owns the shared finish line in [the execution plan below](#central-execution-goal--october-3).
+Five existing execution lanes contribute bounded packages; their historical
+roadmaps are capability references, not five independent promises to finish the
+product. Orchestration owns dependency order, acceptance, contracts and pins.
+Current dispatch comes from that plan; dated assignments below remain evidence.
 
-Canonical accepted inputs are workspace `c0a90bcef179036b58de1d8de8a1fb503aa0b8ba`,
-backend `815f72e7f5c72c86c792ef68c97d0bc88a3ea593`, and app
-`4bbee04e84abce7b2470d8cb4c2279a5502f7149`. Canonical workspace edits remain
-preserved; both child checkouts are clean. Acceptance does not mean every owner
-checkout has advanced, nor establish hosted app, native or release acceptance.
-
-**Execution state — infrastructure completion activated, October 3:** the
-founder explicitly authorized central to orchestrate and delegate steps 1–4 of
-the completion plan. Artifact continues COL1 database evidence and the
-Collection/member/original connection; Adaptive continues CTX1 provider-free
-real-backend contract acceptance; Eng Efficiency exclusively owns the shared
-Collections delayed-read failure. Central owns review, publication, contracts
-and incremental integration. The existing hourly coordinator is ACTIVE for this
-finite chain. Connectivity remains idle. No central persistent Goal is
-registered; delivered instructions do not resume older blocked Goals.
+**Verified starting point:** workspace #73/#74/#75/#76 and app #221/#222/#223 are
+accepted. Workspace #75 merged at `6c7193def6e9bc4f092658814e8771dd77f51b00`;
+accepted backend remains `815f72e7f5c72c86c792ef68c97d0bc88a3ea593`, and app is
+`057f5c95ac7d93d26f134db83f4c77ddd7a32dbf`. Backend #250 is open and its hosted
+jobs did not start because of an account payment/spending limit. Its separate
+pending decision is not permission to bypass other backend work. The M0 repair is accepted through workspace #76 at `d0da807a`. The
+combined Collection slice and Entity slice are locally delivered; their remaining
+acceptance is explicit below. Canonical checkouts and dirty owner work are
+preserved; these accepted revisions do not imply those checkouts advanced.
 
 **Deferred evidence:** the founder deferred native/signed-in validation and
 model evaluation. C1.3 interrupted capture, Artifact Save/readback/Undo, and
@@ -155,9 +145,8 @@ session. No live model evaluation, activation, deployment or new security
 exception follows from this plan.
 
 Build the complete product on the connected system already implemented.
-The execution model remains **three autonomous product lanes in three
-coordinated worktrees**, each containing the workspace and both independent
-children. This file owns the boundaries between them and the work of
+The current execution model uses the five owners and bounded packages above,
+with isolated coordinated worktrees containing the independent repositories. This file owns the boundaries between them and the work of
 **Orchestration**, not a queue through which every other lane must ask permission.
 
 The four moves remain **Make sense. Open possibility. Help it work. Carry
@@ -287,6 +276,141 @@ improvements; Orchestration continues D2 without adding a new integration gate.
 The detailed measurements and boundaries remain in the
 [completed integration review](development-qa-research-and-roadmap-2026-09-30.md#9-completed-integration-review).
 
+## Central execution goal — October 3
+
+**Outcome:** deliver one accepted, coherent implementation of the existing
+private-original / private-Collection / exact-request loop and the supported
+Entity page core. Use the founder-selected Entity handoff lab as the target,
+reconcile newer decisions explicitly, and keep identity, evidence, original
+access and return intact across existing entrances. This is an implementation
+horizon, not full product release or completion of every historical roadmap.
+
+**One Goal, one master plan.** The persistent Goal belongs to Orchestrator.
+This section is the durable dependency and acceptance plan. Specialist roadmaps
+hold the owner's next package, detailed evidence and handoff; they link here
+rather than maintaining competing program priorities. Ordinary owner turns may
+continue a named package across turn endings. Existing blocked or completed
+owner Goals are not resumed or rewritten by a message. No new broad execution
+Goal is required in each of the five chats.
+
+### Evidence and scope
+
+Track each package separately as **implemented**, **locally verified**,
+**accepted**, **design matched**, and **native verified**. A component test does
+not prove design parity; a merge does not prove a signed-in journey. An unresolved
+case stays unresolved. Close this Goal only when every admitted implementation
+row below has its required acceptance and the final combined tuple is recorded.
+An unresolved required merge is a blocker, not a completed row.
+
+Native, signed-in and live-model evaluation remain explicitly deferred and
+unverified. No provider/model/paid calls, deployment, production activation,
+auth bypass, new sharing/retention, catalog expansion or security exception is
+admitted. Questions still use the existing exact-source scope: one selected
+original and at most one explicitly selected private Collection. Board 16's
+broader requested-work experience receives a bounded contract/gap handoff here;
+new public-place research or an absent note owner is not silently implemented.
+
+Newer product steering must be reconciled before affected behavior changes:
+
+- Entity boards 06/06B specify anatomy, sparse and large-text cases; board 14's
+  purpose-sensitive evidence selection supersedes board 09's invariant-body
+  wording. The four current raw-file hashes differ from the Entity owner's
+  receipt. That requires provenance reconciliation, not an assertion that the
+  semantics changed. Freeze and compare the current export before parity claims.
+- The accepted one-field/one-way-to-send direction is recorded in the
+  product-direction owner's unmerged October 3 decision. Resolve its application
+  to canonical Places versus kept Things and the existing write/question owners;
+  do not invent storage or a general answer service.
+- Strategy's newer human-approved direction retains four product roots and an
+  outward exploration surface. Its documentation is locally prepared in the
+  four-root-exploration-direction lane, not yet merged. The Explore label and
+  composition remain provisional. This does not answer the separate two-versus-
+  four **Life readings** decision. No root/tab redesign is admitted here.
+
+### Ordered delivery packages
+
+| ID / owner | Deliverable and finish evidence | Dependency / independent action |
+| --- | --- | --- |
+| G0 / Central | Accept the reviewed M0 repair, backend #250 evidence, combined Collection backend/app/contracts, and small Entity accessibility slice. Preserve each receipt and record compatible accepted pins. | Publish independent slices now; backend billing/merge policy can block acceptance. Do not make Entity reference work wait. |
+| G1 / Entity | Reconcile and register exact lab references, applicable newer decisions and a board-to-code/state gap matrix. Every case must name implemented evidence, a concrete repair, or an unresolved owner/decision. | Current source and local lab suffice. First handoff is the reference/authority matrix; no runtime required. |
+| G2 / Entity | Close demonstrated core reading gaps: rich/sparse/no-photo, purpose-sensitive evidence selection/order/omission, exact original, current provenance, and large-text structure. Preserve existing Keep/share/question ownership and honest unavailable states. | After G1. Repair only gaps supported by existing owner data. No semantic guessing, automatic generation or new writes. A missing discriminator becomes a precise contract dependency. |
+| G3 / Connectivity, with Artifact only for data-owner defects | Prove the supported existing entrance → same Entity/original → return paths, including aliases, unavailable/stale data and session change. Repair owning-layer defects once. Preserve Collection member → original → Collection behavior. | Consume G1 entry matrix and central accepted Collection contracts. Existing route/component evidence is admissible; native proof remains deferred. No root redesign or duplicate reader. |
+| G4 / Adaptive Context | Map board 16 and one-field direction to actual request, retry, readback, expiry, invalidation and return contracts. Verify current private Ask boundary; provide a minimal dependency/decision list for unsupported public-place requests. | Read-only contract analysis can overlap G1. Do not repeat the completed database suite or implement a new public request API by analogy. New behavior requires a separately admitted package. |
+| G5 / Central | Reconcile all accepted slices, generated contracts, route owners and pins; run measured explicit-base final preflight plus any newly affected cross-lane cases. Demonstrate influencing-Thing deletion suppresses stale publication/readback on the actual final tuple. | Consume G0–G4. Reuse evidence only where exact inputs and affected behavior justify it. Keep failure, skipped and deferred receipts visible. |
+
+G4 closes with a reviewable contract/gap handoff, not a claim that all of board 16
+works. G2/G3 cannot be marked complete merely because a required discriminator
+or owner is missing. Central resolves admitted implementation dependencies or
+records the concrete human/external blocker; it does not shrink a finish line
+silently. A future broader request experience remains a separately scoped horizon.
+
+### Lane work and boundaries
+
+| Lane | Current work / next package | Owns | Must leave to another owner |
+| --- | --- | --- | --- |
+| Entity | G1 then G2 | Shared Entity presentation, supported purpose variants, local reference adoption and truthful gaps | Collection storage, request authority, root feeds, central pins |
+| Connectivity | G3 after the entry matrix is ready | Existing ingress/return and root-consumer wiring | Entity body renderer, new exploration design, original custody |
+| Artifact | COL1 delivered; support G3 only for a demonstrated custody/member lifecycle defect | Private Things, Collections, member display, original reader, Remove versus Delete | Entity presentation and generated answers |
+| Adaptive Context | G4 contract handoff; existing CTX1 evidence delivered | Exact request scope, identity, temporary results and invalidation | Entity UI, public request expansion, new durable Chat/answer retention |
+| Eng Efficiency | E3/shared fix/M0 accepted; no new tooling package | Verification prerequisites and one diagnosed shared tooling failure at a time | Product scope, broad test reruns or speculative performance work |
+| Orchestrator | G0 and G5; dispatch and reconcile G1–G4 | Overall Goal, shared roadmap, acceptance, publication and exact combined tuple | Duplicating product owners' implementations |
+
+Connectivity's package stays in this master roadmap. Artifact, Adaptive Context,
+Eng Efficiency and Entity keep their existing specialist roadmaps. This adds no
+sixth implementation queue and does not create another master roadmap. Idle is
+correct when an owner has no executable package; five owners need not be active
+at once.
+
+### Execution and stop rules
+
+Start with **Central integration + Entity G1/G2 + Adaptive G4**. Keep at most two
+product packages active alongside central integration; Eng may address a real
+shared blocker when needed. Once G1 publishes a stable entry matrix, G4's finite
+analysis ends and Connectivity takes G3. Artifact remains available for exact
+owner defects, rather than repeating completed lifecycle tests. Same shared
+file or root contract has one writer; central reconciles contracts and generated
+outputs once on the combined tuple.
+
+Each dispatch carries outcome, exact base/candidate, owned files, ordered steps,
+acceptance evidence, first reviewable handoff, dependency fallback and stop rule.
+Owners hand off coherent commits while continuing independent listed steps.
+Central continues an unfinished executable package after an ordinary turn ends;
+terminal chat status alone is not package completion. Do not invent work after
+the finite chain or wake idle owners for status.
+
+The existing hourly monitor reads this section and the private exact-state
+checkpoint. Use one cursor snapshot, inspect changed handoffs once, respect
+backoff, and never poll completed jobs. A heartbeat schedules observation; the
+Goal carries the shared objective. Neither is a second backlog. Record meaningful
+changes and notify only progress, completion, failure or a required decision.
+When no independent admitted work remains, retain required blockers honestly,
+apply the Goal's repeated-blocker lifecycle, and pause the monitor once. Do not
+repeat pending approval questions or revive deferred device/model tasks.
+
+Measure accepted packages, time from handoff to acceptance, first-pass preflight,
+rework and time waiting on external decisions from actual receipts. Do not use
+agent uptime, tokens, test counts or a percent of historical roadmap headings as
+productivity or completion percentages. Review this horizon when G1 finds a new
+owner/authority dependency, when a new human decision changes scope, or at G5.
+
+### Starting acceptance ledger
+
+- Accepted: E3 workspace #74, shared delayed-read fix app #221, private Ask app
+  #222, route ownership app #223, API policy/projection workspace #75.
+- M0 accepted in workspace #76 at `d0da807a`, with all normal hosted checks passing.
+- Local and pending acceptance: combined Collection
+  workspace `e513c235`, backend `9e4735aa8`, app `9391a5779`; Entity workspace
+  `4985d9b2`, app `1e345ab98` (the latter is a small accessibility repair).
+- Combined Collection preflight: 326.360 s, 9,331 app / 22,369 backend /
+  222 workspace tests passed; separate 90 real-Postgres cases passed in 44.393 s.
+  Preserve backend 14 skipped / 1 xfailed / 52 xpassed. This is local evidence.
+- Entity's earlier preflight stopped at the old API policy baseline despite
+  passing selected suites. Revalidate on the accepted policy baseline; do not
+  claim automatic success from workspace #75 landing.
+- Backend #250's hosted billing failure remains an external acceptance blocker.
+  Its already pending exact decision is separate from every other slice.
+- Native, signed-in, actual model quality and complete lab parity: unverified.
+
 ### Orchestration operating contract
 
 This section owns cross-lane operating rules. The
@@ -297,9 +421,9 @@ do not copy the full history into every Goal or scheduled prompt.
 | Location | What belongs there |
 | --- | --- |
 | Program roadmap | Lane ownership, admitted outcomes, dependencies, consolidation and monitoring rules, and explicit human deferrals. |
-| Specialist roadmap | The lane's ordered milestones, completion evidence, current candidate and dependency boundary. Connectivity uses this program's C1 section. |
-| Persistent chat Goal | A compact assignment: roadmap goal ID/revision, outcome, owned scope, evidence, ordered milestones, independent fallback if available, and blocked stopping condition. A longer run needs ready work; elapsed activity is not its finish line. |
-| Scheduled task | A short operational instruction pointing here, the four chat IDs and latest checkpoint reference. Its role is detecting changes and coordinating actionable work. |
+| Specialist roadmap | The lane's ordered milestones, completion evidence, current candidate and dependency boundary. Connectivity uses the current package in this program roadmap. |
+| Persistent chat Goal | One central shared outcome referring to the current execution plan. Owner turns receive bounded work packages; their older Goal states are separate and are not resumed by messages. |
+| Scheduled task | A short operational instruction pointing here, the five execution chat IDs and latest checkpoint reference. Its role is detecting changes and coordinating actionable work. |
 | Existing evidence records | Exact revisions, commands, timings and failures. These support claims but do not redefine completion. |
 
 Before activation, check prerequisites for the whole admitted chain, including
@@ -1012,7 +1136,7 @@ passes are not full acceptance. Real recurring supply, all-door authenticated
 readback, signed extension behavior and some provider paths remain unverified.
 Do not reconstruct completed Source/Home connections or build another generator.
 
-## 2 Three lane ownership
+## 2 Historical three-lane ownership
 
 | Lane and its execution roadmap | Owns | Does not own |
 | --- | --- | --- |
