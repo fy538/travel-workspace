@@ -5507,8 +5507,11 @@ PostgreSQL backend suite passed (79 tests). These include request, publication,
 readback and deletion/invalidation evidence. The app full merge-scope suite
 passed 1,300 suites / 9,323 tests after the session-change regression was added;
 the runner reported a force-exit warning, so natural process exit is not
-established. The separate six-suite mock/HTTP parity run passed 191 tests, and
-API projection/type parity and the workspace API operation audit passed.
+established. Model registry and provider-routing tests passed (31 tests),
+confirming the selected-source role remains `gpt-6-luna` with low reasoning;
+these tests do not establish provider availability or generation quality. The
+separate six-suite mock/HTTP parity run passed 191 tests, and API projection/type
+parity and the workspace API operation audit passed.
 
 No signed-in native journey, production allocation, live model response, paid
 call or model-quality judgment has been exercised. Do not enable the feature or
