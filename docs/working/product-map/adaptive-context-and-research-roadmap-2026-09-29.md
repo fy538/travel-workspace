@@ -42,6 +42,9 @@ stale Collection rejection before dispatch, and deletion/invalidation boundaries
 this is not a signed-in native journey or live-model quality acceptance. The
 separate admission boundary remains in the
 [program readiness queue](../vesper-program-roadmap.md#october-3-regroup-and-successor-readiness).
+The provider-free G4 contract/gap handoff is recorded in §13.9 below. It does
+not claim that board 16 works in the product or admit a field-specific public
+Place request. Central review and any follow-on admission remain separate.
 Model evaluation remains deferred. Older checkpoints below are historical, not
 current bases.
 
@@ -5531,3 +5534,69 @@ treat the mock no-addition as product-quality evidence. The client gate remains
 default-off. An earlier local workspace preflight was incomplete (loopback
 socket denial and an unavailable Python dependency); it is not a passing
 receipt. A central measured combined preflight is being reconciled separately.
+
+### 13.9 G4 requested-work and return contract handoff — October 3
+
+**Disposition:** board 16 describes a coherent *target*, not behavior already
+owned by one route. The key boundary is between (a) a question grounded in one
+exact private original, (b) public research about a canonical Place, and (c) a
+future field-specific Place check that returns to both Entity detail and its
+originating Places row. The first two have distinct backend capabilities; the
+third is not implemented. Do not route (c) through (a) or infer that (a)'s
+public-lookup approval grants (c).
+
+Board 16's “What could still work Saturday” row is explicitly a return point
+whose row anatomy belongs to Places. It asks for one named fact (for example,
+opening time), keeps that request visible without duplicating unsettled work,
+and requires the row and Entity detail to agree on pending/result/known-failure/
+unknown/stale state. A result carries its source and `as_of`; the original stays
+independently reachable. Board 16 also sketches a provider-door return that
+does not claim a booking occurred. That external-action branch is noted only as
+a boundary; this G4 request lifecycle does not implement it.
+
+| User behavior in/near board 16 | What exists and who owns it | Unsupported part / smallest next step |
+| --- | --- | --- |
+| Ask about one exact private original | **Adaptive Context / private Ask.** `POST /api/research/selected-source` accepts an owner-selected `intake_source` revision (`text/plain` only), optional text span, one explicitly selected private Collection, bounded instruction/intent and represented time. It returns one `addition` or `no_addition` result; `GET /api/research/selected-source/{work_id}` reads that exact current result for its owner and never generates. Result identity is source/dependency-bound and expires within 24 hours. The app's `selected-source-ask` screen is a temporary Chat presentation, not a saved Chat message, Life item, Entity fact or note. | This API has no canonical `EntityRef`/Place field and deliberately admits no public lookup. It cannot answer a Place-field question by being handed a Place page. Keep its one-original scope and exact return to its original parent. |
+| Public lookup initiated from a selected private original | **Adaptive Context / separate T2 approval.** `/api/research/selected-source/public-lookup` previews the exact normalized provider-facing request, requires explicit one-use approval, and has a cancel operation; approval is bound to the selected source and request and expires 10 minutes after approval. After dispatch it returns a transient public result, and cancellation suppresses that result. The feature is dark by default. | This remains a lookup *from a selected private source*, not a canonical Place field request. The source, normalized public request and preview are the authority boundary; this API supplies neither a Place detail's field key nor a Places-row return binding. Its existence is not authority to expose a public fact in Entity or Places. |
+| Read up on a canonical public Place | **Entity/backend public research.** `GET /api/entities/{entity_type}/{entity_id}/research` reads an already-built canonical-entity brief and does not start work. Explicit `POST /api/me/entities/{entity_type}/{entity_id}/research-requests` accepts only `{force_refresh}` plus an idempotency header; only verified catalog-backed venue/site/accommodation can enter the queue. Experience and owner-provisional records are ineligible. The request is feature/allowlist-gated and subject to `research_deep` limits. `GET /api/me/entities/{entity_type}/{entity_id}/research-status` returns the entity's latest lifecycle. `EntityResearchBrief` is paragraphs, sources, paragraph/source mapping and brief-wide `generated_at`/`expires_at`. The Entity page exposes this separately as `Read up`; opening the page itself does not enqueue. | This is a whole-brief request, not a request for one question/field. No query, `field_key`, exact returned value, per-field source/`as_of`, or row-return token exists. The smallest next step belongs to Entity G1: decide whether this generic `Read up` is the intended Place action or whether board 16 is a later, field-specific capability. Do not relabel the current brief as an answer to a field question. |
+| Ask from a Place page / return to Places | **Entity UI + Places UI.** Current Entity detail keeps `Ask Vesper` and gated `Read up` as separate actions. The Entity detail's general Ask opens a new Vesper conversation seeded with the canonical `EntityRef` and an initial prompt; it is not the selected-source route or a structured fact request. Board 16 itself assigns the origin row to Places. | No Board16-specific field composer, field-level pending/cancel/result state, shared Place-field work identity, or paired Places-row/Entity-detail projection was found in the inspected code/contracts. Entity owns the detail decision; Places owns any row projection/return; Adaptive Context owns only a separately admitted request contract. |
+| Retry, cancel, unknown, stale, expiry and invalidation | The public Entity queue has `absent / queued / running / ready / stale / failed / unavailable`; request receipts carry an ID and idempotency suppresses duplicate queue work. The app polls only while active and connected, at most 12 attempts, and maps transport/polling uncertainty to local `unknown` rather than inviting another paid request. Known failure or stale brief can be deliberately retried. The private selected-source Ask is synchronous/one-shot: an in-progress conflict is not a durable queue and there is no separate status/cancel endpoint; exact `work_id` readback is owner-bound and expired/invalidated results are unavailable. A changed or withdrawn exact source, or a changed/deleted selected Collection, invalidates the matching private Ask result. | The public Entity research API has no cancellation endpoint; its status is entity-latest rather than an exact request-read endpoint. Its UI's `unknown` is client-derived, not a server status. Neither lifecycle is keyed to a Place field or observed by a Places row. Public Entity brief expiry is brief-wide, not a per-fact `as_of`. The private public-lookup `cancel` revokes an unused approval or suppresses its transient result; it is not cancellation of the public Entity research queue. Do not promise board 16's pending Cancel or row synchronization from any existing state. |
+
+#### One-field decision applicability and owner handoff
+
+The October 3 accepted “One field on every page, and one way to send” decision
+was inspected in the separate Product Direction worktree. It says a **Thing**
+page's “Add a note, or ask” field keeps authored notes private on that Thing and
+answers a question in a non-retained sheet; it explicitly records no runtime,
+flag or schema change and says the Artifacts project's page boards have not been
+changed. It does **not** affirm that a canonical public Place (`EntityRef`) is
+the same owner/type as a kept Thing (`ThingRef`), or that board 16's field check
+is covered by that decision. This applicability is unresolved; the decision is
+product evidence, not an API contract.
+
+**Handoff to Entity G1 / central:** retain the existing distinct `Ask Vesper`
+and `Read up` behavior while G1 records whether board 16 targets canonical
+Entity Places and whether the accepted one-field decision includes them. If not,
+close board 16 as a future unsupported extension. If yes, request a separate
+Task Intake naming the request owner and minimum cross-surface contract:
+canonical `EntityRef` + field discriminator, value/source/`as_of`, one stable
+request identity and retry/cancel/unknown/stale/expiry rules, plus how the same
+state is returned to the origin row and exact Entity reader. Product must also
+settle privacy/retention and external/public-source authority at that boundary.
+Entity owns the user-facing action and detail state; Places owns the origin-row
+projection; the owning backend/service lane owns request/readback. Adaptive
+Context must not create or imply any of these owners from the private
+selected-source API. This is the smallest clarification, not an implementation
+package or a request to redesign the surrounding surfaces.
+
+**Evidence and limits (inspected October 3):**
+
+- Source tuple in this owned lane: workspace `123d0cd7`, backend `305e6abec`,
+  app `8aab2efc6`; all three were clean at the start of the G4 documentation
+  pass. These are the inspected sources, not a statement that the tuple is
+  centrally accepted or released.
+- Entity lab board 16: `~/Downloads/vesper-entity-object-handoff-lab/project/16 - Requested Work and Return.dc.html`, SHA-256 `8c54c7841776fcb94c276f09406366bf49b064c2fcbd17cf034ac7380c5a9c55`. Its header calls it a drawn, non-canonical coverage board, not implemented behavior.
+- One-field decision: `docs/decisions/2026-10-03-one-field-and-one-way-to-send.md` in the separate `codex/product-direction-2026-09-28` worktree, SHA-256 `00f25af27d43699fb4299351c1a71d373600a9b490063c828cf2f814c1c2f9de`. The file was untracked in that worktree at inspection; its accepted status and no-runtime consequence are recorded here as read-only provenance, not a promoted contract.
+- Supporting Simple flows board 03: `~/Downloads/vesper-simple-flows/project/03 Where it lands.dc.html`, SHA-256 `2478fe2244c247b197c73288eff3cde74410c47ea2fd32a88369b4cb535b1ab0`.
+- Runtime owners inspected: `travel-agent/backend/api/routes/selected_source_research.py`, `selected_source_public_lookup.py`, and `entities.py`; `travel-agent/backend/core/models/selected_source_research.py` and `entity_research.py`; `travel-app/app/venue/[venueId]/index.tsx`, `components/places/ObjectPageRebuild.tsx`, `components/places/objectPageProjection.ts`, `data/entities.ts`, and the `entity-object`, `vesper-chat` and `canonical-artifact-reader` contracts; plus `docs/systems/contribution-and-consequence.md` §§6.1–6.2.
+- No code, API, schema, flag, provider, model, database or runtime behavior changed for G4. No live API/provider call or broad/synthetic test suite was run. This is a repository/design contract map, not native UI acceptance, public-fact verification, or approval to activate research.
