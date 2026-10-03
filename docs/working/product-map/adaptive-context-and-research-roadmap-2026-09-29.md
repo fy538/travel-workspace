@@ -19,11 +19,19 @@ combined deletion-race evidence and preflight passed. Matching workspace #71
 is merged at `c0a90bce` after its normal required hosted checks; app #220 is merged under the exact
 founder-approved waiver recorded in the [CI Plan](../../reliability/CI%20Plan.md).
 This is implemented infrastructure, not an
-activated native request experience. The proposed request/selection design and
-its separate admission boundary live in the
+activated production request experience. A default-off, private selected-source
+Ask consumer is now implemented on the October 3 app lane; its selection and
+temporary-result boundary are recorded in the
+[Canonical Artifact Reader](../../../travel-app/docs/surfaces/canonical-artifact-reader/contract.md#canonical-artifact-reader)
+and [Vesper Chat](../../../travel-app/docs/surfaces/vesper-chat/contract.md#selected-source-ask)
+contracts. The client gate remains default-off. Provider-free route acceptance
+now includes real PostgreSQL checks for exact private Collection readback,
+stale Collection rejection before dispatch, and deletion/invalidation boundaries;
+this is not a signed-in native journey or live-model quality acceptance. The
+separate admission boundary remains in the
 [program readiness queue](../vesper-program-roadmap.md#october-3-regroup-and-successor-readiness).
-Native acceptance and model evaluation remain deferred. Older checkpoints below
-are historical, not current bases.
+Model evaluation remains deferred. Older checkpoints below are historical, not
+current bases.
 
 **Receiving integration checkpoint — October 2:** Artifact's exact read-only
 consumer is accepted through app [PR #214](https://github.com/fy538/travel-app/pull/214)
@@ -625,7 +633,10 @@ the 24-hour maximum and bounded hourly cleanup. The backend now connects these
 contracts through a dark-by-default, authenticated producer route and exact
 owner readback. One reserved, single-dispatch synthesis is allowed only when
 the feature gate and commercial allocation both admit it; the path does not
-perform public lookup, activate a provider, or have a reviewed native consumer.
+perform public lookup or activate a provider, and it has not received native or
+real-backend consumer acceptance. An October 3 app-lane change adds a
+default-off selected-source Ask consumer; its provider-free source/tests are
+not native or real-backend acceptance.
 Provider-free PostgreSQL acceptance now exercises this producer through the
 real gateway and ledger under an injected test-only allocation. This does not
 make the production route allocatable. Private selected-source synthesis now
@@ -5470,3 +5481,41 @@ seconds; the committed test repair is backend `2f3f4ff94`. Every normal required
 `2f3f4ff94`, including the full selected disposable-Postgres job. PR #246
 merged normally after those results; the first failed attempt remains in the
 evidence record. This workspace update pins the actual accepted merge revision.
+
+### 13.8 Private selected-source Ask consumer — October 3 implementation
+
+The app lane adds a Chat-styled, one-shot private Ask entry from an eligible
+Mine artifact. It is bound to one exact available `text/plain` Intake original;
+the owner may explicitly add one private Collection. It sends neither a normal
+Chat message nor a durable memory write. The question/request is held for an
+exact retry, and the owner/source-bound result is read back by its returned work
+ID and held only in the mounted screen. Removing or changing context does not
+redispatch; a changed scope after failure needs a new explicit Ask. The client
+feature flag is false by default; backend feature/allocation gates still govern
+the producer independently. Luna-low routing is unchanged; no provider call was
+made.
+
+Provider-free tests cover exact source/Collection binding, removal, retry,
+owner/session/source validation, the mock no-addition outcome and default-off
+behavior. The October 3 acceptance follow-up fixed two mounted stale-result
+cases: the app now hides a result when the selected Collection changes revision
+or disappears. A new real-database regression confirms the existing backend
+rejects an old Collection revision after an influencing Thing is deleted before
+dispatch. It does not silently retry or
+rebind. Six focused app Jest suites passed (57 tests); the focused real-
+PostgreSQL backend suite passed (79 tests). These include request, publication,
+readback and deletion/invalidation evidence. The app full merge-scope suite
+passed 1,300 suites / 9,323 tests after the session-change regression was added;
+the runner reported a force-exit warning, so natural process exit is not
+established. Model registry and provider-routing tests passed (31 tests),
+confirming the selected-source role remains `gpt-6-luna` with low reasoning;
+these tests do not establish provider availability or generation quality. The
+separate six-suite mock/HTTP parity run passed 191 tests, and API projection/type
+parity and the workspace API operation audit passed.
+
+No signed-in native journey, production allocation, live model response, paid
+call or model-quality judgment has been exercised. Do not enable the feature or
+treat the mock no-addition as product-quality evidence. The client gate remains
+default-off. An earlier local workspace preflight was incomplete (loopback
+socket denial and an unavailable Python dependency); it is not a passing
+receipt. A central measured combined preflight is being reconciled separately.
