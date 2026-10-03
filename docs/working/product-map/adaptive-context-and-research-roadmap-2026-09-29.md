@@ -5496,12 +5496,12 @@ the producer independently. Luna-low routing is unchanged; no provider call was
 made.
 
 Provider-free tests cover exact source/Collection binding, removal, retry,
-owner/result validation, the mock no-addition outcome and default-off behavior.
 owner/session/source validation, the mock no-addition outcome and default-off
-behavior. The October 3 acceptance follow-up fixed two real stale-result cases:
-the app now hides a result when the selected Collection changes revision or
-disappears, and the backend rejects an old Collection revision after an
-influencing Thing is deleted before dispatch. It does not silently retry or
+behavior. The October 3 acceptance follow-up fixed two mounted stale-result
+cases: the app now hides a result when the selected Collection changes revision
+or disappears. A new real-database regression confirms the existing backend
+rejects an old Collection revision after an influencing Thing is deleted before
+dispatch. It does not silently retry or
 rebind. Six focused app Jest suites passed (57 tests); the focused real-
 PostgreSQL backend suite passed (79 tests). These include request, publication,
 readback and deletion/invalidation evidence. The app full merge-scope suite
