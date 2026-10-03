@@ -635,6 +635,49 @@ a predetermined run time or speedup is reached.
    failures. Existing XFAIL/XPASS cases still execute: removing masks is stronger
    correctness evidence, not automatically a runtime saving.
 
+**E2 bounded investigation receipt — October 3:** the tested coordinated tuple
+was workspace `00c406ee0e08235167e0b1186324f0b396923155`, backend
+`8fecebb37e7514ffbecdcceaf6b27b5d47d83487`, and app
+`35537620848bedf860aa9e273b0d9c0fed309651`; all three inputs were clean.
+
+- **App worker exit:** `npm run verify:merge -- --base
+  60f0a31c698ed5836756fc7e486fc1d09d504cc0` selected the full Jest suite because
+  accepted changes touched runner/control files. On macOS 25.5 arm64 with Node
+  24.13.0 and npm 11.6.2, 1,298 suites and 9,294 tests passed (one snapshot) in
+  77.311 seconds total; Jest reported 74.419 seconds.
+  The retained forced-worker-exit warning reproduced. A single
+  `--detectOpenHandles` run over the seven terminal suites shared by retained
+  and current warning logs passed 7 suites / 21 tests in 2.694 seconds total
+  (Jest: 1.158 seconds) and reported no open handle. This bounded diagnostic
+  did not identify an owner;
+  classify the warning as **reproduced, owner unknown**. No runner, worker-count
+  or test-coverage setting changed. Logs:
+  `/private/tmp/vesper-e2-verification-logs/e2-app-worker-exit-current-head-20261003T064249Z.log`
+  and
+  `/private/tmp/vesper-e2-verification-logs/e2-app-worker-exit-focused-handles-20261003T064521Z.log`.
+- **Backend order isolation:** the historical record names pytest-randomly
+  seeds 1 and 2 plus `-n auto --dist loadfile`. The bounded selection included
+  the 43 exact error-handler IDs and both exact `TestStopLocationsCache` IDs,
+  the separately quarantined API cache group, with `--run-quarantined` so
+  failures remained visible. With Python 3.13.0 and pytest 9.1.1, seed 1 passed
+  45/45 (pytest: 4.42 seconds; measured total: 6.740 seconds); seed 2 passed
+  45/45 (pytest: 3.21 seconds; total: 4.893 seconds); seed 1 with the recorded
+  14-worker xdist grouping passed 45/45 (pytest: 6.74 seconds; total: 7.303
+  seconds). No failure or pollution owner was reproduced, which does not prove
+  the original issue is fixed. Preserve all 53 allowlisted IDs and their history
+  for the dated review. Logs:
+  `/private/tmp/vesper-e2-verification-logs/e2-backend-quarantine-seed1-20261003T064957Z.log`,
+  `/private/tmp/vesper-e2-verification-logs/e2-backend-quarantine-seed2-20261003T065012Z.log`,
+  and
+  `/private/tmp/vesper-e2-verification-logs/e2-backend-quarantine-xdist-loadfile-20261003T065028Z.log`.
+- **Handoff preflight:** `make verify-changed` used the explicit workspace,
+  backend and app revisions above and selected only the three documentation
+  checks. Links passed for 555 living Markdown files, all 10 spine entry points
+  passed, and the eight authorities remained within their word budgets. Total
+  measured time was 0.763 seconds. Its record and log are
+  `/private/tmp/vesper-e2-verification-records.json` and
+  `/private/tmp/vesper-e2-verification-logs/e2-roadmap-preflight-before-final-receipt-20261003T065423Z.log`.
+
 **Finish:** both bounded investigations resolved as a verified repair or an
 explicit no-reproduction/remaining-boundary finding, with any justified fixes
 ready for central integration. Stop after these cases. No product behavior,
