@@ -24,8 +24,11 @@ Ask consumer is now implemented on the October 3 app lane; its selection and
 temporary-result boundary are recorded in the
 [Canonical Artifact Reader](../../../travel-app/docs/surfaces/canonical-artifact-reader/contract.md#canonical-artifact-reader)
 and [Vesper Chat](../../../travel-app/docs/surfaces/vesper-chat/contract.md#selected-source-ask)
-contracts. The client gate remains default-off; no native signed-in/real-backend
-acceptance exists yet. The separate admission boundary remains in the
+contracts. The client gate remains default-off. Provider-free route acceptance
+now includes real PostgreSQL checks for exact private Collection readback,
+stale Collection rejection before dispatch, and deletion/invalidation boundaries;
+this is not a signed-in native journey or live-model quality acceptance. The
+separate admission boundary remains in the
 [program readiness queue](../vesper-program-roadmap.md#october-3-regroup-and-successor-readiness).
 Model evaluation remains deferred. Older checkpoints below are historical, not
 current bases.
@@ -5494,22 +5497,22 @@ made.
 
 Provider-free tests cover exact source/Collection binding, removal, retry,
 owner/result validation, the mock no-addition outcome and default-off behavior.
-The current app-lane focused ESLint and TypeScript checks passed, as did the
-six focused Jest suites (61 tests), six mock/HTTP parity suites (191 tests),
-API projection/type parity and workspace API operation audit. This is source,
-mock and contract evidence only: no signed-in device journey, real backend
-producer/allocation, live model response, paid call or model-quality judgment
-has been exercised. Do not enable the feature or treat the mock no-addition as
-product-quality evidence. Native and real-backend acceptance remain the next
-receiving gate after integration review.
+owner/session/source validation, the mock no-addition outcome and default-off
+behavior. The October 3 acceptance follow-up fixed two real stale-result cases:
+the app now hides a result when the selected Collection changes revision or
+disappears, and the backend rejects an old Collection revision after an
+influencing Thing is deleted before dispatch. It does not silently retry or
+rebind. Six focused app Jest suites passed (57 tests); the focused real-
+PostgreSQL backend suite passed (79 tests). These include request, publication,
+readback and deletion/invalidation evidence. The app full merge-scope suite
+passed 1,300 suites / 9,323 tests after the session-change regression was added;
+the runner reported a force-exit warning, so natural process exit is not
+established. The separate six-suite mock/HTTP parity run passed 191 tests, and
+API projection/type parity and the workspace API operation audit passed.
 
-The app merge-scope run also completed 1,299 suites successfully; its sole
-parallel-run failure was in the unchanged `data/keptThings.test.tsx` delayed-read
-case, which passed when rerun alone (8/8). The full workspace `make
-verify-changed` preflight is not green in this sandbox: four runtime tests are
-blocked by denied loopback socket binding, and workspace current-state/fixture
-checks cannot import SQLAlchemy from the available Python 3.14 environment.
-The flag registry, documentation links/governance, API coverage, app
-`verify:fast`, and mock/HTTP parity checks passed separately. Treat the local
-preflight as incomplete, not as a pass; no failing backend or provider behavior
-was changed in this slice.
+No signed-in native journey, production allocation, live model response, paid
+call or model-quality judgment has been exercised. Do not enable the feature or
+treat the mock no-addition as product-quality evidence. The client gate remains
+default-off. An earlier local workspace preflight was incomplete (loopback
+socket denial and an unavailable Python dependency); it is not a passing
+receipt. A central measured combined preflight is being reconciled separately.
