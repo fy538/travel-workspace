@@ -915,12 +915,18 @@
     },
     "POST /api/research/selected-source": {
       "audience": "app",
-      "consumers": [],
+      "consumers": [
+        {
+          "kind": "app_transport",
+          "name": "postSelectedSourceResearch",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
       "feature_flag": "SELECTED_SOURCE_RESEARCH_ENABLED",
-      "lifecycle": "dark",
+      "lifecycle": "active",
       "owner": "research",
-      "reason": "The explicit authenticated producer is dark by default and has no reviewed native artifact consumer; generation additionally requires a real commercial reservation.",
-      "removal_trigger": "Enable only after the selected-source owner, bounded budget, result usefulness and consuming artifact reader have passed their separate acceptance checks.",
+      "reason": "Adopts one typed private request from the exact selected-original Ask flow, optionally scoped to one exact owner-private Collection. The app Ask remains internal/default-off, the backend producer remains dark by default, and generation additionally requires a real commercial reservation.",
+      "removal_trigger": "Remove only with an equivalent exact selected-source request transport or retirement of the private producer.",
       "review_by": "2026-10-30"
     },
     "POST /api/research/selected-source/public-lookup/cancel": {

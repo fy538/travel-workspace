@@ -25732,6 +25732,66 @@
         }
       }
     },
+    "/api/research/selected-source": {
+      "post": {
+        "tags": [
+          "selected-source-research"
+        ],
+        "summary": "Create Selected Source Research",
+        "description": "Produce or return one exact private result; public lookup is not admitted.",
+        "operationId": "create_selected_source_research_api_research_selected_source_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelectedSourceResearchRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectedSourceResearchResultV1"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/research/selected-source/{work_id}": {
       "get": {
         "tags": [
@@ -95204,6 +95264,67 @@
         ],
         "title": "SelectedSourceResearchNoAdditionReason",
         "description": "Content-free reasons a complete run may preserve the original alone."
+      },
+      "SelectedSourceResearchRequest": {
+        "properties": {
+          "source_ref": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "text_span": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SelectedTextSpanV1"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "collection_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResourceRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "consumer": {
+            "$ref": "#/components/schemas/SelectedSourceResearchConsumer"
+          },
+          "intent": {
+            "$ref": "#/components/schemas/SelectedSourceResearchIntent"
+          },
+          "private_instruction": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 1200,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Private Instruction"
+          },
+          "represented_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Represented At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "source_ref",
+          "consumer",
+          "intent",
+          "represented_at"
+        ],
+        "title": "SelectedSourceResearchRequest",
+        "description": "Only the exact private selection and purpose cross this HTTP boundary."
       },
       "SelectedSourceResearchResultV1": {
         "properties": {
