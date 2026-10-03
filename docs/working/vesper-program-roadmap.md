@@ -26,8 +26,9 @@ backend work and E2 evidence are accepted. App #219/#220 and matching workspace
 passed local preflight, but GitHub refused to start its hosted checks because
 of account billing/spending limits. Required gates remain mandatory. The bounded A2
 follow-through reproduced an omitted Life Collection-count refresh and added
-a repair with late-response and account-isolation coverage; central verification
-of the final candidate follows.
+a repair with late-response and account-isolation coverage. The final app
+candidate passed 9,301 tests and static/contract checks; all 202 workspace tests
+passed after a local port-binding permission retry with unchanged code.
 The [successor readiness queue](#october-3-regroup-and-successor-readiness)
 separates independently useful work from product decisions. No larger overnight
 implementation round is activated. The monitor is paused, with hourly cadence

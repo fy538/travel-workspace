@@ -155,9 +155,14 @@ a late pre-delete response cannot restore the old count, and a late command
 from a torn-down account cannot invalidate its successor's Life cache. The
 owner's two focused suites passed all 17 tests, with ESLint and typecheck
 passing. These are client/data-boundary fixtures, not signed-in native evidence.
-The approved security exception and this correction await central final
-preflight and required hosted acceptance; GitHub billing access currently
-blocks new app jobs before execution.
+The combined final preflight at workspace `f6d118e0`, backend `aadace0bd` and
+app `0201d5f53` took 171.488 seconds: all 9,301 app tests, static, generated
+contract/API and selected documentation checks passed. Four workspace fixtures
+hit sandbox port-bind PermissionErrors (198 passed); the unchanged workspace
+suite then passed all 202 tests in 37.611 seconds with local binding allowed.
+Both attempts and stable clean inputs are retained in the regroup verification
+receipt. Required hosted acceptance remains pending; GitHub billing access
+currently blocks new app jobs before execution.
 
 The transaction proves immediate source revocation and Intake handoff, not
 physical object-store deletion. If retained sources have external blob refs,
