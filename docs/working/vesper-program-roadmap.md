@@ -20,7 +20,7 @@ depends_on:
 
 # Vesper program roadmap
 
-**Current execution checkpoint — October 2, 23:26 UTC:** the C1.2 route-continuity,
+**Current execution checkpoint — October 3, 00:10 UTC:** the C1.2 route-continuity,
 A1 private data-coherence and AC1 provider-free evidence prerequisites landed
 through required hosted checks: backend [PR #247](https://github.com/fy538/travel-agent/pull/247)
 at `f5f34cac89a87480e11e9f3a4ff430ad730baa1a`, app
@@ -54,14 +54,36 @@ job durations, including setup and cleanup, not pure test-command timings or
 a general productivity claim. Eng Efficiency owns the complete measured receipt;
 default sharding adoption remains unproven.
 
-Connectivity's released QA simulator is at the ordinary sign-in entry.
-Artifact's isolated API and Metro are ready; authenticated recovery and
-Save/readback/Undo acceptance still require the actual approved QA session.
-Adaptive Context is finishing the founder-approved exact public-lookup approval
-contract, including ten-minute unused-approval expiry and suppression when the
-source is revoked during dispatch. Seven disposable-Postgres cases passed; the
-final preflight, committed handoff and protected integration remain open.
-Provider dispatch and model evaluation remain excluded.
+Adaptive's provider-free exact public-lookup permission contract is now accepted
+through backend [PR #248](https://github.com/fy538/travel-agent/pull/248) at
+`8fecebb37e7514ffbecdcceaf6b27b5d47d83487`, followed by workspace
+[PR #65](https://github.com/fy538/travel-workspace/pull/65) at
+`fdd38718e053a3e29b9c3d2cea422c144e7582c3`. All normal required hosted
+checks passed, including the backend database gate. The central explicit-base
+preflight passed in 217.282 seconds: 22,342 backend tests passed, 14 skipped,
+1 xfailed and 52 xpassed; 202 workspace tests passed. Seven dedicated disposable-
+Postgres cases passed separately. Contract synchronization, mobile type checking
+and API coverage passed; active mobile contracts and app source stayed unchanged.
+Production dispatch remains default-off and commercially unadmitted, with no
+native caller. No provider call or model evaluation was made.
+
+The E1 measured receipt and prior program checkpoint landed in workspace
+[PR #64](https://github.com/fy538/travel-workspace/pull/64) at
+`1db174dc315ecbfc1a2b1d2df29bc8b3388e331b`. All four implementation chats
+are idle after their bounded slices. Connectivity's latest owner report says its
+QA API, Metro and infrastructure were stopped, preserving database volumes;
+prior runtime-ready observations are stale. Connectivity recovery and Artifact
+Save/readback/Undo still lack approved signed-in QA acceptance. E1's device trial
+recorded unavailable services and unknown session/mode; it does not establish a
+successful native prerequisite receipt. Resume those finite checks only with an
+approved session and freshly verified serialized runtime/device ownership.
+
+Before another implementation round, give each owner an ordered chain of admitted
+milestones and an independent fallback before shared-device, authentication or
+cross-lane gates. Central may land ready slices while owners continue independent
+work. Longer runs do not authorize skipping acceptance or inventing work after
+the admitted chain ends. These pending evidence boundaries remain visible rather
+than becoming repeated synthetic tests or implied product acceptance.
 
 The existing central orchestrator is active on its current ten-minute schedule.
 It assigns ordered independent milestones when useful work exists and preserves
