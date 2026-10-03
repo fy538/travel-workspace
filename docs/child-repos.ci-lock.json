@@ -1,5 +1,5 @@
 {
   "travel-agent": "815f72e7f5c72c86c792ef68c97d0bc88a3ea593",
-  "travel-app": "c676e43d3ac5894f95b18f94a0565bdd67a857ab",
-  "_comment": "Accepted backend PR249 and app PR222. Private selected-original Ask stays default-off. Backend PR250 adds acceptance tests only and remains a separate pending receipt; the accepted backend implementation pin is unchanged."
+  "travel-app": "057f5c95ac7d93d26f134db83f4c77ddd7a32dbf",
+  "_comment": "Accepted backend PR249 and app PR222/223, including private Ask route ownership. Ask stays default-off. Backend PR250 adds acceptance tests only and remains a separate pending receipt; the accepted backend implementation pin is unchanged."
 }

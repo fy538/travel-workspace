@@ -586,7 +586,17 @@ those failures. The broad app runner reported a worker force-exit warning;
 natural process exit is not established. Native, signed-in and live-model
 acceptance remain deferred.
 
-Adaptive and Eng Efficiency have completed their finite implementation chains.
+The first workspace hosted run caught a stale app route inventory and missing
+Ask route ownership. App PR #223 (`057f5c95`) adds the generated inventory and
+its existing Chat owner, with the route check documented in frontend Task Intake.
+The surface-contraction guard and **87.088 s** explicit-base app preflight passed
+(**9,323 tests**). The workspace pin includes that repair. The same hosted run
+also exposed an advisory M0 diagnostic's hard-coded interpreter path; Eng
+Efficiency owns that narrow prerequisite follow-up, with no acceptance claimed
+yet for the repaired hosted report.
+
+Adaptive has completed its finite implementation chain; Eng Efficiency's initial
+E3 and shared regression work are accepted, with the M0 follow-up active.
 Artifact continues the actual bounded-database and Collection/original route
 chain; its pending work is not counted as accepted. The existing root-navigation
 decision still gates root/tab changes only. The coordinator owns publication of
