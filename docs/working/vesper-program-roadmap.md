@@ -557,12 +557,40 @@ justification for inventing a fourth implementation queue to keep four chats bus
 
 | Closure item | Required finish evidence | Current boundary |
 | --- | --- | --- |
-| Repeatable verification prerequisites | E3 accepted; correct interpreter, lane-owned disposable DB and permitted local runtime checks; failures reported before dependent tests | Local E3 candidate only |
-| Trustworthy delayed-read regression | Reproduced cause or explicitly bounded unresolved result; safe repair when established; affected suite passes without weakened assertion | Shared failure unresolved |
+| Repeatable verification prerequisites | E3 accepted; correct interpreter, lane-owned disposable DB and permitted local runtime checks; failures reported before dependent tests | Accepted in workspace PR #74 (`98a05b3b`); central exact-filter guard repair included |
+| Trustworthy delayed-read regression | Reproduced cause or explicitly bounded unresolved result; safe repair when established; affected suite passes without weakened assertion | Observer timing reproduced; assertion-preserving repair accepted in app PR #221 (`c6522f7f`), central 734-test preflight passed |
 | Collection display contract | Reviewed bounded owner-backed projection; generated adapter; real-DB lifecycle evidence; accepted commits | Implemented locally, DB/integration unverified |
-| Exact request and temporary readback | Real/mock contract parity, frozen retry, consumer/session identity, honest failure/expiry and deletion suppression; accepted commits | Implemented locally, combined acceptance incomplete |
+| Exact request and temporary readback | Real/mock contract parity, frozen retry, consumer/session identity, honest failure/expiry and deletion suppression; accepted commits | Ask app accepted in PR #222 (`c676e43d`); 79 focused backend/database cases passed; test-only backend PR #250 remains pending |
 | Collection-to-original connection | Existing owner APIs, distinguishable truthful rows, exact return and lifecycle behavior; selected navigation decision | Partial data foundation; UI connection pending |
 | Combined delivery | Compatible accepted three-repository tuple, required evidence for each slice and cross-lane deletion/readback proof | Not yet assembled |
+
+**October 3 execution checkpoint:** roadmap PR #73 (`376d6400`), E3 PR #74
+(`98a05b3b`) and the shared regression repair app PR #221 (`c6522f7f`) are
+accepted. Private Ask app PR #222 is accepted at `c676e43d`; it retains the
+false default and suppresses mounted results after a selected Collection changes
+or disappears and after session replacement. No new backend product behavior
+was needed. Test-only backend PR #250 proves exact Collection retry/readback and
+stale request rejection after influencing-Thing deletion; it is still pending
+hosted acceptance, so the accepted backend pin remains `815f72e7f`.
+
+Central measured explicit-base preflight passed in **174.764 s** on workspace
+`f862b4f4`, backend `2b05cd95a`, app `669a27e76`: **9,323 app tests, 81 selected
+backend tests and 215 workspace tests**, plus contract/API/documentation checks.
+The owner separately ran **79 focused API/owner/Postgres tests** against its
+isolated disposable database. The final backend-test/documentation delta passed
+in **45.269 s** against that previously verified tuple; unchanged app tests were
+not repeated. Dependency security audit passed. An earlier **171.820 s** run
+failed generated-status drift and four sandbox socket checks; regenerating the
+flag-derived document and running in the permitted local environment resolved
+those failures. The broad app runner reported a worker force-exit warning;
+natural process exit is not established. Native, signed-in and live-model
+acceptance remain deferred.
+
+Adaptive and Eng Efficiency have completed their finite implementation chains.
+Artifact continues the actual bounded-database and Collection/original route
+chain; its pending work is not counted as accepted. The existing root-navigation
+decision still gates root/tab changes only. The coordinator owns publication of
+remaining coherent handoffs and the final combined deletion/readback proof.
 
 Close these items by evidence, not hours spent. Even six closed items would mean
 this implementation horizon is complete; it would not mean all four broad
