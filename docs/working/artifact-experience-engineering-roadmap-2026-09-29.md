@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Strategy lane
 created: 2026-09-29
-last_verified: 2026-10-02
+last_verified: 2026-10-03
 expires: 2026-10-13
 why_new: The strategy handoff names three artifact workstreams but cannot hold their detailed contracts, dependencies, migration, evaluation and delivery sequence without becoming a second general roadmap. This bounded supporting plan expands that section for the existing program owner.
 supersedes: []
@@ -11,6 +11,13 @@ source_of_truth_for: []
 ---
 
 # Artifact experience engineering roadmap
+
+**Current assignment — October 3:** A2 below is the next implementation chain.
+A1 is accepted; its separate signed-in validation is deferred by the founder,
+not passed. Do not repeat it. The program's October 3 queue owns coordination.
+Historical P4 kept-answer editions are not admitted: the separate Artifact
+design owner has recorded a newer rejection of keeping Ask answers on Things.
+Reconcile that owner decision before any future implementation depending on P4.
 
 **Current lane state — October 2:** A1 in [section 0](#a1-private-reader-and-collection-data-coherence)
 is implemented and verified in the frozen candidate tuple: workspace
@@ -32,6 +39,50 @@ Collection member experience. Earlier local/unmerged and quality-pilot wording
 is retained as dated history, not a competing execution queue.
 
 ## 0 Strategy lane execution boundary
+
+### A2 Private Thing delete everywhere
+
+**Goal:** implement the accepted private Remove/Delete distinction end to end:
+Remove affects one Collection; deleting a kept Thing removes it everywhere and
+stops its use; deleting a Collection preserves its Things. The existing
+[Collection decision](../decisions/2026-09-28-collections-are-the-spine.md) and
+[identity decision](../decisions/2026-09-30-kept-thing-identity.md) own this policy.
+
+**Starting gap:** accepted backend `8fecebb37` provides kept-Thing reads,
+merge/reversal and individual Source revocation, but no whole-Thing deletion
+command. Revoking one Source intentionally preserves independently eligible
+Sources; whole-Thing deletion must not be implemented as that narrower action.
+
+1. Add an authenticated owner-scoped, idempotent deletion command resolving
+   canonical identity and prior aliases. Fence revision/races and retries using
+   existing transaction and lifecycle owners; deny other owners without leaks.
+2. Make the deleted merged identity unavailable immediately to reads, context
+   and merge/reversal paths. Reuse Intake's existing retained-submission/Source
+   revocation and cleanup mechanism for attached originals, after verifying
+   exact ownership and custody boundaries. Never delete unrelated owner data.
+   Preserve content-free replay evidence; do not invent a new retention policy.
+3. Remove active memberships across the owner's private Collections and advance
+   affected revisions. Old pages and late responses must not resurrect members.
+   Deleting a Collection still must not delete its Things.
+4. Adopt the command in the app data facade and existing cache invalidation
+   owners. Cover cached singular/batch/index/member/reader results and delayed
+   responses. No new designed deletion surface or native acceptance is required
+   in this infrastructure round.
+5. Verify transaction/concurrency cases with explicitly disposable Postgres:
+   multiple originals, aliases, concurrent merge/reversal, repeated commands,
+   wrong owner, membership revision fencing and denied readback. Synchronize
+   contracts/types and API coverage; run measured explicit-base preflight.
+
+If external blob removal uses the existing outbox, deny reads/use immediately
+and record cleanup as queued until actual worker evidence exists. A database
+receipt alone must not claim physical deletion. An unresolved source-custody
+policy gates only that effect; complete safe owner/read fencing independently.
+
+**Finish:** coherent clean commits implementing the complete private lifecycle,
+focused evidence and exact cleanup limits, ready for central integration. Native
+validation, real-user data mutation, shared audiences, AI answer persistence and
+new retention rules are excluded. Adaptive AC2 consumes current read/revision
+owners; publish its needed interface when stable, then continue independent work.
 
 ### A1 Private reader and Collection data coherence
 

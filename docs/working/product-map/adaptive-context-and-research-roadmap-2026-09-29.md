@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / Strategy Technical lane
 created: 2026-09-29
-last_verified: 2026-10-02
+last_verified: 2026-10-03
 expires: 2026-10-13
 why_new: The artifact experience plan owns recognizable objects and readers, while the program owns dispatch. Neither should absorb this detailed cross-system code audit, nine-topic research synthesis, and proposed implementation dependencies for shared context, discovery, research, maintenance and evaluation.
 supersedes: []
@@ -11,6 +11,12 @@ source_of_truth_for: []
 ---
 
 # Adaptive context and research engineering roadmap
+
+**Current assignment — October 3:** AC1's provider-free permission contract is
+accepted in backend #248/workspace #65. AC2 below is the next implementation
+chain, following the founder's explicit approval of one selected private
+Collection as request-time context. Native acceptance and model evaluation
+remain deferred. Older checkpoints below are historical, not current bases.
 
 **Receiving integration checkpoint — October 2:** Artifact's exact read-only
 consumer is accepted through app [PR #214](https://github.com/fy538/travel-app/pull/214)
@@ -75,6 +81,55 @@ generation calls. The historical evaluation plan below is deferred and does
 not authorize a live run or block completion of this implementation slice.
 
 ## 0 Strategy Technical lane execution boundary
+
+### AC2 One explicitly selected private Collection
+
+**Goal:** extend the existing selected-source path to use currently accessible
+items in exactly one private Collection explicitly selected for the request.
+The [October 3 authority decision](../../systems/contribution-and-consequence.md#62-explicit-private-collection-context--decision-of-october-3)
+is the policy boundary. This is a finite R2-to-R4 implementation chain; it does
+not authorize a new producer architecture, whole-library inference or live calls.
+
+**Starting evidence:** accepted backend `8fecebb37` already owns authenticated
+private Collection reads/revision pagination, batched kept-Thing reads and alias
+resolution, plus selected-source candidates and result fences. Reuse them. The
+current candidate scope is same-subject/note/packet, not a selected Collection;
+request/work/result identities do not yet bind this Collection scope.
+
+1. Add an optional exact Collection reference/revision to private request and
+   work identity. Authenticate the same owner and private scope; reject missing,
+   deleted, shared, other-owner or stale selection. Preserve the unchanged
+   no-Collection path and existing public-lookup permission boundary.
+2. Adapt only the selected Collection's current members into existing eligible
+   original candidates. Keep stable ordering, alias deduplication and exclusion
+   of the primary selected Source. Preserve the existing maximum two supporting
+   dependencies and 20,000-character limit. Bound membership scanning at 100
+   and batched Thing reads at 50 per call; report incomplete coverage at the cap
+   rather than a falsely complete empty/successful search.
+3. Bind an internal influence record to Collection/membership, Thing and Source
+   revisions used. Recheck before dispatch, publication and exact readback.
+   Relevant membership/source changes, alias changes, deletion, revocation or
+   access loss withhold stale results; never silently retry without selected
+   context or treat changed context as the old request.
+4. Cover owner isolation, private-only scope, deterministic selection, caps,
+   incomplete retrieval, removal/deletion, merge/reversal, source revocation and
+   in-flight changes with provider-free tests and disposable-Postgres evidence.
+   Use existing producer/ledger/result owners and fail-closed original fallback.
+5. Synchronize OpenAPI/projection/types and prove unchanged app compatibility,
+   API coverage and measured explicit-base preflight. The native Collection
+   selector is outside this round; server/data behavior must be reviewable.
+
+Artifact A2 owns lifecycle mutations; AC2 consumes current authoritative reads
+and revisions without editing that mutation owner. Most work is independent.
+Once both candidates are ready, central checks whole-Thing deletion suppresses
+an influenced result. An A2 handoff is not a gate for AC2's earlier milestones.
+
+**Finish:** a clean committed request-to-readback implementation with evidence
+for the named authority/revision boundaries and honest retrieval limits, ready
+for central integration. Production remains dark. No provider/model calls,
+evaluation, automatic scanning, background generation, new audience, saved
+answers or new retention. Stop after this chain rather than activating later
+research packages automatically.
 
 ### AC1 Selected-source public-acquisition prerequisites
 
