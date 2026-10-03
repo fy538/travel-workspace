@@ -207,8 +207,19 @@ suites passed **49 tests**. They include membership removal and actual
 whole-Thing deletion racing both publication and exact readback, direct lock
 probes, stale-result erasure and rejection of late persistence. This is
 provider-free database evidence; it is not model, native or blob-worker proof.
-The log is `/private/tmp/vesper-a2-ac2-final-postgres.log`. Final measured
-cross-repo preflight and hosted acceptance remain separate.
+The log is `/private/tmp/vesper-a2-ac2-final-postgres.log`.
+
+The final measured cross-repo preflight passed in **311.533 seconds** at
+workspace `0f3dcd34`, backend `aadace0bd` and app `ff869940d`, with stable clean
+inputs: 9,299 app tests, 22,361 backend tests, 202 workspace tests, contracts,
+types and static checks passed. Fourteen backend tests skipped; the 53 existing
+quarantined identities in `tests/flaky_order_baseline.txt` reported XPASS and
+remain unchanged. The first central run mistakenly imposed `AI_MODE=off` on
+mocked offline tests and failed 116 cases; the standard offline retry passed
+without code changes. Both records are retained in
+`/private/tmp/vesper-a2-ac2-central-verification.json`. Hosted backend, app and
+workspace acceptance remain separate; app publication/merge still has the
+known required dependency-security audit boundary.
 
 **Finish:** a clean committed request-to-readback implementation with evidence
 for the named authority/revision boundaries and honest retrieval limits, ready

@@ -125,8 +125,11 @@ showing its prior data; cancelling and resetting clears that state while current
 reads finish. The owner reported 20 tests across three focused suites, typecheck
 and ESLint passing. Central reviewed the exact diff and account-key predicates;
 tests cover mounted content, delayed responses and preservation of another
-account's cache. The combined central preflight and hosted acceptance are
-separate and remain pending at this receipt.
+account's cache. The final combined central preflight passed in 311.533 seconds
+at workspace `0f3dcd34`, backend `aadace0bd` and app `ff869940d`; its exact
+counts, initial environment failure and corrected run are recorded in the
+[AC2 combined receipt](product-map/adaptive-context-and-research-roadmap-2026-09-29.md#ac2-one-explicitly-selected-private-collection).
+Hosted backend, app and workspace acceptance remain separate and pending.
 
 The transaction proves immediate source revocation and Intake handoff, not
 physical object-store deletion. If retained sources have external blob refs,
