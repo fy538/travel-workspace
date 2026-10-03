@@ -21118,6 +21118,76 @@
         }
       }
     },
+    "/api/kept-things/{thing_id}/delete": {
+      "post": {
+        "tags": [
+          "kept-things"
+        ],
+        "summary": "Delete Kept Thing Endpoint",
+        "description": "Delete one owner-confirmed Thing identity across sources and Collections.",
+        "operationId": "delete_kept_thing_endpoint_api_kept_things__thing_id__delete_post",
+        "parameters": [
+          {
+            "name": "thing_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Thing Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/KeptThingDeleteRequestV1"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KeptThingDeleteReceiptV1"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/admin/intake/dead-letters": {
       "get": {
         "tags": [
@@ -83443,6 +83513,73 @@
           "status"
         ],
         "title": "KeptThingAliasReceiptV1"
+      },
+      "KeptThingDeleteReceiptV1": {
+        "properties": {
+          "command_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Command Id"
+          },
+          "requested_thing_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Requested Thing Id"
+          },
+          "canonical_thing_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Canonical Thing Id"
+          },
+          "deleted_thing_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "maxItems": 512,
+            "minItems": 1,
+            "title": "Deleted Thing Ids"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "command_id",
+          "requested_thing_id",
+          "canonical_thing_id",
+          "deleted_thing_ids"
+        ],
+        "title": "KeptThingDeleteReceiptV1",
+        "description": "Content-free result for an idempotent owner-private Thing deletion."
+      },
+      "KeptThingDeleteRequestV1": {
+        "properties": {
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Expected Revision"
+          },
+          "command_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Command Id"
+          },
+          "owner_confirmation": {
+            "type": "string",
+            "const": "delete_everywhere",
+            "title": "Owner Confirmation"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "expected_revision",
+          "command_id",
+          "owner_confirmation"
+        ],
+        "title": "KeptThingDeleteRequestV1",
+        "description": "Explicit, revision-fenced owner request to delete one Thing everywhere."
       },
       "KeptThingIndexEntryV1": {
         "properties": {

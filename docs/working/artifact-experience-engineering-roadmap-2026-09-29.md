@@ -78,11 +78,51 @@ and record cleanup as queued until actual worker evidence exists. A database
 receipt alone must not claim physical deletion. An unresolved source-custody
 policy gates only that effect; complete safe owner/read fencing independently.
 
-**Finish:** coherent clean commits implementing the complete private lifecycle,
-focused evidence and exact cleanup limits, ready for central integration. Native
-validation, real-user data mutation, shared audiences, AI answer persistence and
-new retention rules are excluded. Adaptive AC2 consumes current read/revision
-owners; publish its needed interface when stable, then continue independent work.
+**Implementation receipt — October 3, 2026.** The bounded lifecycle is committed
+in this lane: backend `53d776c8e`, app `f868216f8`. Bases were workspace
+`00c406ee0e08235167e0b1186324f0b396923155`, backend
+`8fecebb37e7514ffbecdcceaf6b27b5d47d83487`, and app
+`35537620848bedf860aa9e273b0d9c0fed309651`. Migration `keptthing03` follows
+`pubapr01`, preserving the repository's single Alembic head. On a new
+lane-disposable database, `alembic upgrade head` completed through `keptthing03`;
+the downgrade guard was exercised after tombstones existed and refused to drop
+them, leaving the database at that head.
+
+The backend command resolves the requested canonical Thing or alias under an
+owner-scoped serialization lock, checks the canonical revision, stores a
+content-free idempotency receipt, removes every active private Collection
+membership while advancing affected revisions, then invokes Intake's existing
+source-deletion lifecycle in the same transaction. Every group identity is
+tombstoned, so reads, later merge/reversal, and Collection adds cannot revive
+it. The app facade prunes singular/batch/index/member caches, cancels delayed
+reads, and removes that account's short-lived selected-source interpretation
+cache without touching another account. No deletion screen was added.
+
+**Verification, with limits:** backend
+`python -m pytest -p no:cacheprovider tests/api/test_kept_things.py tests/inbound/test_kept_things_postgres.py tests/inbound/test_consumer_collections_postgres.py -q`
+on the named disposable DB passed (**28 passed**); Alembic head/chain checks
+passed (**12 passed**). Focused app
+`jest __tests__/data/keptThings.test.tsx __tests__/utils/api/mock/experienceGraph.test.ts --runInBand`
+passed (**11 passed**); `tsc --project tsconfig.json --noEmit` passed.
+`make api-coverage-check` passed (593 active, 20 dark, 0 unflagged, 62 retiring
+operations). Contract snapshot, app projection and generated schema matched
+during preflight. The measured `make verify-changed` used the three bases above
+and ran after all implementation changes but before the final two backend test
+assertions; it took 328.735s and exited 2: the full app suite passed
+(**9,297/9,297**); backend had **22,343 passed, 14 skipped, 1 xfailed, 52
+xpassed**, plus one unrelated wall-clock assertion in `tests/test_parallel_tools.py`
+(0.452s observed against 0.09s). That test passed when rerun alone (**1 passed**).
+Workspace checks completed, including the cross-repo contract audit. Therefore
+this is a reviewable integration candidate, **not a green local merge
+preflight**; do not describe that gate as passed.
+
+The transaction proves immediate source revocation and Intake handoff, not
+physical object-store deletion. If retained sources have external blob refs,
+their cleanup remains the existing outbox/worker's responsibility; no worker
+readback was run. Native/auth UI, real-user mutation, shared audiences, AI
+answer persistence and new retention rules remain excluded. Adaptive AC2 should
+consume the existing read/revision owners; continue independent work after
+central review resolves the preflight failure.
 
 ### A1 Private reader and Collection data coherence
 
