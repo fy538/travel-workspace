@@ -105,6 +105,49 @@ def test_selects_executable_checker_test_for_referenced_document(
     assert not any(command.display.startswith("<run") for command in selection.commands)
 
 
+def test_backend_python_prefers_lane_local_venv(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    backend = tmp_path / "travel-agent"
+    venv_python = backend / ".venv/bin/python"
+    venv_python.parent.mkdir(parents=True)
+    venv_python.write_text("local interpreter")
+    monkeypatch.setattr(
+        MODULE,
+        "sys",
+        SimpleNamespace(version_info=(3, 14), executable="/usr/bin/python3"),
+    )
+
+    assert MODULE.resolve_backend_python(backend) == str(venv_python)
+
+
+def test_backend_python_uses_configured_ci_python_313(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setattr(
+        MODULE,
+        "sys",
+        SimpleNamespace(version_info=(3, 13), executable="/hosted/python3.13"),
+    )
+
+    assert MODULE.resolve_backend_python(tmp_path) == "/hosted/python3.13"
+
+
+def test_backend_python_falls_back_to_named_python_313(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setattr(
+        MODULE,
+        "sys",
+        SimpleNamespace(version_info=(3, 14), executable="/usr/bin/python3"),
+    )
+
+    assert MODULE.resolve_backend_python(tmp_path) == "python3.13"
+
+
 def test_mixed_checker_plan_exposes_disposable_postgres_prerequisite(
     tmp_path: Path,
 ) -> None:

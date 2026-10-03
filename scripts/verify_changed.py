@@ -182,15 +182,19 @@ def _checker_test_candidates(name: str, ext: str) -> tuple[tuple[str, str], ...]
     )
 
 
-def _backend_test_python(repo: Repo) -> str:
+def resolve_backend_python(backend_root: Path) -> str:
     """Use the backend venv locally, or the already configured CI Python 3.13."""
 
-    venv_python = repo.root / ".venv/bin/python"
+    venv_python = backend_root / ".venv/bin/python"
     if venv_python.is_file():
         return str(venv_python)
     if sys.version_info[:2] == (3, 13):
         return sys.executable
     return "python3.13"
+
+
+def _backend_test_python(repo: Repo) -> str:
+    return resolve_backend_python(repo.root)
 
 
 def _checker_test_prerequisites(repo: Repo, test_path: str) -> tuple[Prerequisite, ...]:
