@@ -45,13 +45,16 @@ Three things follow from that table and are worth stating once:
   config change.
 
 The [central execution plan](working/vesper-program-roadmap.md#central-execution-goal--october-3)
-owns one overall Goal, current packages and dependency order for five execution
-owners. Connectivity's package stays there. Artifact, Adaptive Context and Eng
+owns one overall Goal, current packages and dependency order. Its
+[continuous coordination contract](working/vesper-program-roadmap.md#continuous-coordination--october-3)
+admits useful bounded successors when capacity opens and connects Artifact Design,
+Intake and implementation owners through explicit interfaces. Connectivity's
+package stays there. Artifact, Adaptive Context and Eng
 Efficiency keep their existing specialist roadmaps; the
 [Entity mini roadmap](working/entity-page-v1-mini-roadmap-2026-10-03.md) owns
 Entity detail and receipts. Specialist roadmaps are work-package plans, not
 independent program backlogs. The scheduled coordinator observes and continues
-this finite plan; accepted product contracts remain the authority for behavior.
+the same rolling queue; accepted product contracts remain the authority for behavior.
 
 Current goal blocks supersede historical assignments and receipts; wider roadmap
 packages are not all active. The H1 package and integration roadmap remain

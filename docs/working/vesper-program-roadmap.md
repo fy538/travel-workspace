@@ -361,37 +361,127 @@ sixth implementation queue and does not create another master roadmap. Idle is
 correct when an owner has no executable package; five owners need not be active
 at once.
 
-### Execution and stop rules
+### Continuous coordination — October 3
 
-Start with **Central integration + Entity G1/G2 + Adaptive G4**. Keep at most two
-product packages active alongside central integration; Eng may address a real
-shared blocker when needed. Once G1 publishes a stable entry matrix, G4's finite
-analysis ends and Connectivity takes G3. Artifact remains available for exact
-owner defects, rather than repeating completed lifecycle tests. Same shared
-file or root contract has one writer; central reconciles contracts and generated
-outputs once on the combined tuple.
+**Current human direction:** Orchestrator continuously selects useful next work
+and coordinates implementation when owners become available. This supersedes
+the earlier two-product-package cap and finite-queue prohibition on successors;
+it does not complete G0–G5, resume a paused Goal by implication, or admit a new
+product policy. The shared finish line remains a coherent, accepted private
+capture → stable Thing/page/original → Collection → exact request/readback and
+return foundation, with the reliability repairs needed by that loop. Required
+unresolved decisions remain dependencies of completion. Native, signed-in,
+provider and model-quality evidence remains deferred and unverified.
 
-Each dispatch carries outcome, exact base/candidate, owned files, ordered steps,
-acceptance evidence, first reviewable handoff, dependency fallback and stop rule.
-Owners hand off coherent commits while continuing independent listed steps.
-Central continues an unfinished executable package after an ordinary turn ends;
-terminal chat status alone is not package completion. Do not invent work after
-the finite chain or wake idle owners for status.
+**One rolling queue, bounded packages.** When a package ends, a dependency clears,
+new human steering arrives, or most implementation owners are inactive, review
+the current queue once. Distinguish ready implementation, bounded reproduction,
+decision blocked, externally blocked, deferred and accepted. Inactivity triggers
+that review; it is not itself evidence that more work is useful. Select within
+the approved foundation by: completing a usable existing flow, unblocking other
+owners, correcting a demonstrated authority/lifecycle defect, then effort and
+integration risk. Keep at least one concrete next package for an active chain
+where an executable successor exists; do not promise uninterrupted work across
+an unknown contract or external prerequisite.
 
-The existing hourly monitor reads this section and the private exact-state
-checkpoint. Use one cursor snapshot, inspect changed handoffs once, respect
-backoff, and never poll completed jobs. A heartbeat schedules observation; the
-Goal carries the shared objective. Neither is a second backlog. Record meaningful
-changes and notify only progress, completion, failure or a required decision.
-When no independent admitted work remains, retain required blockers honestly,
-apply the Goal's repeated-blocker lifecycle, and pause the monitor once. Do not
-repeat pending approval questions or revive deferred device/model tasks.
+Central may admit and dispatch ordinary owner-local implementation, supported
+consumer adoption and bounded defect reproduction within existing approved
+product direction and contracts without asking the founder to approve every
+package. Record the admitted outcome and owner before dispatch. A new retention,
+audience, authority, durable conversation, provider capability or unresolved
+product meaning needs its own decision. An investigation may establish a gap;
+it does not automatically authorize the missing policy. Keep already pending
+questions visible once rather than repeating them.
 
-Measure accepted packages, time from handoff to acceptance, first-pass preflight,
-rework and time waiting on external decisions from actual receipts. Do not use
-agent uptime, tokens, test counts or a percent of historical roadmap headings as
-productivity or completion percentages. Review this horizon when G1 finds a new
-owner/authority dependency, when a new human decision changes scope, or at G5.
+**Specialist ownership, connected delivery:**
+
+| Existing chat | Current boundary | Required handoff to the next owner |
+| --- | --- | --- |
+| Artifact Design | Artifact Experience AP0/AP1 and supported mounted AP2 presentation; design reference and state mapping | Exact implemented render inputs, unsupported fields, owned presentation files and first usable reader integration. Design corrections go to Claude Design; Downloads sources stay read-only. |
+| Intake | Existing CP01–CP08 capture/original and separate draft foundation | Custody/availability acknowledgement, source identity/revision, interruption and session lifecycle. The unresolved new-store sign-out/re-entry policy still gates its writer. |
+| Artifact | Stable Thing, eligible projection/original and Collection data ownership | Membership-independent stable-reader data seam for AP2; exact original and eligibility behavior, real backend evidence and compatible candidate. No duplicate page renderer or capture store. |
+| Adaptive Context | Existing exact-source scope, execution, temporary result and invalidation | Supported request/readback inputs and validity to page consumers. Durable Chat and public-place research remain separately gated. |
+| Connectivity | Existing entrances, aliases, original opening and return | Adopt a ready reader/custody interface at existing call sites, preserving identity and origin. Do not repeat G3's completed ledger without a changed consumer or demonstrated defect. |
+| Entity | Existing Entity/Place presentation and G2 applicability dependency | Coordinate any shared presentation file with Artifact Design before writing. The pending G2 contract decision is not resolved by a design fixture. |
+| Task Lifecycle / Eng Efficiency | Delivered I1/I4 reliability plus a newly reproduced owner-local blocker when relevant | Exact repair/evidence once. Completed repairs do not create a standing test or tooling backlog. |
+| Orchestrator | Shared Goal, priorities, admission, dependencies, contract reconciliation and publication | A compatible accepted tuple and explicit implementation/local/design/native evidence ledger. Central does not duplicate specialist implementations. |
+
+Artifact Design and Intake may work independently on their owned foundations.
+They must meet at named interfaces rather than build competing implementations.
+Before the first consumer integration, central checks producer inputs, consumer
+expectations, eligibility/session/deletion behavior and the return path together.
+The specialist keeps its own detailed roadmap; central updates this queue and
+sends the concrete dependency/handoff, rather than editing another owner's plan.
+
+**Current next packages:** Artifact Design continues AP0/AP1 already in progress;
+Intake continues executable lifecycle-independent CP steps. Artifact takes the
+AP2 data-seam reconciliation first: establish whether existing Thing/source and
+interpretation contracts support an original-only and recognized reader without
+Collection membership, and reproduce any missing eligibility bridge. Hand off
+supported interfaces before UI adoption; implement only a demonstrated repair
+within existing owner semantics. Mounted AP2 adoption belongs to Artifact Design
+after that seam is ready. Connectivity adoption follows a stable reader handoff.
+AP3's durable conversation and AP5's social extension are not dispatched by this
+coordination change. G2 and backend hosted acceptance remain separately blocked.
+
+Reuse an existing idle owner chat and its suitable checkout before opening a
+new execution lane. Create another chat only with explicit human authorization;
+split a package only when file/contract ownership is disjoint and its output can
+be integrated independently. No target number of active chats. Each dispatch
+carries the outcome, exact base/candidate, owned files, ordered steps, first
+reviewable handoff, acceptance evidence, dependency fallback and stop boundary.
+Ordinary turn endings continue unfinished executable steps; a terminal chat is
+not proof that its package is complete. Delivered messages do not resume blocked
+owner Goals. One writer owns each shared file and central reconciles generated
+contracts/pins on the combined tuple.
+
+Central integrates ready independent slices while others implement. A hosted
+billing hold blocks that slice's acceptance; it need not block disjoint local
+implementation against a named compatible candidate. Keep unaccepted dependency
+revisions explicit and revalidate affected behavior when the final tuple changes.
+Preserve normal backend/workspace gates and the exact existing app-only merge
+window and security-exception expiries. Local evidence does not waive a gate.
+
+The Goal carries the completion contract and immediate continuation; the hourly
+monitor points here and detects actionable owner/external changes. Both use the
+same queue. Use one compact cursor snapshot, inspect changed handoffs once,
+respect backoff and never poll completed jobs. Record meaningful progress in
+`/private/tmp/vesper-autonomous-round-checkpoint.json`; notify only progress,
+completion, failure or a required decision. If no defensible admitted path remains,
+record the dependency once, follow the Goal's repeated-blocker lifecycle and
+pause the monitor. Human resumption is required after that pause. Do not invent
+documentation, redundant tests or speculative implementation to refill capacity.
+
+Measure accepted packages, handoff-to-acceptance time, first-pass preflight, rework
+and externally blocked time from actual receipts. Lane uptime and historical
+roadmap percentages are not delivery measures. Finish the foundation only with
+accepted required packages and the reconciled final tuple, including deletion
+suppressing stale publication/readback. Do not shrink G2 or another required
+finish line merely because a dependency is unresolved.
+
+**Replacement Goal text:**
+
+> Deliver the accepted private capture-to-stable-Thing/page/original, Collection,
+> exact-source request/readback and return foundation described in
+> docs/working/vesper-program-roadmap.md, “Continuous coordination — October 3”.
+> Preserve unfinished G0–G5 acceptance and required contract decisions. Own one
+> rolling cross-lane queue here; when capacity opens, select and dispatch the
+> next useful bounded package within approved product direction and existing
+> authority, including necessary ordinary implementation and reproduced defects.
+> Reuse specialist chats and disjoint owner checkouts, connect Artifact Design,
+> Intake and data consumers through explicit handoffs, continue unfinished
+> executable steps across turn endings, and integrate ready slices independently.
+> Central owns combined contracts, pins and publication. Complete only with
+> required accepted packages, measured explicit-base verification and final
+> deletion-to-stale-result suppression evidence. Keep local, accepted, design
+> and native claims separate. Preserve edits and failed receipts. No new
+> retention/sharing/authority, durable Chat, catalog/provider expansion, paid or
+> model calls, deployment, activation, auth bypass or security exceptions without
+> separate admission; honor existing exact merge authorizations and expiries.
+> Native/signed-in/model evaluation stays deferred. Do not invent busywork or
+> repeat pending questions. If no admitted executable path remains, record what
+> would unlock progress and use the required blocked lifecycle; never report
+> completion by narrowing the outcome.
 
 ### Starting acceptance ledger
 
@@ -507,14 +597,15 @@ do not copy the full history into every Goal or scheduled prompt.
 | Program roadmap | Lane ownership, admitted outcomes, dependencies, consolidation and monitoring rules, and explicit human deferrals. |
 | Specialist roadmap | The lane's ordered milestones, completion evidence, current candidate and dependency boundary. Connectivity uses the current package in this program roadmap. |
 | Persistent chat Goal | One central shared outcome referring to the current execution plan. Owner turns receive bounded work packages; their older Goal states are separate and are not resumed by messages. |
-| Scheduled task | A short operational instruction pointing here, the five execution chat IDs and latest checkpoint reference. Its role is detecting changes and coordinating actionable work. |
+| Scheduled task | A short operational instruction pointing to Continuous coordination, the existing owner chat IDs and latest checkpoint reference. Its role is detecting changes and coordinating actionable work from the same queue. |
 | Existing evidence records | Exact revisions, commands, timings and failures. These support claims but do not redefine completion. |
 
 Before activation, check prerequisites for the whole admitted chain, including
 external inputs needed by its finish line. Name independent work that can proceed
 while central integrates a ready slice. If none exists, report that boundary;
 do not promise uninterrupted execution. Use the assignment/consolidation contract
-below and prepare a successor only when it has a concrete approved outcome.
+below and use Continuous coordination's admission rules for the next concrete
+successor. Historical finite queues do not prohibit an ordinary in-scope successor.
 
 When the monitor is active, start with one compact observation per owner using
 the previous cursor. Inspect a handoff once, then verify its exact Git and hosted
