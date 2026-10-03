@@ -158,10 +158,41 @@ preflight after the concurrent broad run and inspect Artifact A2's whole-Thing
 deletion case before integration. No hosted check, publication or deployment
 was performed.
 
-Artifact A2 owns lifecycle mutations; AC2 consumes current authoritative reads
-and revisions without editing that mutation owner. Most work is independent.
-Once both candidates are ready, central checks whole-Thing deletion suppresses
-an influenced result. An A2 handoff is not a gate for AC2's earlier milestones.
+**Central review correction — October 3:** the independent review found that
+the async producer's two Collection freshness reads were synchronous and
+blocked its event loop. A focused test reproduced this on the caller thread;
+both checks now use the bounded `run_owner_read_blocking` path. New regressions
+also verify that a stale scope after reservation releases the undispatched
+unit, and that cancellation during that check waits for release while the
+physical read safely drains.
+
+The review also identified a validation-to-publication/readback race. The
+selected-result transaction now takes the shared owner identity-graph advisory
+fence, then a shared lock on the exact active Collection revision, then exact
+Intake source locks; those locks remain held through the transaction boundary.
+Disposable-Postgres tests pause after scope validation and before source
+locking, race a real Collection removal, and show that removal waits during
+both publication and readback. Once removal completes, the old result is
+withheld and erased. A separate database regression verifies the shared fence
+blocks the matching owner-key exclusive fence used by the adjacent A2 mutation
+lane. AC2 did not edit A2's checkout or mutation owner; central still owns
+combined integration review and whole-Thing deletion acceptance.
+
+Correction evidence: the producer/private-context/API offline set passed 59
+tests; the four targeted disposable-Postgres scope/race/fence cases passed;
+Ruff lint and format checks passed on all six changed backend/test files. This
+was a focused correction, not a rerun of the broad backend suite or the
+cross-repository preflight. The selected-source feature remains dark, and the
+application is still configured to use `gpt-6-luna` with low reasoning for
+this role; no model call or model evaluation was made.
+
+Artifact A2 owns lifecycle mutations; AC2 adds only the matching shared
+identity-graph reader fence and consumes current authoritative reads/revisions.
+Its read order is advisory fence, Collection row, then source rows, matching
+A2's exclusive advisory fence before its submission/Thing/Collection mutation
+order. Once both candidates are ready, central checks whole-Thing deletion
+suppresses an influenced result and runs the combined explicit-base preflight.
+An A2 handoff is not a gate for AC2's earlier milestones.
 
 **Finish:** a clean committed request-to-readback implementation with evidence
 for the named authority/revision boundaries and honest retrieval limits, ready
