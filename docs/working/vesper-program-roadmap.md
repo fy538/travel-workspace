@@ -37,16 +37,15 @@ backend `815f72e7f5c72c86c792ef68c97d0bc88a3ea593`, and app
 preserved; both child checkouts are clean. Acceptance does not mean every owner
 checkout has advanced, nor establish hosted app, native or release acceptance.
 
-**Execution state — sprint preparation activated October 3:** the founder
-approved the proposed next step. Eng Efficiency is executing E3. Artifact completed its readiness pass and is
-executing COL1.1 member display/data prerequisites; Adaptive completed its
-packet and is implementing CTX1 exact-source request and temporary readback. Connectivity
-remains idle. Product implementation is admitted only where the packet resolves
-to existing accepted design and ordinary implementation choices; genuinely new
-product choices require the single consolidated decision packet below. The
-existing hourly monitor is active for this finite work and stops when no
-independent admitted milestone remains. No central persistent Goal is registered;
-each owner reports its actual Goal lifecycle separately.
+**Execution state — infrastructure completion activated, October 3:** the
+founder explicitly authorized central to orchestrate and delegate steps 1–4 of
+the completion plan. Artifact continues COL1 database evidence and the
+Collection/member/original connection; Adaptive continues CTX1 provider-free
+real-backend contract acceptance; Eng Efficiency exclusively owns the shared
+Collections delayed-read failure. Central owns review, publication, contracts
+and incremental integration. The existing hourly coordinator is ACTIVE for this
+finite chain. Connectivity remains idle. No central persistent Goal is
+registered; delivered instructions do not resume older blocked Goals.
 
 **Deferred evidence:** the founder deferred native/signed-in validation and
 model evaluation. C1.3 interrupted capture, Artifact Save/readback/Undo, and
@@ -121,8 +120,9 @@ work. Longer runs do not authorize skipping acceptance or inventing work after
 the admitted chain ends. These pending evidence boundaries remain visible rather
 than becoming repeated synthetic tests or implied product acceptance.
 
-The existing central orchestrator retains its ten-minute schedule but is paused.
-If resumed, follow the [operating contract](#orchestration-operating-contract)
+Historical post-E1 scheduling note: the coordinator was paused after the
+ten-minute audit loop. The current schedule/state is recorded above. On any
+explicitly authorized resumption, follow the [operating contract](#orchestration-operating-contract)
 below. Active implementation turns do not imply that every chat's persistent
 Goal is active; blocked Goals require user/system resume. A status check or
 delivered message is not a new assignment or evidence of implementation progress.
@@ -396,9 +396,9 @@ native/signed-in/model-quality and release acceptance.
 
 | Package | Current state | Ordered milestones | Finish / dependency |
 | --- | --- | --- | --- |
-| COL1 — Artifact | COL1.1 display/data implementation active; visible navigation pending | Owner-authorized member display contract and bounded data composition first; Collection entry and member browsing; member/original navigation; Remove/Delete and unavailable-state behavior; focused evidence and clean handoff. | Display/data prerequisite is admitted independently. Root navigation and visual promotion wait for the interaction decision. Do not redo accepted A2 or add kept Ask answers from historical proposals. |
-| CTX1 — Adaptive | Authorized implementation in progress | Generated POST adapter and request state; private Artifact Ask entry with explicit original and optional one-Collection choice; temporary Chat-presented readback; deletion/revocation integration and clean handoff. | Existing selected-source request only, default-off. Preserve expiry; no generic Chat generation fallback or durable transcript/Thing answer. Independent of Life navigation. |
-| E3 — Eng Efficiency | Authorized implementation in progress | Reproduce documentation-selected prerequisite failure; minimal execution-plan correction; representative negative/tool-failure cases; actual disposable database run; measured preflight and clean handoff. | Independent of product decisions. The [specialist contract](development-qa-research-and-roadmap-2026-09-30.md#e3-documentation-checker-prerequisite-repair) owns the exact boundaries. |
+| COL1 — Artifact | COL1.1 committed locally; integration incomplete; visible navigation pending | Owner-authorized member display contract and bounded data composition first; Collection entry and member browsing; member/original navigation; Remove/Delete and unavailable-state behavior; focused evidence and clean handoff. | Display/data prerequisite is admitted independently. Root navigation and visual promotion wait for the interaction decision. Do not redo accepted A2 or add kept Ask answers from historical proposals. |
+| CTX1 — Adaptive | Committed locally; combined verification incomplete | Generated POST adapter and request state; private Artifact Ask entry with explicit original and optional one-Collection choice; temporary Chat-presented readback; deletion/revocation integration and clean handoff. | Existing selected-source request only, default-off. Preserve expiry; no generic Chat generation fallback or durable transcript/Thing answer. Independent of Life navigation. |
+| E3 — Eng Efficiency | Clean local candidate; measured local preflight passed; not landed | Reproduce documentation-selected prerequisite failure; minimal execution-plan correction; representative negative/tool-failure cases; actual disposable database run; measured preflight and clean handoff. | Independent of product decisions. The [specialist contract](development-qa-research-and-roadmap-2026-09-30.md#e3-documentation-checker-prerequisite-repair) owns the exact boundaries. |
 | Central | Packet and integration owner | Combine COL1/CTX1 decisions once; record interface/file boundaries; dispatch admitted milestones; integrate independent exact candidates and reconcile contracts/pins. | Preserve canonical edits and owner lanes. One changed handoff needs one inspection; normal waiting is not new work. |
 
 **Verified Artifact prerequisite:** current kept-Thing projections expose stable
@@ -456,6 +456,140 @@ while its owner continues the next listed milestone. A finite chat turn ending
 is not the end of an unfinished executable chain. Conversely, a product decision
 with no independent work is a reason to stop and ask once. Keep any postponed
 visual/native acceptance visible; fixtures prove only their stated boundary.
+
+### Infrastructure completion plan — October 3 regroup
+
+**Authorized completion boundary:** complete the implementation foundation for the admitted
+private-original / private-Collection / exact-request loop, then assess wider
+infrastructure packages separately. This is a finite completion horizon, not a
+promise to finish every historical package in all four roadmaps. Native,
+signed-in and model-quality acceptance remain explicitly deferred. Shared
+Collections, new catalog licensing, general multimodal/semantic retrieval,
+automatic preparation, retained generated answers and production rollout require
+their own resolved scope and evidence; they are not automatic successors.
+
+The earlier conversational estimate of roughly 65% infrastructure completion was
+a rough planning judgment, not a measured milestone or effort percentage. The
+roadmaps contain uneven, partially delivered packages and dated status tables.
+Use the closure checklist below for this horizon; do not count local commits,
+passed component tests or deferred evidence as landed end-to-end acceptance.
+
+**Pre-activation verified checkpoint:** GitHub main is workspace `c9c44dd9`, backend
+`815f72e7f`, app `4bbee04e8`. Workspace PR #73 at `b9932561` is open with its
+normal checks successful and its advisory/cloud smoke checks skipped; it is not
+merged. No backend or app PR is open. Canonical child repositories are clean;
+the canonical workspace's four dirty/untracked documentation paths are preserved.
+All three new implementation lanes are clean. Owner reports and actual commits
+agree on these candidates:
+
+| Owner | Candidate | Evidence and remaining acceptance |
+| --- | --- | --- |
+| Artifact / COL1.1 | Workspace `daa7b871`; backend `5cb1f3873`; app `72035b9aa` | Bounded authorized member-display projection and app adapter implemented. Focused checks and full offline backend pass. Composite preflight failed; the Life Collections delayed-read test also failed alone. Disposable-Postgres integration is unrun. |
+| Adaptive / CTX1 | Workspace `05ffc5b3`; unchanged backend `815f72e7f`; app `7eacbd3b7` | Default-off private Ask, exact text original, optional one Collection, frozen retry and temporary readback implemented. Focused 61 tests and fast checks pass. Broad app run fails the same named Collections delayed-read case; isolated rerun passes. Workspace checks encounter socket/interpreter prerequisites. No combined green preflight or real-backend consumer acceptance. |
+| Eng Efficiency / E3 | Workspace `e420f3d3`; children at accepted main | Interpreter/disposable-database prerequisites implemented. Owner reports 53 actual mixed-checker database tests and 212 tooling tests passing, with measured local preflight. Central review and hosted acceptance remain. |
+| Connectivity | No new candidate | Previous admitted C1/C2 implementation finished. Native C1.3 is deferred. D2 remains a conditional investigation, not an established defect or an assigned long queue. |
+
+The two Collections failures concern unchanged files but are **not yet proven
+unrelated to the candidates**. Artifact did not reproduce against the exact base;
+Adaptive's isolated pass establishes only that run. Give their diagnosis one
+owner and retain both failing contexts. E3 may address part of the prerequisite
+problem; its success does not prove it fixes every socket, dependency or cache
+issue seen in the product lanes.
+
+**Wave 0 — finish current work before expanding scope.** The founder authorized
+these concrete continuations; central dispatched the three owner chains and
+resumed the existing hourly coordinator. Central owns the frozen E3 candidate
+while its owner works on the shared regression.
+
+1. **Central:** review and land the existing roadmap packet through normal
+   workspace gates; integrate E3 independently after reviewing its prerequisites,
+   coverage preservation and actual receipts. Publish exact candidates and keep
+   accepted base revisions explicit. Do not make product lanes wait for each
+   other's unrelated work.
+2. **Eng Efficiency:** after central owns the frozen E3 candidate, reproduce the
+   named delayed-read failure on the accepted app base and each affected
+   candidate in the reported suite context. Distinguish an implementation race,
+   test synchronization problem, state leakage and environment sensitivity before
+   choosing a repair. Fix the owning cause, preserve the delayed stale-read
+   assertion, and demonstrate the affected ordering plus an isolated case.
+   No repeated broad reruns without a new hypothesis, forced exits, quarantine
+   expansion or relaxed expectations. Finish with one reusable clean fix and
+   measured verification; if unreproduced, hand off bounded observations instead
+   of declaring the test harmless.
+3. **Artifact:** review the member-display projection against actual database
+   owners; add/exercise missing disposable-Postgres evidence for owner isolation,
+   mixed/sparse facts, revision-pinned continuation, alias changes, deletion and
+   revocation. Prove bounded reads and honest incomplete coverage using its
+   existing caps; do not invent a latency target or duplicate semantic storage.
+   Consume the shared test fix when available and produce a green preflight.
+4. **Adaptive:** close the remaining provider-free real-backend contract boundary
+   for the implemented request/readback consumer. Exercise source-only and one
+   Collection scope, exact retry, owner/session/consumer mismatch, changed or
+   deleted influencing content, expiry, no-addition, incomplete and disabled
+   states. Reuse existing test-policy allocation/provider doubles; no live
+   provider or native session. Check that the app handles actual response shapes
+   and failures. Consume the shared repair and correct environment, then finish
+   a green preflight.
+5. **Central:** merge compatible backend and app slices in dependency order;
+   regenerate combined contracts, audit consumers and pin accepted revisions.
+   Verify that deletion of an influencing Thing suppresses stale result
+   publication/readback on the combined tuple. Retain distinct component,
+   database, cross-repository and deferred native/model evidence.
+
+**Wave 1 — close the admitted product connection.** Artifact owns Collection
+browse -> member -> exact original -> return, with loading/empty/stale/revoked
+states and the accepted Remove-versus-Delete lifecycle. Adaptive owns the exact
+Ask/result continuation and any demonstrated defect at that boundary. Preserve
+one selected original plus at most one explicitly selected private Collection;
+no general Chat fallback or new persistence. The already pending two-versus-four
+Life readings decision gates root navigation only. Prepare route/data behavior
+independently; do not repeat the question or treat silence as a choice. Native
+visual acceptance remains a separate deferred checkpoint.
+
+Connectivity may receive the previously proposed D2 composition probe only as
+an explicit, bounded assignment: one friend/place contribution beside an
+already-eligible Source for the same canonical Place; repair only a demonstrated
+omission and verify independent attribution, withdrawal and original return.
+If the existing behavior works or no eligible Source exists, stop. There is no
+justification for inventing a fourth implementation queue to keep four chats busy.
+
+**Closure checklist for this infrastructure horizon:**
+
+| Closure item | Required finish evidence | Current boundary |
+| --- | --- | --- |
+| Repeatable verification prerequisites | E3 accepted; correct interpreter, lane-owned disposable DB and permitted local runtime checks; failures reported before dependent tests | Local E3 candidate only |
+| Trustworthy delayed-read regression | Reproduced cause or explicitly bounded unresolved result; safe repair when established; affected suite passes without weakened assertion | Shared failure unresolved |
+| Collection display contract | Reviewed bounded owner-backed projection; generated adapter; real-DB lifecycle evidence; accepted commits | Implemented locally, DB/integration unverified |
+| Exact request and temporary readback | Real/mock contract parity, frozen retry, consumer/session identity, honest failure/expiry and deletion suppression; accepted commits | Implemented locally, combined acceptance incomplete |
+| Collection-to-original connection | Existing owner APIs, distinguishable truthful rows, exact return and lifecycle behavior; selected navigation decision | Partial data foundation; UI connection pending |
+| Combined delivery | Compatible accepted three-repository tuple, required evidence for each slice and cross-lane deletion/readback proof | Not yet assembled |
+
+Close these items by evidence, not hours spent. Even six closed items would mean
+this implementation horizon is complete; it would not mean all four broad
+roadmaps, native acceptance, model usefulness or release readiness are complete.
+
+**Longer-running task contract:** give each owner the complete ordered chain,
+exact base/owned files, already approved decisions, prerequisite check, first
+independently useful commit, remaining milestones and stop conditions. Continue
+within that chain across ordinary turn endings; request help only for a new
+external dependency or unresolved authority. Hand off each coherent slice while
+continuing the next independent step. Central alone owns combined publication,
+shared generated contracts/pins and integration. Each owner reports actual Goal
+status separately; a message does not resume a blocked Goal.
+
+The existing coordinator is resumed for this authorized chain. It should inspect
+changed handoffs, continue executable admitted work, and land ready slices; a
+status-only poll is not progress. Stay quiet when unchanged and stop at the finite
+chain's end. Preserve current merge/security authorization without expanding or
+republishing its local details. No new worker fleet, monitoring subsystem, native
+probe, model call or open-ended backlog is needed.
+
+Measure time to first reviewable commit, handoff-to-merge delay, first-pass
+verification, setup failures and external decision wait from existing receipts.
+The completed turns here lasted about 66 minutes (E3), 73 minutes (CTX1) and
+77 minutes (COL1.1); they demonstrate sustained turns, not productive-time
+measurements or a guarantee of overnight execution. The immediate efficiency
+opportunity is to complete integration and eliminate the shared blockers.
 
 ### October 3 implementation queue
 
