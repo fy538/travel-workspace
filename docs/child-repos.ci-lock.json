@@ -1,5 +1,5 @@
 {
-  "travel-agent": "e8f9416506e83df26657bbba6c194aa34593a7ee",
-  "travel-app": "35537620848bedf860aa9e273b0d9c0fed309651",
-  "_comment": "Reviewed provider-free selected-source permission contract candidate with accepted app main; normal required checks and real-auth acceptance remain separate."
+  "travel-agent": "aadace0bd4e7e8c767d1bfd46b14dec8bb18bd6f",
+  "travel-app": "97abc84424621c7cfb47e12a41df9b5d0300b97a",
+  "_comment": "Reviewed combined A2/AC2 tuple: backend candidate accepted by PR249; app candidate in PR220 awaits all required checks and separate security resolution. Do not merge this workspace candidate before app acceptance."
 }

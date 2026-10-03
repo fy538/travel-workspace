@@ -129,15 +129,23 @@ account's cache. The final combined central preflight passed in 311.533 seconds
 at workspace `0f3dcd34`, backend `aadace0bd` and app `ff869940d`; its exact
 counts, initial environment failure and corrected run are recorded in the
 [AC2 combined receipt](product-map/adaptive-context-and-research-roadmap-2026-09-29.md#ac2-one-explicitly-selected-private-collection).
-Hosted backend, app and workspace acceptance remain separate and pending.
+Backend [PR #249](https://github.com/fy538/travel-agent/pull/249) merged at
+`815f72e7f5c72c86c792ef68c97d0bc88a3ea593` after all seven required checks
+passed. App [PR #220](https://github.com/fy538/travel-app/pull/220) publishes
+candidate `97abc84424621c7cfb47e12a41df9b5d0300b97a`, with exact reviewed
+backend/workspace dependencies. Its measured pin-only preflight passed in
+105.065 seconds with all 9,299 app tests and stable clean inputs. The app's
+required security audit and separate pending exception decision remain a merge
+boundary; no security policy changed. Matching workspace acceptance must follow
+app acceptance.
 
 The transaction proves immediate source revocation and Intake handoff, not
 physical object-store deletion. If retained sources have external blob refs,
 their cleanup remains the existing outbox/worker's responsibility; no worker
 readback was run. Native/auth UI, real-user mutation, shared audiences, AI
-answer persistence and new retention rules remain excluded. Adaptive AC2 should
-consume the existing read/revision owners; continue independent work after
-central review resolves the preflight failure.
+answer persistence and new retention rules remain excluded. Adaptive AC2 consumes the existing read/revision owners; the combined central
+delete-to-stale-result tests now cover that integration boundary. The owner
+assignment is terminal; central owns the remaining app/workspace acceptance.
 
 ### A1 Private reader and Collection data coherence
 

@@ -217,9 +217,20 @@ quarantined identities in `tests/flaky_order_baseline.txt` reported XPASS and
 remain unchanged. The first central run mistakenly imposed `AI_MODE=off` on
 mocked offline tests and failed 116 cases; the standard offline retry passed
 without code changes. Both records are retained in
-`/private/tmp/vesper-a2-ac2-central-verification.json`. Hosted backend, app and
-workspace acceptance remain separate; app publication/merge still has the
-known required dependency-security audit boundary.
+`/private/tmp/vesper-a2-ac2-central-verification.json`. Offline full export,
+app projection, generated types, typecheck and API coverage also passed against
+the combined tuple, resolving the owner-lane generator limitation above.
+
+Backend [PR #249](https://github.com/fy538/travel-agent/pull/249) merged at
+`815f72e7f5c72c86c792ef68c97d0bc88a3ea593` on October 3 at 08:57:26 UTC.
+All seven normal required checks passed on candidate `aadace0bd`, including
+Merge readiness's offline and disposable-database jobs. This accepts AC2's
+backend implementation and the combined A2 deletion fence. The app consumer
+and generated deletion contract are published separately in
+[PR #220](https://github.com/fy538/travel-app/pull/220), where the existing
+required dependency-security boundary remains unresolved. Matching workspace
+acceptance is pending and must not precede app acceptance. No live model,
+provider, native or object-store cleanup acceptance is inferred.
 
 **Finish:** a clean committed request-to-readback implementation with evidence
 for the named authority/revision boundaries and honest retrieval limits, ready

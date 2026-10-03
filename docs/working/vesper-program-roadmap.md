@@ -361,6 +361,20 @@ chains; later roadmap packages and unmerged product-design drafts are not an
 automatic backlog. Native/signed-in and model proof remain deferred and must
 not hold these implementation Goals open.
 
+**Central integration checkpoint — October 3:** A2/AC2 backend
+[PR #249](https://github.com/fy538/travel-agent/pull/249) is accepted at
+`815f72e7f5c72c86c792ef68c97d0bc88a3ea593`; all seven normal required
+checks passed, including the database gate. Central combined evidence includes
+49 disposable-Postgres cases and a passing measured cross-repo preflight.
+C2 app [PR #219](https://github.com/fy538/travel-app/pull/219) and A2 app
+[PR #220](https://github.com/fy538/travel-app/pull/220) remain unmerged behind
+the existing dependency-security boundary; no exception has been applied.
+E2's bounded evidence is accepted through workspace
+[PR #70](https://github.com/fy538/travel-workspace/pull/70). All four owners
+finished their assigned finite chains. Central owns the remaining app checks,
+security decision and matching workspace acceptance; no successor work is
+assigned. Native/signed-in and model proof remain deferred, not passed.
+
 #### C2 Existing Places refresh failure
 
 **Goal:** when a Places root runtime refresh fails while valid cached data is
