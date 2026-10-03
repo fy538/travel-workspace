@@ -16,7 +16,7 @@ source_of_truth_for: []
 accepted in backend #248/workspace #65. AC2's one explicitly selected private
 Collection backend is accepted through backend #249 at `815f72e7`; central
 combined deletion-race evidence and preflight passed. Matching workspace #71
-retains its normal required hosted gate; app #220 is merged under the exact
+is merged at `c0a90bce` after its normal required hosted checks; app #220 is merged under the exact
 founder-approved waiver recorded in the [CI Plan](../../reliability/CI%20Plan.md).
 This is implemented infrastructure, not an
 activated native request experience. The proposed request/selection design and

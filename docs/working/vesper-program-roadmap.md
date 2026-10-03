@@ -20,37 +20,37 @@ depends_on:
 
 # Vesper program roadmap
 
-**Regroup — October 3:** C2/A2/AC2/E2 implementation handoffs are complete.
-Backend #249 and E2 evidence are accepted. App #219/#220 are merged at
-`8228bee81` / `4bbee04e8` through the founder's exact, temporary hosted-check
-waiver after passing local evidence; this is not hosted app acceptance. All
-original app merge requirements were restored, and app Actions remains disabled
-until explicitly re-enabled. Matching workspace #71 retains its normal required
-hosted gate. The [CI Plan](../reliability/CI%20Plan.md) records scope and evidence.
-The A2 follow-through repaired a reproduced stale Life Collection count with
-late-response and account-isolation coverage. No larger overnight round is active.
-The [successor readiness queue](#october-3-regroup-and-successor-readiness)
-separates independently useful work from product decisions. No larger overnight
-implementation round is activated. The monitor is paused, with hourly cadence
-saved for any explicitly resumed run; no central persistent Goal is registered.
+**Current regroup — October 3:** the C2/A2/AC2/E2 round is closed. Places
+refresh-error handling, private whole-Thing deletion and its Life count repair,
+and explicitly selected private Collection context infrastructure are merged.
+Backend [#249](https://github.com/fy538/travel-agent/pull/249), app
+[#219](https://github.com/fy538/travel-app/pull/219) and
+[#220](https://github.com/fy538/travel-app/pull/220), and workspace
+[#71](https://github.com/fy538/travel-workspace/pull/71) are accepted at their
+recorded evidence boundaries. E2 completed its bounded investigations; it did
+not establish a leak fix or quarantine removal. No open PRs remained in the
+three repositories at this regroup's hosted inspection.
 
-**Current decision — October 3:** the founder deferred native and signed-in
-validation for now. The October 2 implementation/integration round is closed;
-C1.3 interrupted capture, Artifact Save/readback/Undo and successful E1 native
-mode/session acceptance remain **deferred and unverified**. Resume them only on
-explicit human instruction. Do not pursue their credential/sign-in requests,
-device probes or build/install preparation in the meantime. Automated
-correctness checks and required hosted merge checks still apply to new work.
-The central Goal is complete under this revised scope; the existing scheduled
-monitor is paused. This does not establish native or release acceptance.
+Canonical accepted inputs are workspace `c0a90bcef179036b58de1d8de8a1fb503aa0b8ba`,
+backend `815f72e7f5c72c86c792ef68c97d0bc88a3ea593`, and app
+`4bbee04e84abce7b2470d8cb4c2279a5502f7149`. Canonical workspace edits remain
+preserved; both child checkouts are clean. Acceptance does not mean every owner
+checkout has advanced, nor establish hosted app, native or release acceptance.
 
-The final E1 failure receipt landed through workspace
-[PR #67](https://github.com/fy538/travel-workspace/pull/67) at
-`3a5b6c90a25c7ce821293a522873ce140ec7f411`, after the accepted-state
-roadmap correction in [PR #66](https://github.com/fy538/travel-workspace/pull/66).
-The last inspected accepted backend/app revisions are `8fecebb37` / `355376208`;
-there were no open PRs across the three repositories. Reconcile actual accepted
-main and owner work before assigning the next implementation outcome.
+**Execution state:** all four owner turns are terminal. No central persistent
+Goal is registered; the monitor is paused. The
+[successor readiness queue](#october-3-regroup-and-successor-readiness) proposes
+one connected product outcome and a demonstrated tooling repair, not four newly
+activated Goals. Older assignment language and revision tuples below are dated
+receipts, not permission to restart completed work.
+
+**Deferred evidence:** the founder deferred native/signed-in validation and
+model evaluation. C1.3 interrupted capture, Artifact Save/readback/Undo, and
+successful E1 native mode/session acceptance remain unverified. Reopen those
+credentials, devices, builds or evaluation tasks only on explicit instruction.
+Preserve applicable correctness and merge requirements for new implementation.
+The final E1 failure receipt landed through workspace #67; this closed its
+bounded investigation, not its missing native proof.
 
 **Accepted implementation receipt — October 3, 00:10 UTC:** the C1.2 route-continuity,
 A1 private data-coherence and AC1 provider-free evidence prerequisites landed
@@ -334,8 +334,8 @@ roadmap goal, finite turn and persistent Goal remain separate records.
 
 The founder requested completing the current merges, reconciling the canonical
 checkout while preserving edits, and preparing a larger next overnight queue.
-The canonical checkouts now contain accepted workspace `fc23614d`, backend
-`815f72e7` and app `35537620`. Two unpublished documents and their index changes
+The canonical checkouts now contain accepted workspace `c0a90bce`, backend
+`815f72e7` and app `4bbee04e`. Two unpublished documents and their index changes
 remain uncommitted. The original ten-file snapshot and checksum manifest are
 retained at `/private/tmp/vesper-regroup-20261003/canonical-preservation`.
 
@@ -347,18 +347,45 @@ evaluation remain deferred, and passing fixture cases do not replace that proof.
 | Owner | Ordered useful work | Activation boundary and fallback |
 | --- | --- | --- |
 | Connectivity | Reproduce the existing D2 friend/place contribution beside an already-eligible, separately attributed Source for the same canonical Place; repair only a demonstrated omission; verify exact original opening/return and removal of only the withdrawn reading. Existing owners are `backend/places/sections.py`, `section_projection.py`, `backend/root_projection/v2/places_runtime.py` and the current Places feed/navigation components. | A proposed bounded D2 investigation, not another C2 task. No new fetcher, generated synthesis, audience or root hierarchy. If current composition already works or there is no eligible Source, retain the useful friend note/Place door and stop. No guaranteed defect or longer chain is claimed. |
-| Artifact | Finish acceptance of the reproduced A2 deletion-to-Life cache repair first. Proposed larger chain: private Collection list in Life, a canonical member reader, and current-source opening plus stale/revoked/error handling. Existing owners are `data/keptThings.ts`, root projection invalidation, `data/consumerCollections.ts` and `LifeRootV1Screen.tsx`. | The A2 follow-through is within accepted deletion semantics. A native Collection browsing experience requires a concrete member-display and Remove/Delete interaction decision; the unpublished design handoff does not supply authority. Keep rows hidden until that decision, rather than adding a dead end. No third Artifact slice is admitted. |
+| Artifact | A2 and the deletion-to-Life cache repair are accepted. Proposed larger chain: private Collection list in Life, a canonical member reader, and current-source opening plus stale/revoked/error handling. Existing owners are `data/keptThings.ts`, root projection invalidation, `data/consumerCollections.ts` and `LifeRootV1Screen.tsx`. | The A2 follow-through is within accepted deletion semantics. A native Collection browsing experience requires a concrete member-display and Remove/Delete interaction decision; the unpublished design handoff does not supply authority. Keep rows hidden until that decision, rather than adding a dead end. No third Artifact slice is admitted. |
 | Adaptive Context | Proposed larger chain: one explicit Collection choice in a selected-source request; exact request/revision binding through the existing API; existing result readback with stale, incomplete, unavailable and no-addition states. Use the selected-source request and reader owners; do not introduce a second context store. | Requires a concrete request/selection design. Keep the current read-only reader internal and the feature default-off meanwhile. No model-default rewrite, new answer persistence, automatic library scan, live calls or generation-quality claim. Repeated fixtures are not an independent implementation fallback. |
-| Eng Efficiency | Retain E2's accepted bounded findings and the corrected monitor stopping/recovery rules. Admit another tooling repair only from a demonstrated current defect with valid, violating and tool-failure acceptance cases and a measurable finish. | Do not repeat inconclusive leak/order probes, invent benchmark work, remove masks or create a new orchestration subsystem merely to occupy this lane. |
+| Eng Efficiency | Proposed E3: make documentation-selected checker prerequisites explicit before execution, using the reproduced database-selection failure and the [bounded repair contract](development-qa-research-and-roadmap-2026-09-30.md#e3-documentation-checker-prerequisite-repair). Retain E2's accepted bounded findings. | Do not repeat inconclusive leak/order probes, invent benchmark work, remove masks or create a new orchestration subsystem merely to occupy this lane. |
 
-Both app PRs are merged under the separate bounded waiver recorded in the CI
-Plan. Central lands compatible workspace pins through its normal required
-checks. It then reconciles these
-proposals with approved design, creates compact finite assignments with exact
-bases and fallback/stop rules, and reports Goal/monitor activation separately.
-No security exception, feature activation or new policy follows from this queue.
+All implementation PRs and compatible workspace pins are merged. Central next
+reconciles these proposals with approved design, creates compact finite
+assignments with exact bases and fallback/stop rules, and reports Goal/monitor
+activation separately. No feature activation or new policy follows from this
+queue.
+
+**Recommended longer horizon — private Collection to useful context:** prepare
+one design packet covering entry from Life, distinguishable member rows, member
+reader/original opening, the existing Remove versus Delete effects, and explicit
+Collection choice in a request. Reconcile the current Artifact design owner;
+historical kept-answer proposals are not approved defaults. Approval of one
+private Collection's data scope already exists and must not be requested again.
+The outstanding decision is its concrete interaction, not whether that scope is
+allowed.
+
+After that packet is admitted, assign Artifact the browsing/member-reader chain
+and Adaptive the explicit request/readback chain against a shared interaction
+contract. Each owns loading, empty, stale, revoked and error states, relevant
+regression evidence, and a reviewable integration handoff. Central verifies that
+deleting an influencing Thing suppresses stale result readback. Keep production
+activation and live model calls outside this implementation horizon. Eng can
+carry the independent E3 repair. Connectivity's D2 probe remains conditional;
+three useful streams are preferable to an invented fourth backlog.
+
+**Measure delivery, not wakeups:** use existing receipts to record time to first
+reviewable slice, handoff-to-merge time, time awaiting an external decision, and
+repeated verification caused by changed inputs versus setup failures. No new
+monitoring service or claimed speedup is required. At the finite chain's end,
+stop or report the specific remaining decision; additional elapsed hours are
+not evidence of progress.
 
 ### October 3 implementation queue
+
+**Closed round:** C2/A2/AC2 are merged; E2 completed its bounded findings. The
+following table preserves the original assignments, not a current dispatch.
 
 Readiness was checked against workspace `cd161ecd`, backend `8fecebb37` and app
 `355376208`, with no open PRs in the three repositories. The four existing owners
