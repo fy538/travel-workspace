@@ -154,10 +154,13 @@ fetched lane baseline, so the lane preserves the existing Ask handoff and does
 not invent a note owner or replacement composer; that action boundary remains a
 separate product-direction reconciliation item.
 
-The structural reference set is recorded by source hash because no promoted
-phone-screen export was available in this lane. The current Downloads export
-was re-read on this handoff; all four hashes differ from the earlier receipt,
-so the lane records provenance without claiming semantic drift:
+The structural reference set is now promoted as four rendered L1 PNGs under
+`travel-app/docs/surfaces/entity-object/design-refs/`. The current Downloads
+export was re-read on this handoff; all four hashes differ from the earlier
+receipt, so the lane records both source provenance and the exact Playwright
+selector render without claiming semantic drift. The external runtime is not
+copied into the app repository; its direct inputs and output hashes are listed
+in `source-provenance.json`.
 
 | Reference | Earlier receipt hash | Current export hash | Use |
 | --- | --- | --- | --- |
@@ -192,6 +195,35 @@ has no purpose/section discriminator. Board 14's “do not show the weeknight
 line while assessing Saturday” therefore cannot be implemented as a safe
 paragraph filter in this lane. This is a precise owner/API dependency; no
 semantic guessing, new backend field, or automatic generation was introduced.
+
+## G1 reference-adoption repair receipt
+
+Central review found that the first promotion copied four HTML boards whose
+`support.js`, `vdl.css`, `entity-lab.css`, `_ds` kernel and `dc-import` files
+were not present in the app repository. That was not a reproducible reference
+package. The lane re-rendered Boards 06, 06B, 09 and 14 with the existing
+Playwright selector exporter (`#dc-root`, 430×932 viewport, device scale 2,
+`--no-query`) and committed only the resulting PNGs plus a hash manifest:
+
+- App `5397c2da7` — replaces the four copied HTML files with rendered PNGs,
+  records direct runtime/component/source/output hashes in
+  `design-refs/source-provenance.json`, and registers the manifest, images and
+  provenance in `scripts/polish-qa/surfaces.mjs`.
+- `node scripts/polish-qa/design/check-design-refs.mjs entity-object` passed
+  with four pairs and no external-canon claim.
+- `node scripts/polish-qa/validate-surface-index.mjs` passed for all 47
+  surfaces.
+
+This closes G1's local reference-adoption package. The images remain L1
+structural authorities: current-build native screenshots, pixel comparison,
+Dynamic Type and VoiceOver evidence are still release gates.
+
+G2 remains open. The characterization test proves only that the current
+projection preserves stored paragraph order for discovery and explicit visit;
+it does not prove Board 14's purpose omission. Closing that gap requires an
+owner-approved `EntityResearchBrief` purpose/section discriminator and its
+backend contract/readback evidence. No semantic filter, new field, generation,
+storage or model/provider work is admitted in this lane.
 
 EP2/EP3 evidence then exercised the existing action and receiving boundaries:
 the action suite passed 43 tests across Keep/share, public eligibility, gated
@@ -383,7 +415,7 @@ No successor feature is automatically admitted when EP4 finishes.
 | Package | Current state | Completion evidence |
 | --- | --- | --- |
 | Planning | Lane and mini roadmap prepared | Three exact bases and isolated runtime allocation recorded above |
-| EP0 | Complete locally | Contract/route/test inspection, Board 14 promotion, source hashes and action boundary recorded above; visual export unavailable |
+| EP0 | Complete locally | Contract/route/test inspection, four rendered L1 references, source/runtime hashes and action boundary recorded above; current-build comparison remains pending |
 | EP1 | Complete locally | Accessibility-label gap fixed in `TextVerb`; focused component regression passes; remaining reading variants rely on existing projection/shell evidence |
 | EP2 | Complete locally | 6 focused app suites / 43 tests passed; existing Keep/share/Ask and gated research/people contracts remain unchanged |
 | EP3 | Complete locally | 4 focused app suites / 95 tests and 4 focused backend files / 55 tests passed; exact route/return and lifecycle boundaries remain intact |
