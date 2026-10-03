@@ -78,6 +78,25 @@ not authorize a live run or block completion of this implementation slice.
 
 ### AC1 Selected-source public-acquisition prerequisites
 
+**Accepted implementation — October 3, 00:10 UTC:** the exact permission contract
+landed through backend [PR #248](https://github.com/fy538/travel-agent/pull/248)
+at `8fecebb37e7514ffbecdcceaf6b27b5d47d83487` and workspace
+[PR #65](https://github.com/fy538/travel-workspace/pull/65) at
+`fdd38718e053a3e29b9c3d2cea422c144e7582c3`, with all normal required
+hosted checks passing. Central preflight passed in 217.282 seconds on exact
+candidate workspace `cf2be5bbe85ebf022a27fe63c474f9dedc860aed`, backend
+`e8f9416506e83df26657bbba6c194aa34593a7ee` and unchanged app
+`35537620848bedf860aa9e273b0d9c0fed309651`, against explicit accepted bases
+workspace `1db174dc315ecbfc1a2b1d2df29bc8b3388e331b`, backend
+`f5f34cac89a87480e11e9f3a4ff430ad730baa1a` and that same app revision.
+Results: 22,342 backend passed, 14 skipped, 1 xfailed, 52 xpassed; 202 workspace
+passed. Seven dedicated disposable-Postgres cases and 62 focused provider-free
+cases passed separately. Offline generated contracts, mobile types and API
+coverage passed. AC1's provider-free implementation and central landing are
+complete; production activation, native caller, real-provider behavior and model
+quality remain outside this outcome. The evidence below retains the owner-local
+boundary and does not replace this central acceptance receipt.
+
 **Current goal — adopted October 2, provider-free implementation:** implement
 and verify the R1 disclosure/acquisition prerequisite for an exact selected
 object, using existing public-request and bounded acquisition owners. Finish the finite
