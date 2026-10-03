@@ -62,11 +62,6 @@ PYTEST_MARKER_INVENTORY = Prerequisite(
     "the selected pytest file must be readable so its database markers can be planned",
 )
 
-_OFFLINE_MARK_EXPRESSION_TERMS = {
-    "not requires_postgres",
-    "not requires_dogfood_wedge",
-    "not requires_api_keys",
-}
 REPOSITORY_OFFLINE_PYTEST_ADDOPTS = (
     '-m "not requires_postgres and not requires_dogfood_wedge and not requires_api_keys"'
 )
@@ -624,23 +619,10 @@ def _offline_marker_filter_active(environ: dict[str, str]) -> bool:
         args = shlex.split(environ.get("PYTEST_ADDOPTS", ""))
     except ValueError:
         return False
-    expression = None
-    for index, arg in enumerate(args):
-        if arg in {"-m", "--markexpr"} and index + 1 < len(args):
-            expression = args[index + 1]
-            break
-        if arg.startswith("--markexpr="):
-            expression = arg.partition("=")[2]
-            break
-    if expression is None:
-        return False
-    normalized = re.sub(r"[()]", " ", expression.lower())
-    terms = {
-        " ".join(term.split())
-        for term in re.split(r"\band\b", normalized)
-        if term.strip()
-    }
-    return terms == _OFFLINE_MARK_EXPRESSION_TERMS
+    # Pytest marker names are case-sensitive; repeated -m options and grouping
+    # can change which tests run. Exempt only the repository's exact argv.
+    return args == shlex.split(REPOSITORY_OFFLINE_PYTEST_ADDOPTS)
+
 
 
 def _lane_postgres_prerequisite_error(

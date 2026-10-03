@@ -741,6 +741,15 @@ showed collection correctly refuse because the selector had chosen system
   `/private/tmp/vesper-e3-verification-records.json` and
   `/private/tmp/vesper-e3-verification-logs/e3-final-explicit-base-preflight-after-integration-fix-20261003T173225Z.log`.
 
+**Central review follow-through — October 3:** three additional negative
+regressions reproduced an incorrect offline exemption for case-changed markers,
+a later overriding marker option, and changed Boolean grouping. The selector
+now recognizes only the exact repository offline-filter argument vector. Those
+altered inputs must pass normal disposable-database prerequisite validation;
+they cannot inherit the offline exemption. The new cases fail on the original
+E3 candidate and pass with this correction. This is a checker-input boundary
+repair; no product or hosted check requirement is weakened.
+
 **Finish:** retain this change as a clean, committed candidate after the
 measured explicit-base preflight. Hosted checks and central integration remain
 the acceptance boundary; this receipt does not claim either has completed.

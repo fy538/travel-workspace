@@ -612,6 +612,21 @@ def test_offline_filter_is_explicit_and_exact() -> None:
     )
 
 
+@pytest.mark.parametrize("addopts", [
+    '-m "not REQUIRES_POSTGRES and not requires_dogfood_wedge and not requires_api_keys"',
+    '-m "not requires_postgres and not requires_dogfood_wedge and not requires_api_keys" -m requires_postgres',
+    '-m "not (requires_postgres and not requires_dogfood_wedge and not requires_api_keys)"',
+])
+def test_altered_offline_filter_cannot_bypass_database_prerequisite(tmp_path, addopts):
+    repos = _repositories(tmp_path)
+    command = MODULE.Command(
+        ("pytest",), repos[1].root, "mixed checker", (MODULE.DISPOSABLE_POSTGRES,)
+    )
+    assert MODULE._command_prerequisite_errors(
+        command, repos[0], {"PYTEST_ADDOPTS": addopts}
+    ), "An altered filter must not exempt a mixed checker from database validation"
+
+
 def test_main_blocks_mixed_checker_before_pytest_when_database_is_absent(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
