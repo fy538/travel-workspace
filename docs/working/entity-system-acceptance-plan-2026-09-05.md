@@ -15,7 +15,14 @@ depends_on:
 
 # Entity system: implementation closure and acceptance plan
 
-## September 6 current assignment
+## Current execution pointer — October 3
+
+The [Entity mini roadmap](entity-page-v1-mini-roadmap-2026-10-03.md) owns the
+current Entity work package under the [central program Goal](vesper-program-roadmap.md#central-execution-goal--october-3).
+The September 6 sequence below retains historical rationale and independent
+core/research/people evidence; it is not the current dispatch queue.
+
+## September 6 assignment history
 
 This remains the scoped C0–C8 execution detail; the September 4 entity roadmap
 is background direction, not a second pending repair queue. The latest landed

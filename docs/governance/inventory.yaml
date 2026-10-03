@@ -447,7 +447,11 @@ overrides:
 
   docs/working/entity-system-acceptance-plan-2026-09-05.md:
     disposition: keep_reference
-    rationale: Current bounded entity closure and receiving-lane acceptance sequence with independent core, research and people gates; no activation authority.
+    rationale: Historical entity closure and receiving-lane evidence; current packages are in the Entity mini roadmap under the central program goal.
+
+  docs/working/entity-page-v1-mini-roadmap-2026-10-03.md:
+    disposition: keep_reference
+    rationale: Founder-requested finite Entity implementation packages and receipts under the central program plan; existing product and surface contracts retain authority.
 
   docs/working/lightweight-arrangements-implementation-handoff-2026-09-04.md:
     disposition: keep_reference

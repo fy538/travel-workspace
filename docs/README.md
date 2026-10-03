@@ -3,7 +3,7 @@ doc_type: contract
 status: active
 owner: founder / engineering
 created: 2026-05-01
-last_verified: 2026-10-02
+last_verified: 2026-10-03
 why_new: Promote the existing workspace index into the canonical documentation entry point.
 supersedes: []
 source_of_truth_for: [workspace-docs-navigation]
@@ -20,7 +20,7 @@ and a bounded milestone are not interchangeable.
 |---|---|---|
 | **What product are we building?** | [Product Thesis](../travel-agent/docs/product/Product%20Thesis.md) → [Product Model](../travel-agent/docs/product/Product%20Model.md) → [accepted consumer strategy](decisions/2026-09-06-reconcile-consumer-strategy.md) | understanding direction and boundaries |
 | **What matters next across the whole product?** | [Vesper program roadmap](working/vesper-program-roadmap.md) — current priorities, accountable tasks, dependencies and system checkpoint | coordinating independent lanes without reconstructing task history |
-| **Which lane implements it?** | [Orchestration](working/vesper-program-roadmap.md#5-orchestration-execution-plan): capture/Home/Places/practical integration; [Strategy](working/artifact-experience-engineering-roadmap-2026-09-29.md): artifacts/readers/collections/Life; [Strategy Technical](working/product-map/adaptive-context-and-research-roadmap-2026-09-29.md): context/research/preparation | execute one owned outcome in its coordinated worktree; H1 and the integration roadmap are supporting references |
+| **Which lane implements it?** | [Central execution plan](working/vesper-program-roadmap.md#central-execution-goal--october-3): Connectivity, Artifact, Adaptive Context, Eng Efficiency and Entity; Orchestrator owns the shared Goal and acceptance | assigning bounded packages and resolving dependencies |
 | **What must the M1 demo establish?** | [M1 — Plan Repair](release/m1-plan-repair.md) | executing or certifying that bounded operational-alpha milestone |
 | **What evidence supports completion?** | Current owner/package receipts for local progress; [`evidence-attestations.json`](journeys/evidence-attestations.json) for promoted journey evidence | distinguishing implementation progress from certification |
 | **What must I not break?** | [V1 scope](release/v1-scope.md) for dark surfaces · [Journey Status](journeys/STATUS.md) for the regression floor | shipping work |
@@ -44,14 +44,14 @@ Three things follow from that table and are worth stating once:
 - **Lighting a flag outside its declared `gate:` is a scope change**, not a
   config change.
 
-The October 2 [program goals](working/vesper-program-roadmap.md#next-activation-round--october-2-roadmap-goals)
-assign four execution owners: Connectivity (capture/Home/Places), Artifact
-(private objects/readers/Collections), Adaptive Context (context/research), and
-[Eng Efficiency](working/development-qa-research-and-roadmap-2026-09-30.md#e1-verification-identity-and-native-prerequisites)
-(verification/QA tooling). Connectivity's detailed plan lives in the program
-roadmap; the other three have specialist roadmaps. Central integration owns
-cross-lane consolidation, not another product implementation queue. Each owner
-can progress through its named goal's milestones without repeated dispatch.
+The [central execution plan](working/vesper-program-roadmap.md#central-execution-goal--october-3)
+owns one overall Goal, current packages and dependency order for five execution
+owners. Connectivity's package stays there. Artifact, Adaptive Context and Eng
+Efficiency keep their existing specialist roadmaps; the
+[Entity mini roadmap](working/entity-page-v1-mini-roadmap-2026-10-03.md) owns
+Entity detail and receipts. Specialist roadmaps are work-package plans, not
+independent program backlogs. The scheduled coordinator observes and continues
+this finite plan; accepted product contracts remain the authority for behavior.
 
 Current goal blocks supersede historical assignments and receipts; wider roadmap
 packages are not all active. The H1 package and integration roadmap remain
