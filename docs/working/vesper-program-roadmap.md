@@ -415,7 +415,7 @@ owner/authority dependency, when a new human decision changes scope, or at G5.
 
 The founder requested more parallel implementation lanes after the G0–G5
 integration checkpoint. This newly admitted, finite reliability queue is broader
-than that paused Goal. It does not resume the Goal tracker, waive its remaining
+than G0–G5. Dispatch does not itself resume the Goal tracker, waive its remaining
 acceptance, answer the pending G2 contract question, or authorize native/model
 validation. The old two-product-package cap does not constrain this new queue:
 run the four disjoint infrastructure packages below alongside the already active
@@ -458,6 +458,42 @@ files are read-only. Stop each chain at its finish or a specific unresolved
 owner/external dependency; no automatic successor backlog. Central checkpoints
 progress and integrates compatible slices without making all owners wait for
 an unrelated acceptance gate.
+
+**Infrastructure acceptance checkpoint — October 3, 23:18 UTC:** all four
+finite I1–I4 implementation chains have delivered. No automatic successor is
+assigned. I4 workspace [#81](https://github.com/fy538/travel-workspace/pull/81)
+is merged at `311742e8` through passing normal hosted gates; the first hosted
+Git-fixture identity failure and its verified correction are retained.
+
+I1 [backend #252](https://github.com/fy538/travel-agent/pull/252) at `ad636b9a`
+has 44 real-database cases and a passing 202.902s local preflight. I2
+[backend #253](https://github.com/fy538/travel-agent/pull/253) at `d84f47ca`
+has 19 real-database cases and a passing 190.022s central preflight. Their
+required hosted jobs did not start because of account billing. These fences
+cover exact-attempt lifecycle bookkeeping, not exactly-once external effects or
+research graph/brief publication.
+
+I3 is reconciled locally on workspace `891e425b`, backend `56621c56`, app
+`07f6060b`. Its new disposable-Postgres run passed 95 Collection/Ask cases in
+35.375s, including influencing-Thing deletion suppressing stale readback and
+late publication. App 9,339 tests and workspace 231 tests passed in the first
+aggregate; that aggregate failed in 345.401s because runtime shutdown flags
+blocked 116 mocked backend tests. The corrected backend-only explicit-base
+preflight passed in 175.163s with 22,373 passed / 14 skipped / 1 xfailed /
+52 xpassed and shared contracts/API checks. Unchanged app/workspace checks were
+not repeated. Exact commands, identities, logs and the failed receipt are in
+`/private/tmp/vesper-i3-central-verification.json`; skipped/quarantined identities
+are retained in its corrected log. Backend #251 and dependent app draft #224
+still require backend acceptance. Generated contracts agree; accepted pins have
+not been advanced to unaccepted candidates.
+
+The persistent central Goal is now active, as verified separately; the hourly
+monitor remains paused. G2's exact contract decision and backend acceptance are
+still unresolved, so G0/G5 and this broader infrastructure horizon are not fully
+accepted. Intake proceeds only with its independent human-approved work; CP05's
+mutable writer remains held because existing session/journal rules do not admit
+its sign-out, re-entry and deletion lifecycle. Native/signed-in/model evidence
+remains deferred. No design source or product retention policy was changed.
 
 ### Orchestration operating contract
 
