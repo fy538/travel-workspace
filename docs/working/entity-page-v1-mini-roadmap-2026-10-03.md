@@ -154,7 +154,7 @@ fetched lane baseline, so the lane preserves the existing Ask handoff and does
 not invent a note owner or replacement composer; that action boundary remains a
 separate product-direction reconciliation item.
 
-The structural reference set is now promoted as four rendered L1 PNGs under
+The structural reference set is now promoted as seven rendered L1 PNGs under
 `travel-app/docs/surfaces/entity-object/design-refs/`. The current Downloads
 export was re-read on this handoff; all four hashes differ from the earlier
 receipt, so the lane records both source provenance and the exact Playwright
@@ -214,7 +214,7 @@ Playwright selector exporter (`#dc-root`, 430×932 viewport, device scale 2,
 - `node scripts/polish-qa/validate-surface-index.mjs` passed for all 47
   surfaces.
 
-This closes G1's local reference-adoption package. The images remain L1
+This first repair was superseded by the resolved-frame correction below. The images remain L1
 structural authorities: current-build native screenshots, pixel comparison,
 Dynamic Type and VoiceOver evidence are still release gates.
 
@@ -259,6 +259,22 @@ it does not prove Board 14's purpose omission. Closing that gap requires an
 owner-approved `EntityResearchBrief` purpose/section discriminator and its
 backend contract/readback evidence. No semantic filter, new field, generation,
 storage or model/provider work is admitted in this lane.
+
+Central reviewed the seven exact output hashes and rendered phone frames against
+the unchanged source export. The references are locally verified for structural
+use, pending integration acceptance; they are not a passing current-build
+comparison. Actual design changes belong in Claude Design. In particular, Board
+14 R3 cites source 1 while its supplied source list contains 2, 3 and D. Board 14
+R1's “no reservation pressure” description and closing Reserve row require design
+reconciliation. These observations do not authorize local design-source repairs.
+
+The G2 dependency also includes explicit visit timing and content granularity:
+purpose alone cannot distinguish Saturday from weeknight advice, and a mixed
+paragraph cannot safely be omitted as a whole. Existing structured facts and
+whole authored Takes do not classify persisted research prose. A serving contract
+must bind applicability to the exact source content and explicit opening context.
+The proposed extension beyond this package's no-new-writes boundary is pending
+human admission; no field, classifier, backfill or owner write is implemented.
 
 EP2/EP3 evidence then exercised the existing action and receiving boundaries:
 the action suite passed 43 tests across Keep/share, public eligibility, gated
