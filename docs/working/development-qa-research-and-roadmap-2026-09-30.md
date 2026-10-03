@@ -12,10 +12,12 @@ source_of_truth_for: []
 
 # Faster development with trustworthy QA
 
-**Next assignment — October 3:** E2 below owns two bounded independent test
-reliability investigations and repairs. E1 implementation is accepted and native
-acceptance is deferred. The program's October 3 queue owns the new round;
-the prior paused-monitor observation below is not its activation receipt.
+**Current queue — October 3 regroup:** E2 is closed with bounded findings,
+accepted through workspace #70. No attributable leak repair or quarantine
+removal was established. The proposed independent successor is
+[E3](#e3-documentation-checker-prerequisite-repair), based on a new observed
+preflight setup failure. It has not been assigned or executed. Native evidence
+remains deferred; historical E1/E2 instructions do not reactivate those tasks.
 
 **Current status — October 3:** E1 tooling and the single optional sharding
 comparison receipt are accepted. The final native failure receipt is accepted
@@ -683,6 +685,44 @@ explicit no-reproduction/remaining-boundary finding, with any justified fixes
 ready for central integration. Stop after these cases. No product behavior,
 native/device work, provider/model calls, required-check changes, sharding
 adoption or broad verifier rewrite is assigned.
+
+### E3 Documentation checker prerequisite repair
+
+**Status: proposed, not activated.** A docs-only preflight on October 3 selected
+two backend checker test files from references elsewhere in the changed CI
+runbook. Documentation checks passed, but both test selections stopped during
+collection because the required disposable database inputs were absent. The
+measured command failed in 3.892 seconds; this is an environment-selection
+failure, not evidence that the checker assertions failed. Retained log:
+`/private/tmp/vesper-regroup-20261003/logs/app-three-week-window-docs-20261003T161140Z.log`.
+
+Read-only inspection found that the workspace selector reads the changed
+Markdown file's complete text, maps checker references to tests, and emits bare
+Python pytest commands. The selected backend files contain database-marked
+cases; the backend collection guard correctly refuses to run them without an
+explicit disposable target. Child dependency installation alone does not supply
+that target. Keep the guard intact.
+
+**Bounded finish:**
+
+1. Reproduce the plan from a minimal documentation fixture containing the same
+   reference class; record exact child revisions and selected prerequisites.
+2. Make the plan expose the necessary interpreter and database prerequisites
+   before execution. Reuse the existing offline/database test owners and
+   disposable-service tooling. Choose the smallest correction that preserves
+   required selected coverage; do not silently drop database cases or use an
+   ambient development database.
+3. Cover an offline-only checker, a mixed offline/database checker, absent or
+   invalid prerequisites, and subprocess/tool failure. Execute the mixed path
+   against an explicitly disposable database, not just a mocked plan.
+4. Run measured explicit-base preflight and report command/selection/setup
+   outcomes. Compare only comparable runs. Stop after the verified repair;
+   broad selector redesign, sharding adoption and repeated E2 diagnostics are
+   outside this proposed assignment.
+
+This can run independently of the proposed Collection interaction work once
+assigned. It reduces a demonstrated source of late setup surprises; no quantified
+speedup is claimed yet.
 
 ### October 3 next-round readiness findings
 
