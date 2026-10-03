@@ -154,15 +154,20 @@ fetched lane baseline, so the lane preserves the existing Ask handoff and does
 not invent a note owner or replacement composer; that action boundary remains a
 separate product-direction reconciliation item.
 
-The structural reference set is recorded by source hash because no promoted
-phone-screen export was available in this lane:
+The structural reference set is now promoted as seven rendered L1 PNGs under
+`travel-app/docs/surfaces/entity-object/design-refs/`. The current Downloads
+export was re-read on this handoff; all four hashes differ from the earlier
+receipt, so the lane records both source provenance and the exact Playwright
+selector render without claiming semantic drift. The external runtime is not
+copied into the app repository; its direct inputs and output hashes are listed
+in `source-provenance.json`.
 
-| Reference | Source hash | Use |
-| --- | --- | --- |
-| Board 06 — The Page | `9bc587a417e9fc57c35d4b3c2e71f65ce08721adf0b0352149d7b6b998704cd0` | shared anatomy |
-| Board 06B — Arrival Large Text | `8b6607af7a6d0aa53b207cd7cd3671a7ec32abd0e56a2ab7a199bf6fb697a05c` | large-text ordering |
-| Board 14 — Received from Places | `cff9b12b2bf3b282b8dd21377bb447c63312e7fcb15e15d97f8701555aaec61f` | purpose-sensitive reading |
-| Board 09 — One Place Five Doors | `b25f8ad561fa41be70ef81d7fd009d1d0db06d3a44196451a2a1cd77971f344d` | entry/door comparison |
+| Reference | Earlier receipt hash | Current export hash | Use |
+| --- | --- | --- | --- |
+| Board 06 — The Page | `9bc587a417e9fc57c35d4b3c2e71f65ce08721adf0b0352149d7b6b998704cd0` | `4a0cd698b9bbd3e55de7bf70b078a8e424fa002948a3712cf846eeb1be876e77` | shared anatomy |
+| Board 06B — Arrival Large Text | `8b6607af7a6d0aa53b207cd7cd3671a7ec32abd0e56a2ab7a199bf6fb697a05c` | `fa2e343b709b048551e896ecec7cc19e057a1a97ba3d776573bd8aa44a3e0b4f` | large-text ordering |
+| Board 14 — Received from Places | `cff9b12b2bf3b282b8dd21377bb447c63312e7fcb15e15d97f8701555aaec61f` | `eaa60641ed9124e3d575d87f488ee820faf7e52f4c51aa0ee5e3f59f189dffc4` | purpose-sensitive reading |
+| Board 09 — One Place Five Doors | `b25f8ad561fa41be70ef81d7fd009d1d0db06d3a44196451a2a1cd77971f344d` | `4e9d9e0b2520b95b5e4bf35208fdb711a424b6069935c3359d3c5aa0018dfa93` | entry/door comparison |
 
 The concrete implementation gap found in EP0/EP1 was that inline page verbs
 had a button role but no explicit accessible label. `TextVerb` now forwards its
@@ -170,6 +175,106 @@ visible label as `accessibilityLabel`; the focused regression asserts labels for
 Ask Vesper, Tonight? and Leave for someone. No new layout system, data cache,
 prompt, or owner contract was introduced. Native visual and assistive-technology
 acceptance is still a release gate rather than a local claim.
+
+The board-to-code/state matrix is:
+
+| Board case | Owning code/state | Current evidence | Gap or dependency |
+| --- | --- | --- | --- |
+| 06 shared anatomy | `ObjectPageShell`, `ObjectPageRebuild`, three routes | 140 focused renderer/route tests pass | Native layout and capture remain deferred |
+| 06B large text | `objectPageUsesStackedFacts`, title/body composition | threshold and long-name tests pass | Device Dynamic Type/VoiceOver proof remains deferred |
+| 14 R1 discovery | `rankObjectFacts` with discovery defaults; no arrangement/visit brief | purpose ranking tests pass | A persisted research brief has no purpose discriminator, so visit-only paragraph omission cannot be applied safely |
+| 14 R2 explicit visit | `purposeBodyBlocks`, visit-ranked facts | visit/arrangement projection tests pass | Same missing research-purpose discriminator; no new API field is admitted here |
+| 14 R3 arrangement | `objectArrangementSummary`, arrangement body block | confirmation, reported-booked and timezone tests pass | Existing owner arrangement data is sufficient |
+| 14 R4 exact original | `reading_selection_state`, `take`, selected route handoff | exact-reading-first tests pass | Native original-reader capture remains deferred |
+| 09 entry doors | `routeForEntity`, `placesDetailReturnDestination` | route/return suites pass | Connectivity owns live entrance/return acceptance |
+
+G2 review of `composeObjectBodyBlocks` found that it appends persisted
+`research.text_paragraphs` after purpose blocks. That behavior preserves stored
+order and never generates prose, but the current `EntityResearchBrief` contract
+has no purpose/section discriminator. Board 14's “do not show the weeknight
+line while assessing Saturday” therefore cannot be implemented as a safe
+paragraph filter in this lane. This is a precise owner/API dependency; no
+semantic guessing, new backend field, or automatic generation was introduced.
+
+## G1 reference-adoption repair receipt
+
+Central review found that the first promotion copied four HTML boards whose
+`support.js`, `vdl.css`, `entity-lab.css`, `_ds` kernel and `dc-import` files
+were not present in the app repository. That was not a reproducible reference
+package. The lane re-rendered Boards 06, 06B, 09 and 14 with the existing
+Playwright selector exporter (`#dc-root`, 430×932 viewport, device scale 2,
+`--no-query`) and committed only the resulting PNGs plus a hash manifest:
+
+- App `5397c2da7` — replaces the four copied HTML files with rendered PNGs,
+  records direct runtime/component/source/output hashes in
+  `design-refs/source-provenance.json`, and registers the manifest, images and
+  provenance in `scripts/polish-qa/surfaces.mjs`.
+- `node scripts/polish-qa/design/check-design-refs.mjs entity-object` passed
+  with four pairs and no external-canon claim.
+- `node scripts/polish-qa/validate-surface-index.mjs` passed for all 47
+  surfaces.
+
+This first repair was superseded by the resolved-frame correction below. The images remain L1
+structural authorities: current-build native screenshots, pixel comparison,
+Dynamic Type and VoiceOver evidence are still release gates.
+
+## G1 resolved-frame correction receipt
+
+Central review of the first PNGs found two concrete defects: `file://` blocked
+the runtime's sibling `dc-import` fetches, leaving `PlaceHead` and `FactPair`
+as blank hint boxes, and `#dc-root` captured the 1,560–1,820px board instead of
+an individual phone frame. The lane corrected the renderer input rather than
+accepting those images:
+
+- A temporary static server (`python3 -m http.server 4177 --directory
+  ~/Downloads/vesper-entity-object-handoff-lab/project`) returned 200 for each
+  sibling component; the browser diagnostic recorded the failed `file://`
+  fetches and the successful HTTP component responses.
+- App `37de44214` re-rendered seven resolved phone frames with the existing
+  exporter at `:nth-match(.p, N)`: shared anatomy, no-photo, large text, the
+  Board 09 entry frame, and Board 14 discovery, visit and arrangement frames.
+  App `c5c7f9f70` records the transport and diagnostic in the provenance file.
+- A bounded `--wait-ms=2000` rerender was checked against the audit evidence
+  (`/private/tmp/vesper-entity-reference-audit.json`): every selected frame had
+  a visible identity block, resolved source list and no clipping before its PNG
+  was accepted. The output hashes and dimensions remain stable.
+- Every corrected image was inspected. Each is an uncropped 348/393 CSS-pixel
+  phone frame with identity, facts, body, sources/actions and closing content;
+  no unresolved component placeholder remains. The manifest now contains
+  seven pairs and exact selector/output hashes.
+
+Two source-board inconsistencies are recorded for Claude Design review only:
+Board 14 R3 cites source 1 while listing 2, 3 and D, and Board 14 R1 says no
+reservation pressure while its closing TABLE row says Reserve / weekends fill.
+The lane made no design-file or product correction and treats neither fixture
+statement as runtime truth.
+
+This correction supersedes the four broad-board PNGs from the first repair.
+The promoted images remain L1 structural references and do not claim native,
+pixel-parity, Dynamic Type or VoiceOver acceptance.
+
+G2 remains open. The characterization test proves only that the current
+projection preserves stored paragraph order for discovery and explicit visit;
+it does not prove Board 14's purpose omission. Closing that gap requires an
+owner-approved `EntityResearchBrief` purpose/section discriminator and its
+backend contract/readback evidence. No semantic filter, new field, generation,
+storage or model/provider work is admitted in this lane.
+
+Central reviewed the seven exact output hashes and rendered phone frames against
+the unchanged source export. The references are locally verified for structural
+use, pending integration acceptance; they are not a passing current-build
+comparison. Actual design changes belong in Claude Design. In particular, Board
+14 R3 cites source 1 while its supplied source list contains 2, 3 and D. Board 14
+R1's “no reservation pressure” description and closing Reserve row require design
+reconciliation. These observations do not authorize local design-source repairs.
+
+The G2 dependency also includes explicit visit timing and content granularity:
+purpose alone cannot distinguish Saturday from weeknight advice, and a mixed
+paragraph cannot safely be omitted as a whole. Existing structured facts and
+whole authored Takes do not classify persisted research prose. A serving contract
+must bind applicability to the exact source content and explicit opening context.
+The proposed extension beyond this package's no-new-writes boundary is pending
+human admission; no field, classifier, backfill or owner write is implemented.
 
 EP2/EP3 evidence then exercised the existing action and receiving boundaries:
 the action suite passed 43 tests across Keep/share, public eligibility, gated
@@ -361,7 +466,7 @@ No successor feature is automatically admitted when EP4 finishes.
 | Package | Current state | Completion evidence |
 | --- | --- | --- |
 | Planning | Lane and mini roadmap prepared | Three exact bases and isolated runtime allocation recorded above |
-| EP0 | Complete locally | Contract/route/test inspection, Board 14 promotion, source hashes and action boundary recorded above; visual export unavailable |
+| EP0 | Complete locally | Contract/route/test inspection, seven resolved phone-frame L1 references, source/runtime hashes and action boundary recorded above; current-build comparison remains pending |
 | EP1 | Complete locally | Accessibility-label gap fixed in `TextVerb`; focused component regression passes; remaining reading variants rely on existing projection/shell evidence |
 | EP2 | Complete locally | 6 focused app suites / 43 tests passed; existing Keep/share/Ask and gated research/people contracts remain unchanged |
 | EP3 | Complete locally | 4 focused app suites / 95 tests and 4 focused backend files / 55 tests passed; exact route/return and lifecycle boundaries remain intact |
