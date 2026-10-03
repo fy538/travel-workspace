@@ -411,6 +411,54 @@ owner/authority dependency, when a new human decision changes scope, or at G5.
   Its already pending exact decision is separate from every other slice.
 - Native, signed-in, actual model quality and complete lab parity: unverified.
 
+### Infrastructure expansion — October 3 regroup
+
+The founder requested more parallel implementation lanes after the G0–G5
+integration checkpoint. This newly admitted, finite reliability queue is broader
+than that paused Goal. It does not resume the Goal tracker, waive its remaining
+acceptance, answer the pending G2 contract question, or authorize native/model
+validation. The old two-product-package cap does not constrain this new queue:
+run the four disjoint infrastructure packages below alongside the already active
+Intake capture chain. Central remains the only integration/publication owner.
+
+The readiness audit inspected workspace `856c57b4`, backend `9e4735aa8`, app
+`92db5288`. Findings are code/contract evidence, except the lane-creation ordering
+probe, which executed recording stubs without real Git or file mutations.
+Each product reliability package starts with an actual failing reproduction;
+an inferred gap is not yet a proven behavioral failure. Preserve the existing
+backend #250/#251 and app #224 acceptance boundaries while work continues.
+
+| Package / lane | Ordered implementation chain and finish | Owned boundary |
+| --- | --- | --- |
+| I1 / new Task Lifecycle | Reproduce claim A → stale-claim reap → claim B in disposable Postgres. Fence old A completion, retry/terminal failure and payload scrubbing against the exact claimed attempt/current state; B still completes. Preserve priority, exclusions, retry ceilings and lifecycle suppression. Deliver reproduction, minimal owner/dispatcher repair, regression proof and measured preflight. | `backend/core/scheduled_tasks.py` and nearest scheduled-task tests. No new scheduler/API, external handler effects or exactly-once provider claim. |
+| I2 / Adaptive Context | Reproduce Entity research lease A → expiry → reclaim B with provider-free execution doubles. Fence old A lifecycle/dossier/error updates; conform processor success/retry/failure paths to current claim authority. Preserve cap, attempt ceiling, idempotent enqueue and read-only dry-run. | `backend/core/db/content/_review_queue.py`, `research_agent/tasks/process_research_queue.py` and owner tests. Queue bookkeeping only; stale graph/brief publication safety is not established by this repair. No G2/board16 expansion. |
+| I3 / Artifact | First reproduce mounted Collection fact/retention expiry and suppress obsolete derived details before delayed/failed refetch, preserving independently eligible membership/original access. Then reproduce index paging under rename/add/delete and repair any demonstrated mixed continuation with the smallest existing-owner fence/restart contract. Prove controlled-clock, account/late-response and disposable-DB cases. | Collection display/DB/model/route plus `data/consumerCollections.ts` and owner tests. One writer for this chain; no second Collection lane, root changes, new cache or retention policy. |
+| I4 / Eng Efficiency | Allocate/check runtime prerequisites before lane mutations; demonstrate denied allocation creates zero worktrees. Report exact created paths/branches and failure stage after partial Git/manifest failure, preserving artifacts for deliberate recovery. Then add read-only ancestry/equivalent-patch/remaining/unknown diagnostics against named cached refs. | `scripts/worktree_lane.py`, fixture tests and existing setup runbook. Keep retirement's ancestry/cleanliness safeguards; patch equivalence is informational, never hosted acceptance or automatic deletion authority. |
+
+Intake continues its independently human-authorized CP01–CP08 original-storage
+and draft foundation in its existing lane. Its current CP03 local store is not
+share-host, Kept-acknowledgement or native acceptance. Do not assign a duplicate
+capture writer or edit its roadmap from another lane. Entity stays at its exact
+G2 dependency; Connectivity has no new defect package. Idle owners need not be
+given unrelated work merely to increase concurrency.
+
+Use one isolated coordinated checkout per outcome. Product owners may generate
+contracts for their own evidence, but central alone reconciles combined contract
+outputs and accepted pins. Hand off independently useful commits while continuing
+the next listed step; ordinary turn endings do not terminate unfinished executable
+work. No owner publishes/merges independently. No new broad owner Goals are
+needed. The existing monitor is actually paused and is not resumed by dispatch.
+
+Acceptance remains focused owner tests, relevant real disposable-database or
+temporary-Git evidence, measured explicit-base preflight and normal applicable
+hosted gates. Keep failed receipts. No paid/provider/model calls, activation,
+deployment, auth bypass, new sharing/retention/catalog behavior or security
+exceptions. Design corrections remain in Claude Design; local design source
+files are read-only. Stop each chain at its finish or a specific unresolved
+owner/external dependency; no automatic successor backlog. Central checkpoints
+progress and integrates compatible slices without making all owners wait for
+an unrelated acceptance gate.
+
 ### Orchestration operating contract
 
 This section owns cross-lane operating rules. The
