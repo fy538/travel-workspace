@@ -22,9 +22,12 @@ depends_on:
 
 **Regroup — October 3:** C2/A2/AC2/E2 owner handoffs are complete; A2/AC2
 backend work and E2 evidence are accepted. App #219/#220 and matching workspace
-#71 remain pending the separate dependency-security decision. A bounded A2
-deletion-to-Life cache reproduction is underway after the successor review
-identified a possible omitted read model; it is not a confirmed defect yet.
+#71 remain unmerged. The exact temporary braces exception is approved; C2
+passed local preflight, but GitHub refused to start its hosted checks because
+of account billing/spending limits. Required gates remain mandatory. The bounded A2
+follow-through reproduced an omitted Life Collection-count refresh and added
+a repair with late-response and account-isolation coverage; central verification
+of the final candidate follows.
 The [successor readiness queue](#october-3-regroup-and-successor-readiness)
 separates independently useful work from product decisions. No larger overnight
 implementation round is activated. The monitor is paused, with hourly cadence
@@ -343,12 +346,13 @@ evaluation remain deferred, and passing fixture cases do not replace that proof.
 | Owner | Ordered useful work | Activation boundary and fallback |
 | --- | --- | --- |
 | Connectivity | Reproduce the existing D2 friend/place contribution beside an already-eligible, separately attributed Source for the same canonical Place; repair only a demonstrated omission; verify exact original opening/return and removal of only the withdrawn reading. Existing owners are `backend/places/sections.py`, `section_projection.py`, `backend/root_projection/v2/places_runtime.py` and the current Places feed/navigation components. | A proposed bounded D2 investigation, not another C2 task. No new fetcher, generated synthesis, audience or root hierarchy. If current composition already works or there is no eligible Source, retain the useful friend note/Place door and stop. No guaranteed defect or longer chain is claimed. |
-| Artifact | Complete the bounded A2 deletion-to-Life cache reproduction/repair first. Proposed larger chain: private Collection list in Life, a canonical member reader, and current-source opening plus stale/revoked/error handling. Existing owners are `data/keptThings.ts`, root projection invalidation, `data/consumerCollections.ts` and `LifeRootV1Screen.tsx`. | The A2 follow-through is within accepted deletion semantics. A native Collection browsing experience requires a concrete member-display and Remove/Delete interaction decision; the unpublished design handoff does not supply authority. Keep rows hidden until that decision, rather than adding a dead end. No third Artifact slice is admitted. |
+| Artifact | Finish acceptance of the reproduced A2 deletion-to-Life cache repair first. Proposed larger chain: private Collection list in Life, a canonical member reader, and current-source opening plus stale/revoked/error handling. Existing owners are `data/keptThings.ts`, root projection invalidation, `data/consumerCollections.ts` and `LifeRootV1Screen.tsx`. | The A2 follow-through is within accepted deletion semantics. A native Collection browsing experience requires a concrete member-display and Remove/Delete interaction decision; the unpublished design handoff does not supply authority. Keep rows hidden until that decision, rather than adding a dead end. No third Artifact slice is admitted. |
 | Adaptive Context | Proposed larger chain: one explicit Collection choice in a selected-source request; exact request/revision binding through the existing API; existing result readback with stale, incomplete, unavailable and no-addition states. Use the selected-source request and reader owners; do not introduce a second context store. | Requires a concrete request/selection design. Keep the current read-only reader internal and the feature default-off meanwhile. No model-default rewrite, new answer persistence, automatic library scan, live calls or generation-quality claim. Repeated fixtures are not an independent implementation fallback. |
 | Eng Efficiency | Retain E2's accepted bounded findings and the corrected monitor stopping/recovery rules. Admit another tooling repair only from a demonstrated current defect with valid, violating and tool-failure acceptance cases and a measurable finish. | Do not repeat inconclusive leak/order probes, invent benchmark work, remove masks or create a new orchestration subsystem merely to occupy this lane. |
 
-Central first resolves the exact security decision and lands the app candidates
-and compatible workspace pins through normal checks. It then reconciles these
+The exact temporary security exception is approved. Central prepares the final
+app candidates and compatible workspace pins; landing awaits restored GitHub
+Actions billing access and all normal checks. It then reconciles these
 proposals with approved design, creates compact finite assignments with exact
 bases and fallback/stop rules, and reports Goal/monitor activation separately.
 No security exception, feature activation or new policy follows from this queue.

@@ -13,10 +13,11 @@ source_of_truth_for: []
 # Artifact experience engineering roadmap
 
 **Current assignment — October 3 regroup:** A2 backend is accepted through
-backend #249; app #220 still awaits the separate dependency-security decision.
-One bounded deletion-to-Life cache reproduction/repair follows the read-only
-successor review; until reproduced, the omitted refresh is a code-path finding,
-not an established user-visible failure. The proposed larger private Collection
+backend #249; app #220 remains unmerged. The exact braces exception is now
+approved; hosted checks cannot start until GitHub account billing access is restored.
+The bounded follow-through reproduced a stale Life Collection count after
+deletion. A focused app correction refreshes the current persona/session only
+and fences delayed reads; hosted acceptance is still pending. The proposed larger private Collection
 browsing chain and its design boundary live in the
 [program readiness queue](vesper-program-roadmap.md#october-3-regroup-and-successor-readiness).
 A1 is accepted; signed-in validation remains deferred, not passed. Do not repeat it.
@@ -140,9 +141,23 @@ passed. App [PR #220](https://github.com/fy538/travel-app/pull/220) publishes
 candidate `97abc84424621c7cfb47e12a41df9b5d0300b97a`, with exact reviewed
 backend/workspace dependencies. Its measured pin-only preflight passed in
 105.065 seconds with all 9,299 app tests and stable clean inputs. The app's
-required security audit and separate pending exception decision remain a merge
-boundary; no security policy changed. Matching workspace acceptance must follow
+required security audit initially blocked acceptance. The founder subsequently
+approved the exact temporary braces exception recorded in the
+[CI Plan](../reliability/CI%20Plan.md); all hosted required checks still must pass.
+Matching workspace acceptance must follow
 app acceptance.
+
+**October 3 Life follow-through:** owner app `27dd3f525` was integrated as
+`0201d5f53` on the exact PR #220 candidate. The pre-fix mounted query retained
+“2 saved things” after successful deletion. The repair refreshes the existing
+Life projection for the same active persona/session after private reads settle;
+a late pre-delete response cannot restore the old count, and a late command
+from a torn-down account cannot invalidate its successor's Life cache. The
+owner's two focused suites passed all 17 tests, with ESLint and typecheck
+passing. These are client/data-boundary fixtures, not signed-in native evidence.
+The approved security exception and this correction await central final
+preflight and required hosted acceptance; GitHub billing access currently
+blocks new app jobs before execution.
 
 The transaction proves immediate source revocation and Intake handoff, not
 physical object-store deletion. If retained sources have external blob refs,

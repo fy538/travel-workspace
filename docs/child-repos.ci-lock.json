@@ -1,5 +1,5 @@
 {
   "travel-agent": "aadace0bd4e7e8c767d1bfd46b14dec8bb18bd6f",
-  "travel-app": "97abc84424621c7cfb47e12a41df9b5d0300b97a",
-  "_comment": "Reviewed combined A2/AC2 tuple: backend candidate accepted by PR249; app candidate in PR220 awaits all required checks and separate security resolution. Do not merge this workspace candidate before app acceptance."
+  "travel-app": "0201d5f5303bdde1513cd11c258bb064ce37c2ec",
+  "_comment": "Reviewed A2/AC2 tuple: backend candidate accepted by PR249; app PR220 includes the deletion-to-Life correction and exact founder-approved temporary braces exception. App acceptance is blocked on GitHub Actions billing access and passing required checks; do not merge this workspace candidate first."
 }
