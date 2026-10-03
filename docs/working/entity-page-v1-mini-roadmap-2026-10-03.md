@@ -155,14 +155,16 @@ not invent a note owner or replacement composer; that action boundary remains a
 separate product-direction reconciliation item.
 
 The structural reference set is recorded by source hash because no promoted
-phone-screen export was available in this lane:
+phone-screen export was available in this lane. The current Downloads export
+was re-read on this handoff; all four hashes differ from the earlier receipt,
+so the lane records provenance without claiming semantic drift:
 
-| Reference | Source hash | Use |
-| --- | --- | --- |
-| Board 06 — The Page | `9bc587a417e9fc57c35d4b3c2e71f65ce08721adf0b0352149d7b6b998704cd0` | shared anatomy |
-| Board 06B — Arrival Large Text | `8b6607af7a6d0aa53b207cd7cd3671a7ec32abd0e56a2ab7a199bf6fb697a05c` | large-text ordering |
-| Board 14 — Received from Places | `cff9b12b2bf3b282b8dd21377bb447c63312e7fcb15e15d97f8701555aaec61f` | purpose-sensitive reading |
-| Board 09 — One Place Five Doors | `b25f8ad561fa41be70ef81d7fd009d1d0db06d3a44196451a2a1cd77971f344d` | entry/door comparison |
+| Reference | Earlier receipt hash | Current export hash | Use |
+| --- | --- | --- | --- |
+| Board 06 — The Page | `9bc587a417e9fc57c35d4b3c2e71f65ce08721adf0b0352149d7b6b998704cd0` | `4a0cd698b9bbd3e55de7bf70b078a8e424fa002948a3712cf846eeb1be876e77` | shared anatomy |
+| Board 06B — Arrival Large Text | `8b6607af7a6d0aa53b207cd7cd3671a7ec32abd0e56a2ab7a199bf6fb697a05c` | `fa2e343b709b048551e896ecec7cc19e057a1a97ba3d776573bd8aa44a3e0b4f` | large-text ordering |
+| Board 14 — Received from Places | `cff9b12b2bf3b282b8dd21377bb447c63312e7fcb15e15d97f8701555aaec61f` | `eaa60641ed9124e3d575d87f488ee820faf7e52f4c51aa0ee5e3f59f189dffc4` | purpose-sensitive reading |
+| Board 09 — One Place Five Doors | `b25f8ad561fa41be70ef81d7fd009d1d0db06d3a44196451a2a1cd77971f344d` | `4e9d9e0b2520b95b5e4bf35208fdb711a424b6069935c3359d3c5aa0018dfa93` | entry/door comparison |
 
 The concrete implementation gap found in EP0/EP1 was that inline page verbs
 had a button role but no explicit accessible label. `TextVerb` now forwards its
@@ -170,6 +172,26 @@ visible label as `accessibilityLabel`; the focused regression asserts labels for
 Ask Vesper, Tonight? and Leave for someone. No new layout system, data cache,
 prompt, or owner contract was introduced. Native visual and assistive-technology
 acceptance is still a release gate rather than a local claim.
+
+The board-to-code/state matrix is:
+
+| Board case | Owning code/state | Current evidence | Gap or dependency |
+| --- | --- | --- | --- |
+| 06 shared anatomy | `ObjectPageShell`, `ObjectPageRebuild`, three routes | 140 focused renderer/route tests pass | Native layout and capture remain deferred |
+| 06B large text | `objectPageUsesStackedFacts`, title/body composition | threshold and long-name tests pass | Device Dynamic Type/VoiceOver proof remains deferred |
+| 14 R1 discovery | `rankObjectFacts` with discovery defaults; no arrangement/visit brief | purpose ranking tests pass | A persisted research brief has no purpose discriminator, so visit-only paragraph omission cannot be applied safely |
+| 14 R2 explicit visit | `purposeBodyBlocks`, visit-ranked facts | visit/arrangement projection tests pass | Same missing research-purpose discriminator; no new API field is admitted here |
+| 14 R3 arrangement | `objectArrangementSummary`, arrangement body block | confirmation, reported-booked and timezone tests pass | Existing owner arrangement data is sufficient |
+| 14 R4 exact original | `reading_selection_state`, `take`, selected route handoff | exact-reading-first tests pass | Native original-reader capture remains deferred |
+| 09 entry doors | `routeForEntity`, `placesDetailReturnDestination` | route/return suites pass | Connectivity owns live entrance/return acceptance |
+
+G2 review of `composeObjectBodyBlocks` found that it appends persisted
+`research.text_paragraphs` after purpose blocks. That behavior preserves stored
+order and never generates prose, but the current `EntityResearchBrief` contract
+has no purpose/section discriminator. Board 14's “do not show the weeknight
+line while assessing Saturday” therefore cannot be implemented as a safe
+paragraph filter in this lane. This is a precise owner/API dependency; no
+semantic guessing, new backend field, or automatic generation was introduced.
 
 EP2/EP3 evidence then exercised the existing action and receiving boundaries:
 the action suite passed 43 tests across Keep/share, public eligibility, gated
