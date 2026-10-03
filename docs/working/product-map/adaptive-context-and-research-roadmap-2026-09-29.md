@@ -184,7 +184,10 @@ Ruff lint and format checks passed on all six changed backend/test files. This
 was a focused correction, not a rerun of the broad backend suite or the
 cross-repository preflight. The selected-source feature remains dark, and the
 application is still configured to use `gpt-6-luna` with low reasoning for
-this role; no model call or model evaluation was made.
+this role; no model call or model evaluation was made. The backend follow-up
+commits are `d50c653fc` (correction) and `a6fb7b703` (direct lock probes); the
+workspace receipt is `3781672e`. These are local lane commits, not pushed or
+merged.
 
 Artifact A2 owns lifecycle mutations; AC2 adds only the matching shared
 identity-graph reader fence and consumes current authoritative reads/revisions.
