@@ -468,6 +468,13 @@ def test_status_reports_lanes_without_mutation(tmp_path, monkeypatch, capsys):
 def test_status_distinguishes_merge_cherry_pick_and_remaining_patches(
     tmp_path, monkeypatch, capsys
 ):
+    # Hosted runners need not have a Git identity. Do not let developer config
+    # or automatic identity inference hide a missing fixture-owned committer.
+    monkeypatch.setenv("GIT_CONFIG_GLOBAL", os.devnull)
+    monkeypatch.setenv("GIT_CONFIG_NOSYSTEM", "1")
+    monkeypatch.setenv("GIT_CONFIG_COUNT", "1")
+    monkeypatch.setenv("GIT_CONFIG_KEY_0", "user.useConfigOnly")
+    monkeypatch.setenv("GIT_CONFIG_VALUE_0", "true")
     module = load("worktree_lane")
     root = coordinated_sources(tmp_path)
     monkeypatch.setattr(module, "ROOT", root)
@@ -477,7 +484,10 @@ def test_status_distinguishes_merge_cherry_pick_and_remaining_patches(
 
     # A regular merge is ancestry-proven against the cached main ref.
     commit_file(lane, "merged.txt", "merged\n", "merge candidate")
-    git(root, "merge", "--no-ff", "-m", "adopt merged candidate", "codex/fixture")
+    git(
+        root, "-c", "user.name=Test", "-c", "user.email=test@example.test",
+        "merge", "--no-ff", "-m", "adopt merged candidate", "codex/fixture",
+    )
     git(root, "push", "-q", "origin", "main")
 
     # The same patch on a different commit is equivalent, while ancestry stays false.

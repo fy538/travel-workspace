@@ -886,6 +886,16 @@ trees. Status must not fetch or mutate repositories.
 | I4.1 Safe lane creation | Isolated independent-Git fixtures prove successful creation, allocation denial with no worktree/branch changes, second/third child failure, manifest write failure, pre-existing and changed artifacts, exact recovery reporting and honest nonzero results. Partial work remains available for review. |
 | I4.2 Read-only adoption | Fixtures cover a normal merge, cherry-pick, remaining change, modified squash, missing ref/history and Git query failure. Status uses the named cached ref without fetch; cherry-pick equivalence remains informational, and retirement rejects a non-ancestor. |
 
+**Hosted fixture correction — October 3:** workspace PR #81's first Reliability
+job failed one test (230 passed): its real-Git merge fixture relied on an ambient
+committer identity. The central 231-test preflight had passed on macOS, where
+Git could infer that identity. The merge now supplies the fixture's identity
+explicitly; the regression removes global/system configuration and requires
+configured identity so local auto-detection cannot hide this prerequisite.
+The failure log is preserved. This changes test setup, not adoption behavior,
+retirement eligibility or runner-wide Git configuration; hosted acceptance
+remains pending until the corrected candidate passes its normal checks.
+
 The central program roadmap owns sequencing, publication and merge. This lane
 owns only the implementation, focused evidence and this specialist receipt;
 these diagnostics do not authorize automatic cleanup or a successor package.
