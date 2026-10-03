@@ -863,6 +863,43 @@ report regressions/rework alongside elapsed time. These rules are adopted;
 their efficiency benefit remains unmeasured. Preserve the existing single-case
 sharding result without a general speedup or default-adoption claim.
 
+### I4 Coordinated lane lifecycle safety and adoption diagnostics
+
+**Current assignment — October 3:** improve the existing workspace lane tool in
+two ordered milestones. Lane creation must validate repositories, refs, branch
+names and destination, then allocate all runtime ports before its first Git
+mutation. Allocation failure must leave zero worktree/branch mutations. A later
+child or manifest failure must name the failed stage and exact completed
+path/branch pairs, preserve all artifacts, and give manual recovery guidance.
+Never force-remove, reset or overwrite partial work.
+
+After creation recovery is reliable, add bounded read-only adoption diagnostics
+against an explicitly named local cached ref. Report ancestry, patch-equivalent
+commits, remaining patch candidates or unknown history/query failures. Compare
+at most 1,000 candidate commits and show at most five IDs per category. These
+diagnostics do not establish semantic correctness, hosted acceptance, PR state
+or retirement eligibility; retirement continues to require ancestry and clean
+trees. Status must not fetch or mutate repositories.
+
+| Milestone | Acceptance evidence |
+| --- | --- |
+| I4.1 Safe lane creation | Isolated independent-Git fixtures prove successful creation, allocation denial with no worktree/branch changes, second/third child failure, manifest write failure, pre-existing and changed artifacts, exact recovery reporting and honest nonzero results. Partial work remains available for review. |
+| I4.2 Read-only adoption | Fixtures cover a normal merge, cherry-pick, remaining change, modified squash, missing ref/history and Git query failure. Status uses the named cached ref without fetch; cherry-pick equivalence remains informational, and retirement rejects a non-ancestor. |
+
+**Hosted fixture correction — October 3:** workspace PR #81's first Reliability
+job failed one test (230 passed): its real-Git merge fixture relied on an ambient
+committer identity. The central 231-test preflight had passed on macOS, where
+Git could infer that identity. The merge now supplies the fixture's identity
+explicitly; the regression removes global/system configuration and requires
+configured identity so local auto-detection cannot hide this prerequisite.
+The failure log is preserved. This changes test setup, not adoption behavior,
+retirement eligibility or runner-wide Git configuration; hosted acceptance
+remains pending until the corrected candidate passes its normal checks.
+
+The central program roadmap owns sequencing, publication and merge. This lane
+owns only the implementation, focused evidence and this specialist receipt;
+these diagnostics do not authorize automatic cleanup or a successor package.
+
 ### E1 Verification identity and native prerequisites
 
 **Assignment closed with deferred proof — October 3:** preserve the original

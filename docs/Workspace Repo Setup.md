@@ -125,6 +125,14 @@ Existing spaced-name checkouts are adopted by lowercase symlinks during
 `make bootstrap`; they are not cloned again or rewritten. Linked worktree `.git`
 files are supported. An invalid or already occupied lane fails visibly.
 
+Lane creation validates every repository, base revision, destination and branch,
+then allocates all five runtime ports before adding the first worktree. If port
+allocation fails, no lane worktree or branch has been created. If a later child
+worktree or manifest write fails, the command reports the failed stage and the
+exact completed paths and branches, preserves those artifacts, and gives manual
+recovery guidance. Inspect each repository before retrying; creation never
+force-removes, resets or overwrites partial work.
+
 The gitignored `.workspace-lane.json` records base revisions, branch and an
 isolated Compose project with distinct Postgres, Qdrant, API and Expo host ports.
 It contains no credentials. Set its exclusive `device` assignment before native
@@ -174,7 +182,15 @@ The acknowledgement states that runtime ownership was checked; the command
 does not inspect processes. It removes only checked worktrees and their exact
 local branch tips; it never deletes remote branches. A failed partial cleanup
 needs inspection before retrying. `make worktrees` reports remaining lanes,
-including unmanaged or incomplete worktrees, without changing them.
+including unmanaged or incomplete worktrees, without changing them. For each
+managed lane it compares HEAD with the named local cached ref
+`refs/remotes/origin/main`; pass `--base-ref refs/heads/<name>` to inspect another
+explicit local ref. Status never fetches or contacts GitHub. It reports ancestry,
+patch-equivalent commits, remaining patch candidates or unknown history/query
+errors, checking at most 1,000 candidate commits and displaying at most five
+commit IDs per category. Patch equivalence is informational:
+it does not establish semantic correctness, hosted acceptance, PR state or
+retirement eligibility. Retirement remains strict about ancestry and cleanliness.
 
 ## Agent instruction discovery
 
