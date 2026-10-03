@@ -12,6 +12,11 @@ source_of_truth_for: []
 
 # Faster development with trustworthy QA
 
+**Next assignment — October 3:** E2 below owns two bounded independent test
+reliability investigations and repairs. E1 implementation is accepted and native
+acceptance is deferred. The program's October 3 queue owns the new round;
+the prior paused-monitor observation below is not its activation receipt.
+
 **Current status — October 3:** E1 tooling and the single optional sharding
 comparison receipt are accepted. The final native failure receipt is accepted
 through workspace [PR #67](https://github.com/fy538/travel-workspace/pull/67).
@@ -597,6 +602,73 @@ visual review on known defects and clean cases. Retain failure captures when the
 help diagnosis; diagnostic capture does not imply a new baseline or approval gate.
 
 ## 5. Improvement roadmap
+
+### E2 Natural test completion and order isolation
+
+**Goal:** remove demonstrated test-resource leaks and order-sensitive fixture
+defects while preserving the same correctness gates. Carry reproduction,
+owner-level fixes, regression evidence and measured handoff within one assignment.
+These are two independent milestones, not permission to keep experimenting until
+a predetermined run time or speedup is reached.
+
+1. Inspect the two retained E1 forced-worker-exit receipts. They predate accepted
+   app `355376208`, so reproduce the relevant selection on current accepted code
+   once before claiming a current leak. Use one focused diagnostic to identify
+   an outstanding timer/listener/server if needed. Existing React Query listener
+   cleanup and runner worker settings are not themselves evidence of a defect.
+2. Repair the responsible test/setup resource owner if reproduced. Prove the
+   affected suite exits naturally and run the appropriate explicit-base selection.
+   Never hide the issue with forced exit, fewer workers, skipped coverage or a
+   higher timeout. If not reproducible/attributable within this bounded attempt,
+   preserve the uncertainty and advance to the independent next milestone.
+3. Investigate the existing backend error-handler quarantine family using its
+   recorded random-order seeds/worker grouping and unmasked execution. There are
+   53 allowlisted identities, 43 in this family, with review due October 7.
+   Begin with the affected family and one interacting group indicated by evidence;
+   do not repeatedly run the full backend suite looking for a failure.
+4. Fix shared fixture/global-state pollution at its owner when demonstrated.
+   Remove only identities verified under the failure-inducing unmasked order;
+   preserve unresolved entries, history and the exact quarantine guard. If the
+   bounded reproductions do not support a fix, leave the allowlist unchanged.
+5. Commit coherent fixes and focused evidence, then measured explicit-base
+   preflight. Record execution versus teardown time, checkout/tool identity and
+   failures. Existing XFAIL/XPASS cases still execute: removing masks is stronger
+   correctness evidence, not automatically a runtime saving.
+
+**Finish:** both bounded investigations resolved as a verified repair or an
+explicit no-reproduction/remaining-boundary finding, with any justified fixes
+ready for central integration. Stop after these cases. No product behavior,
+native/device work, provider/model calls, required-check changes, sharding
+adoption or broad verifier rewrite is assigned.
+
+### October 3 next-round readiness findings
+
+The central review found no open PR backlog at accepted workspace `cd161ecd`,
+backend `8fecebb37`, app `355376208`. From September 30 UTC the hosted query
+returned 56 merged PR records (32 workspace, 12 backend, 12 app); these include
+documentation and integration, so they are not 56 features or a completion
+percentage. Native/signed-in and model-quality proof remain separate and deferred.
+
+All four owners completed a read-only readiness review. Connectivity found a
+small composed Places error-state gap; Artifact found the absent whole-Thing
+deletion lifecycle; Adaptive identified a useful Collection scope requiring a
+product decision, which the founder then approved; Eng identified the bounded
+test investigations above. This supports two substantial capability chains plus
+smaller reliability work, not a promise of four equally long coding streams.
+
+Three owners reported old blocked Goals despite accepted implementation. A
+roadmap edit or ordinary message does not prove a persistent Goal is active.
+The previous queue also lacked admitted successors, and newer design decisions
+had not been reconciled with historical backlog entries such as kept AI-answer
+editions. The program's new queue and lifecycle confirmation address those
+specific gaps. Do not use activity duration as delivery evidence.
+
+The four roadmap files contain roughly 134,000 words of current and historical
+material in this inspected snapshot. Read the current goal block and referenced
+owner contracts at activation; inspect history only to resolve a real question.
+This is a context-size observation, not measured token cost or proven speedup.
+Measure the next natural round using the operating contract below, without
+adding synthetic benchmark work or a new monitoring implementation.
 
 ### October 3 orchestration trace review
 

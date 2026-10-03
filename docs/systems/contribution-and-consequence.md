@@ -3,7 +3,7 @@ doc_type: contract
 status: active
 owner: founder / product / architecture / engineering
 created: 2026-08-29
-last_verified: 2026-09-28
+last_verified: 2026-10-03
 why_new: Defines one cross-repository boundary from human contribution through immediate value, retention, consequence, projection, receipt, and causal repair across Chat, Intake, Occasions, Home, Places, and Life.
 supersedes: []
 source_of_truth_for:
@@ -554,6 +554,24 @@ audience and scope. This does not relabel shared work as private T1 or bypass a
 new material boundary. An edit grant alone does not authorize autonomous AI work.
 Repair preserves independent authored contributions and accepted Commitments;
 notification delivery and silence cannot resolve changed participation.
+
+### 6.2 Explicit private Collection context — decision of October 3
+
+For one explicit request, the person may select one private Collection as
+additional context. Use only its currently accessible members and their
+currently authorized Sources, within that viewer's private scope. Selection
+does not grant access to another Collection, inaccessible originals, a shared
+audience, or the rest of the library. This is request-time use, not a grant to
+scan or generate in the background, retain an answer, or contact a provider.
+
+Bind the request and its supporting evidence to the selected Collection and
+current membership and Source revisions. Revalidate before dispatch, publication
+and readback. A relevant revision change, deletion, revocation or loss of access
+invalidates the old result; do not silently replace the context or reuse stale
+support. Bounded retrieval must disclose incomplete coverage rather than imply
+the whole Collection was examined. The existing original-first behavior and
+public-lookup approval boundary remain in force. This implementation round
+includes no live model/provider calls and no new native selection experience.
 
 ## 7. Point and Bring ruling
 

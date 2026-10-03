@@ -20,6 +20,14 @@ depends_on:
 
 # Vesper program roadmap
 
+**Next implementation round — October 3:** use the admitted C2, A2, AC2 and E2
+chains below. The founder approved one explicitly selected private Collection
+as request-time additional context, with no automatic library scanning, sharing,
+background generation or live model/provider calls. The prior round's native
+validation remains deferred. Assignment, persistent Goal activation and monitor
+activation must each be confirmed separately; this roadmap is not a claim that
+any lane has started. The prior monitor state below is a dated observation.
+
 **Current decision — October 3:** the founder deferred native and signed-in
 validation for now. The October 2 implementation/integration round is closed;
 C1.3 interrupted capture, Artifact Save/readback/Undo and successful E1 native
@@ -306,6 +314,77 @@ the required fresh blocked audit; monitoring alone does not resume it. Schedulin
 changes use the automation tool and existing authorization; never silently
 reactivate a paused monitor. Explicitly deferred proof remains unverified and
 does not gate independent implementation unless the new outcome requires it.
+
+### October 3 implementation queue
+
+Readiness was checked against workspace `cd161ecd`, backend `8fecebb37` and app
+`355376208`, with no open PRs in the three repositories. The four existing owners
+performed read-only readiness reviews. These assignments supersede the historical
+C1/A1/AC1/E1 activation queue, not its outstanding evidence. Do not rebuild their
+accepted implementation or reopen deferred native/model validation.
+
+| Lane | Outcome and independently executable chain | Finish / honest limit |
+| --- | --- | --- |
+| Connectivity **C2** | [Existing Places refresh failure](#c2-existing-places-refresh-failure): propagate the root runtime error; reuse the existing cached-data notice and root retry; cover recovery, offline precedence and account/permission loss. | A small confirmed defect, not a promised overnight workload. Stop after a clean verified candidate; no new root design or native QA. |
+| Artifact **A2** | [Private Thing delete everywhere](artifact-experience-engineering-roadmap-2026-09-29.md#a2-private-thing-delete-everywhere): canonical/alias command; source lifecycle; all private memberships/revisions; app cache coherence; concurrency and contract verification. | A coherent owner-scoped lifecycle capability under the accepted Remove/Delete distinction. No real-user deletion, new retention policy or saved AI editions. |
+| Adaptive Context **AC2** | [One selected private Collection](product-map/adaptive-context-and-research-roadmap-2026-09-29.md#ac2-one-explicitly-selected-private-collection): exact request scope; bounded current-member adapter; influence/revision fences; readback; provider-free integration evidence. | Implement the newly approved request-time context path using current owners. Production stays dark; no native selector, provider/model calls, automatic whole-library context or saved answers. |
+| Eng Efficiency **E2** | [Natural test completion and quarantine repair](development-qa-research-and-roadmap-2026-09-30.md#e2-natural-test-completion-and-order-isolation): bounded current-head leak reproduction/repair, then an independent bounded quarantine-order repair. | Fix only reproduced causes and measure actual effects. No forced exits, masking, blanket allowlist removal, default sharding adoption or endless reproduction runs. |
+
+Artifact owns kept-Thing deletion, membership mutation and app Thing/Collection
+caches. Adaptive consumes those owners read-only and owns selected-source request,
+candidate and result fences. Connectivity owns only existing Places root/workspace
+presentation wiring. Eng owns test resource/fixture cleanup, not new product
+behavior. Any shared-file conflict is resolved centrally once; do not edit each
+other's owner files. Central reconciles generated snapshots/types and child pins
+at integration. Each API candidate carries its own synchronized generated output
+as evidence; generated files are not parallel hand-edited interfaces.
+
+AC2 can test revocation/revision behavior through existing owner APIs while A2
+is implemented. Once both interfaces are ready, central verifies that deleting
+an influencing Thing suppresses the stale Collection-backed result. Neither lane
+waits for the other's whole goal before completing independent milestones.
+
+Owners retain a finite Goal covering the entire assigned chain, with the exact
+roadmap revision, current milestone and next independent step. A frozen ready
+slice does not end the Goal when listed work remains. Central may integrate that
+slice while the owner advances independent work on later commits. Reconcile old
+Goals against the human's revised scope and report actual tool state; never
+claim a blocked Goal resumed because a message was delivered. If a lifecycle
+operation is unavailable, continue the explicitly assigned finite work and
+report the limitation rather than repeatedly attempting the same transition.
+
+The existing monitor may supervise this newly requested autonomous round after
+explicit activation is reported in the chat. It uses changed handoffs and exact
+candidate commits, not repeated full history reads. No ready successor means
+terminal completion/blocked state, not invented work. Stop at the end of these
+chains; later roadmap packages and unmerged product-design drafts are not an
+automatic backlog. Native/signed-in and model proof remain deferred and must
+not hold these implementation Goals open.
+
+#### C2 Existing Places refresh failure
+
+**Goal:** when a Places root runtime refresh fails while valid cached data is
+still available, retain the data and expose the existing recoverable refresh
+notice. Retry uses the root-owned runtime query; successful refresh clears the
+notice. The owning layer is the root-to-workspace read-state boundary.
+
+**Confirmed gap:** `PlacesRootExperience` retains its cached runtime after a
+background error, but `PlacesWorkspace` forces `isError` false for a root-owned
+feed. The existing presentation model and feed notice already support this
+condition; the standalone-feed tests do not cover the composed root path.
+
+1. Carry the minimal root read state through the existing boundary without a
+   duplicate fetch or another cache owner.
+2. Reuse the existing notice, root retry and recovered state. Preserve existing
+   offline precedence and no-cache/expired/invalid fallback behavior.
+3. Cover the actual composed path, including account change and permission
+   denial. An authorization failure must not be treated as harmless stale data.
+4. Run focused app checks and measured explicit-base preflight; commit a clean
+   candidate with the exact boundaries. Native appearance remains unverified.
+
+**Finish:** confirmed behavior and regression evidence, a clean committed
+handoff and no duplicate owner. No next root feature, device work or cosmetic
+redesign is assigned when C2 finishes.
 
 <a id="next-activation-round--october-2-infrastructure-continuation"></a>
 
