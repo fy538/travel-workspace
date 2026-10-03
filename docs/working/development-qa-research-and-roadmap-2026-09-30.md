@@ -15,7 +15,7 @@ source_of_truth_for: []
 **Current package — October 3 central Goal:** E3 is accepted in workspace #74;
 the shared delayed-read assertion repair is accepted in app #221. M0's narrow
 interpreter follow-up is delivered and centrally verified (39.118 s; 222
-workspace tests; five actual M0 gates passed), awaiting central publication.
+workspace tests; five actual M0 gates passed), accepted in workspace #76 at `d0da807a` after all normal hosted checks passed.
 These are completed implementation handoffs, not tasks to rerun. The
 [central plan](vesper-program-roadmap.md#central-execution-goal--october-3) owns
 G0 acceptance and further dispatch. Eng Efficiency is on demand for a diagnosed

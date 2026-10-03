@@ -27,12 +27,12 @@ roadmaps are capability references, not five independent promises to finish the
 product. Orchestration owns dependency order, acceptance, contracts and pins.
 Current dispatch comes from that plan; dated assignments below remain evidence.
 
-**Verified starting point:** workspace #73/#74/#75 and app #221/#222/#223 are
+**Verified starting point:** workspace #73/#74/#75/#76 and app #221/#222/#223 are
 accepted. Workspace #75 merged at `6c7193def6e9bc4f092658814e8771dd77f51b00`;
 accepted backend remains `815f72e7f5c72c86c792ef68c97d0bc88a3ea593`, and app is
 `057f5c95ac7d93d26f134db83f4c77ddd7a32dbf`. Backend #250 is open and its hosted
 jobs did not start because of an account payment/spending limit. Its separate
-pending decision is not permission to bypass other backend work. The M0 repair,
+pending decision is not permission to bypass other backend work. The M0 repair is accepted through workspace #76 at `d0da807a`. The
 combined Collection slice and Entity slice are locally delivered; their remaining
 acceptance is explicit below. Canonical checkouts and dirty owner work are
 preserved; these accepted revisions do not imply those checkouts advanced.
@@ -352,7 +352,7 @@ silently. A future broader request experience remains a separately scoped horizo
 | Connectivity | G3 after the entry matrix is ready | Existing ingress/return and root-consumer wiring | Entity body renderer, new exploration design, original custody |
 | Artifact | COL1 delivered; support G3 only for a demonstrated custody/member lifecycle defect | Private Things, Collections, member display, original reader, Remove versus Delete | Entity presentation and generated answers |
 | Adaptive Context | G4 contract handoff; existing CTX1 evidence delivered | Exact request scope, identity, temporary results and invalidation | Entity UI, public request expansion, new durable Chat/answer retention |
-| Eng Efficiency | E3/shared fix accepted; M0 awaiting central acceptance | Verification prerequisites and one diagnosed shared tooling failure at a time | Product scope, broad test reruns or speculative performance work |
+| Eng Efficiency | E3/shared fix/M0 accepted; no new tooling package | Verification prerequisites and one diagnosed shared tooling failure at a time | Product scope, broad test reruns or speculative performance work |
 | Orchestrator | G0 and G5; dispatch and reconcile G1–G4 | Overall Goal, shared roadmap, acceptance, publication and exact combined tuple | Duplicating product owners' implementations |
 
 Connectivity's package stays in this master roadmap. Artifact, Adaptive Context,
@@ -397,7 +397,8 @@ owner/authority dependency, when a new human decision changes scope, or at G5.
 
 - Accepted: E3 workspace #74, shared delayed-read fix app #221, private Ask app
   #222, route ownership app #223, API policy/projection workspace #75.
-- Local and pending acceptance: M0 workspace `1a50a898`; combined Collection
+- M0 accepted in workspace #76 at `d0da807a`, with all normal hosted checks passing.
+- Local and pending acceptance: combined Collection
   workspace `e513c235`, backend `9e4735aa8`, app `9391a5779`; Entity workspace
   `4985d9b2`, app `1e345ab98` (the latter is a small accessibility repair).
 - Combined Collection preflight: 326.360 s, 9,331 app / 22,369 backend /
