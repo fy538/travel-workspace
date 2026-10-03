@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import json
 import subprocess
 import sys
 from types import SimpleNamespace
@@ -51,6 +52,12 @@ def _base_refs() -> dict[str, str]:
     return {"workspace": "HEAD", "agent": "HEAD", "app": "HEAD"}
 
 
+def _lane_postgres_manifest(workspace: Path, port: int = 50568) -> None:
+    (workspace / ".workspace-lane.json").write_text(
+        json.dumps({"runtime": {"ownership": "isolated", "postgres_port": port}})
+    )
+
+
 # ── Classification and selection ─────────────────────────────────────────
 
 
@@ -66,20 +73,72 @@ def test_selects_executable_checker_test_for_referenced_document(
     tmp_path: Path,
 ) -> None:
     repos = _repositories(tmp_path)
-    checker_test = repos[0].root / "scripts/tests/test_check_foo.py"
+    checker_test = repos[1].root / "tests/scripts/test_check_foo.py"
     checker_test.parent.mkdir(parents=True)
     checker_test.write_text("")
+    backend_python = repos[1].root / ".venv/bin/python"
+    backend_python.parent.mkdir(parents=True)
+    backend_python.write_text("backend test interpreter placeholder\n")
     selection = MODULE.select_commands(
         ["docs/working/note.md"],
         doc_texts={"docs/working/note.md": "Run check_foo.py after edits."},
         repositories=repos,
     )
     assert not selection.fallback_to_verify
-    assert any(
-        command.argv == ("python3", "-m", "pytest", "scripts/tests/test_check_foo.py")
+    command = next(
+        command
         for command in selection.commands
+        if command.cwd == repos[1].root and "pytest" in command.argv
     )
+    assert command.argv == (
+        str(backend_python),
+        str(repos[0].root / "scripts/run_required_pytest.py"),
+        "--cwd",
+        str(repos[1].root),
+        "--",
+        str(backend_python),
+        "-m",
+        "pytest",
+        "tests/scripts/test_check_foo.py",
+    )
+    assert command.prerequisites == (MODULE.BACKEND_PYTHON,)
     assert not any(command.display.startswith("<run") for command in selection.commands)
+
+
+def test_mixed_checker_plan_exposes_disposable_postgres_prerequisite(
+    tmp_path: Path,
+) -> None:
+    repos = _repositories(tmp_path)
+    checker_test = repos[1].root / "tests/scripts/test_check_foo.py"
+    checker_test.parent.mkdir(parents=True)
+    checker_test.write_text(
+        "from tests.conftest import requires_postgres\n"
+        "@requires_postgres\n"
+        "def test_database_case(): pass\n"
+    )
+    backend_python = repos[1].root / ".venv/bin/python"
+    backend_python.parent.mkdir(parents=True)
+    backend_python.write_text("backend test interpreter placeholder\n")
+
+    selection = MODULE.select_commands(
+        ["docs/working/note.md"],
+        doc_texts={"docs/working/note.md": "Run check_foo.py after edits."},
+        repositories=repos,
+        base_refs={"workspace": "base", "agent": "base"},
+    )
+
+    command = next(
+        command
+        for command in selection.commands
+        if command.cwd == repos[1].root and "pytest" in command.argv
+    )
+    assert command.prerequisites == (
+        MODULE.BACKEND_PYTHON,
+        MODULE.DISPOSABLE_POSTGRES,
+    )
+    assert MODULE.required_dependency_repositories(selection, repos) == [
+        "travel-agent"
+    ]
 
 
 def test_shared_app_change_delegates_to_app_and_contracts_not_backend_suite() -> None:
@@ -427,6 +486,356 @@ def test_cli_requires_all_three_explicit_base_refs(
 ) -> None:
     assert MODULE.main(["--workspace-base-ref", "HEAD"]) == 2
     assert "travel-agent: base ref is required" in capsys.readouterr().err
+
+
+def test_plan_json_records_backend_interpreter_and_postgres_prerequisites(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    repos = _repositories(tmp_path)
+    checker_test = repos[1].root / "tests/scripts/test_check_foo.py"
+    checker_test.parent.mkdir(parents=True)
+    checker_test.write_text("@requires_postgres\ndef test_database_case(): pass\n")
+    backend_python = repos[1].root / ".venv/bin/python"
+    backend_python.parent.mkdir(parents=True)
+    backend_python.write_text("backend test interpreter placeholder\n")
+    monkeypatch.setattr(MODULE, "default_repositories", lambda: repos)
+    monkeypatch.setattr(
+        MODULE,
+        "collect_changed_paths",
+        lambda _refs, _repos: (
+            {"workspace": "w" * 40, "agent": "a" * 40, "app": "p" * 40},
+            ["docs/working/note.md"],
+        ),
+    )
+    monkeypatch.setattr(
+        MODULE,
+        "read_doc_texts",
+        lambda _files, _repos: {
+            "docs/working/note.md": "Run check_foo.py after edits."
+        },
+    )
+    plan_path = tmp_path / "plan.json"
+
+    result = MODULE.main(
+        [
+            "--workspace-base-ref",
+            "HEAD",
+            "--agent-base-ref",
+            "HEAD",
+            "--app-base-ref",
+            "HEAD",
+            "--dry-run",
+            "--plan-json",
+            str(plan_path),
+        ]
+    )
+
+    assert result == 0
+    plan = json.loads(plan_path.read_text())
+    command = next(
+        item for item in plan["commands"] if "pytest" in item["argv"]
+    )
+    assert command["argv"][0] == str(backend_python)
+    assert {item["key"] for item in command["prerequisites"]} == {
+        MODULE.BACKEND_PYTHON.key,
+        MODULE.DISPOSABLE_POSTGRES.key,
+    }
+
+
+def test_disposable_postgres_prerequisite_requires_lane_local_fresh_database(
+    tmp_path: Path,
+) -> None:
+    repos = _repositories(tmp_path)
+    workspace = repos[0]
+    _lane_postgres_manifest(workspace.root)
+
+    assert MODULE._lane_postgres_prerequisite_error(workspace, {})
+    assert MODULE._lane_postgres_prerequisite_error(
+        workspace,
+        {
+            "TEST_DATABASE_URL": "postgresql://vesper:localdev@localhost:50568/vesper",
+            "TEST_DATABASE_DISPOSABLE": "1",
+        },
+    )
+    assert MODULE._lane_postgres_prerequisite_error(
+        workspace,
+        {
+            "TEST_DATABASE_URL": "postgresql://vesper:localdev@remote.invalid:50568/e3_test",
+            "TEST_DATABASE_DISPOSABLE": "1",
+        },
+    )
+    assert MODULE._lane_postgres_prerequisite_error(
+        workspace,
+        {
+            "TEST_DATABASE_URL": "postgresql://vesper:localdev@localhost:50569/e3_test",
+            "TEST_DATABASE_DISPOSABLE": "1",
+        },
+    )
+    assert MODULE._lane_postgres_prerequisite_error(
+        workspace,
+        {
+            "TEST_DATABASE_URL": "postgresql://vesper:localdev@localhost:50568/e3_test?host=remote.invalid",
+            "TEST_DATABASE_DISPOSABLE": "1",
+        },
+    )
+    assert MODULE._lane_postgres_prerequisite_error(
+        workspace,
+        {
+            "TEST_DATABASE_URL": "postgresql://vesper:localdev@localhost:50568/e3_test",
+            "TEST_DATABASE_DISPOSABLE": "1",
+            "PGSERVICE": "ambient-service",
+        },
+    )
+    assert (
+        MODULE._lane_postgres_prerequisite_error(
+            workspace,
+            {
+                "TEST_DATABASE_URL": "postgresql://vesper:localdev@localhost:50568/e3_test",
+                "TEST_DATABASE_DISPOSABLE": "1",
+            },
+        )
+        is None
+    )
+
+
+def test_offline_filter_is_explicit_and_exact() -> None:
+    assert MODULE._offline_marker_filter_active(
+        {
+            "PYTEST_ADDOPTS": (
+                '-m "not requires_postgres and not requires_dogfood_wedge '
+                'and not requires_api_keys"'
+            )
+        }
+    )
+    assert not MODULE._offline_marker_filter_active(
+        {"PYTEST_ADDOPTS": "-m 'not requires_postgres'"}
+    )
+
+
+def test_main_blocks_mixed_checker_before_pytest_when_database_is_absent(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    repos = _repositories(tmp_path)
+    selection = MODULE.Selection()
+    selection.add(
+        (sys.executable, "run_required_pytest.py", "--", "pytest"),
+        repos[1].root,
+        "mixed checker test",
+        (MODULE.BACKEND_PYTHON, MODULE.DISPOSABLE_POSTGRES),
+    )
+    calls: list[tuple[str, ...]] = []
+
+    def run(argv, **kwargs):
+        calls.append(tuple(argv))
+        return SimpleNamespace(returncode=0, stdout="Python 3.13.0\n", stderr="")
+
+    monkeypatch.setattr(MODULE.subprocess, "run", run)
+    monkeypatch.setattr(MODULE, "default_repositories", lambda: repos)
+    monkeypatch.setattr(
+        MODULE,
+        "collect_changed_paths",
+        lambda _refs, _repos: (
+            {key: "x" * 40 for key in ("workspace", "agent", "app")},
+            ["docs/working/note.md"],
+        ),
+    )
+    monkeypatch.setattr(MODULE, "read_doc_texts", lambda _files, _repos: {})
+    monkeypatch.setattr(MODULE, "select_commands", lambda *_args, **_kwargs: selection)
+    monkeypatch.delenv("TEST_DATABASE_URL", raising=False)
+    monkeypatch.delenv("TEST_DATABASE_DISPOSABLE", raising=False)
+    monkeypatch.delenv("PYTEST_ADDOPTS", raising=False)
+
+    result = MODULE.main(
+        [
+            "--workspace-base-ref",
+            "HEAD",
+            "--agent-base-ref",
+            "HEAD",
+            "--app-base-ref",
+            "HEAD",
+        ]
+    )
+
+    assert result == 2
+    assert calls == [(sys.executable, "--version")]
+    assert "set TEST_DATABASE_URL and TEST_DATABASE_DISPOSABLE=1" in capsys.readouterr().err
+
+
+def test_main_runs_only_explicit_offline_subset_and_reports_database_deferral(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    repos = _repositories(tmp_path)
+    selection = MODULE.Selection()
+    selected = (sys.executable, "run_required_pytest.py", "--", "pytest")
+    selection.add(
+        selected,
+        repos[1].root,
+        "mixed checker test",
+        (MODULE.BACKEND_PYTHON, MODULE.DISPOSABLE_POSTGRES),
+    )
+    calls: list[tuple[str, ...]] = []
+
+    def run(argv, **kwargs):
+        calls.append(tuple(argv))
+        if argv[-1] == "--version":
+            return SimpleNamespace(returncode=0, stdout="Python 3.13.0\n", stderr="")
+        return SimpleNamespace(returncode=0, stdout="", stderr="")
+
+    monkeypatch.setattr(MODULE.subprocess, "run", run)
+    monkeypatch.setattr(MODULE, "default_repositories", lambda: repos)
+    monkeypatch.setattr(
+        MODULE,
+        "collect_changed_paths",
+        lambda _refs, _repos: (
+            {key: "x" * 40 for key in ("workspace", "agent", "app")},
+            ["docs/working/note.md"],
+        ),
+    )
+    monkeypatch.setattr(MODULE, "read_doc_texts", lambda _files, _repos: {})
+    monkeypatch.setattr(MODULE, "select_commands", lambda *_args, **_kwargs: selection)
+    monkeypatch.setenv(
+        "PYTEST_ADDOPTS",
+        '-m "not requires_postgres and not requires_dogfood_wedge and not requires_api_keys"',
+    )
+    monkeypatch.delenv("TEST_DATABASE_URL", raising=False)
+    monkeypatch.delenv("TEST_DATABASE_DISPOSABLE", raising=False)
+
+    result = MODULE.main(
+        [
+            "--workspace-base-ref",
+            "HEAD",
+            "--agent-base-ref",
+            "HEAD",
+            "--app-base-ref",
+            "HEAD",
+        ]
+    )
+
+    assert result == 0
+    assert calls == [(sys.executable, "--version"), selected]
+    assert "database cases were not run here" in capsys.readouterr().out
+
+
+def test_main_blocks_invalid_database_target_without_disclosing_url(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    repos = _repositories(tmp_path)
+    _lane_postgres_manifest(repos[0].root)
+    selection = MODULE.Selection()
+    selected = (sys.executable, "run_required_pytest.py", "--", "pytest")
+    selection.add(
+        selected,
+        repos[1].root,
+        "mixed checker test",
+        (MODULE.BACKEND_PYTHON, MODULE.DISPOSABLE_POSTGRES),
+    )
+    calls: list[tuple[str, ...]] = []
+
+    def run(argv, **kwargs):
+        calls.append(tuple(argv))
+        return SimpleNamespace(returncode=0, stdout="Python 3.13.0\n", stderr="")
+
+    monkeypatch.setattr(MODULE.subprocess, "run", run)
+    monkeypatch.setattr(MODULE, "default_repositories", lambda: repos)
+    monkeypatch.setattr(
+        MODULE,
+        "collect_changed_paths",
+        lambda _refs, _repos: (
+            {key: "x" * 40 for key in ("workspace", "agent", "app")},
+            ["docs/working/note.md"],
+        ),
+    )
+    monkeypatch.setattr(MODULE, "read_doc_texts", lambda _files, _repos: {})
+    monkeypatch.setattr(MODULE, "select_commands", lambda *_args, **_kwargs: selection)
+    monkeypatch.setenv(
+        "TEST_DATABASE_URL",
+        "postgresql://secret-user:secret-password@remote.invalid:50568/private_db",
+    )
+    monkeypatch.setenv("TEST_DATABASE_DISPOSABLE", "1")
+    monkeypatch.delenv("PYTEST_ADDOPTS", raising=False)
+
+    result = MODULE.main(
+        [
+            "--workspace-base-ref",
+            "HEAD",
+            "--agent-base-ref",
+            "HEAD",
+            "--app-base-ref",
+            "HEAD",
+        ]
+    )
+
+    output = capsys.readouterr()
+    assert result == 2
+    assert calls == [(sys.executable, "--version")]
+    assert "must identify a loopback PostgreSQL database" in output.err
+    assert "secret-password" not in output.out + output.err
+
+
+def test_main_blocks_backend_interpreter_failure_and_continues_other_checks(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    repos = _repositories(tmp_path)
+    selection = MODULE.Selection()
+    selected = (sys.executable, "run_required_pytest.py", "--", "pytest")
+    selection.add(
+        selected,
+        repos[1].root,
+        "mixed checker test",
+        (MODULE.BACKEND_PYTHON, MODULE.DISPOSABLE_POSTGRES),
+    )
+    selection.add(("later-validator",), repos[0].root, "unrelated selected check")
+    calls: list[tuple[str, ...]] = []
+
+    def run(argv, **kwargs):
+        calls.append(tuple(argv))
+        if argv[-1] == "--version":
+            return SimpleNamespace(returncode=1, stdout="", stderr="startup error")
+        return SimpleNamespace(returncode=0, stdout="", stderr="")
+
+    monkeypatch.setattr(MODULE.subprocess, "run", run)
+    monkeypatch.setattr(MODULE, "default_repositories", lambda: repos)
+    monkeypatch.setattr(
+        MODULE,
+        "collect_changed_paths",
+        lambda _refs, _repos: (
+            {key: "x" * 40 for key in ("workspace", "agent", "app")},
+            ["docs/working/note.md"],
+        ),
+    )
+    monkeypatch.setattr(MODULE, "read_doc_texts", lambda _files, _repos: {})
+    monkeypatch.setattr(MODULE, "select_commands", lambda *_args, **_kwargs: selection)
+    monkeypatch.setenv(
+        "PYTEST_ADDOPTS",
+        '-m "not requires_postgres and not requires_dogfood_wedge and not requires_api_keys"',
+    )
+    monkeypatch.delenv("TEST_DATABASE_URL", raising=False)
+    monkeypatch.delenv("TEST_DATABASE_DISPOSABLE", raising=False)
+
+    result = MODULE.main(
+        [
+            "--workspace-base-ref",
+            "HEAD",
+            "--agent-base-ref",
+            "HEAD",
+            "--app-base-ref",
+            "HEAD",
+        ]
+    )
+
+    output = capsys.readouterr()
+    assert result == 2
+    assert calls == [(sys.executable, "--version"), ("later-validator",)]
+    assert "not a working Python 3.13" in output.err
+    assert "startup error" not in output.out + output.err
 
 
 def test_git_identity_ignores_hook_environment(tmp_path, monkeypatch):

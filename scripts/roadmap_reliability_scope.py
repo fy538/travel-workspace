@@ -23,8 +23,11 @@ from pathlib import Path
 from typing import Any
 
 from verify_changed import (
+    DISPOSABLE_POSTGRES,
+    REPOSITORY_OFFLINE_PYTEST_ADDOPTS,
     _SCRIPT_REF_RE,
     _checker_test_candidates,
+    checker_test_command,
     default_repositories,
     required_dependency_repositories,
     select_commands,
@@ -211,7 +214,7 @@ def _checker_test_commands(
     docs: dict[str, str], repositories
 ) -> list[dict[str, Any]]:
     by_key = {repo.key: repo for repo in repositories}
-    found: dict[tuple[str, str], None] = {}
+    found: dict[tuple[str, str], dict[str, Any]] = {}
     for doc_path, text in docs.items():
         for name, ext in _SCRIPT_REF_RE.findall(text):
             if not any(
@@ -238,21 +241,27 @@ def _checker_test_commands(
                 and (by_key[repo_key].root / relative_path).is_file()
             ]
             for repo_key, test_path in candidates:
-                found[(repo_key, test_path)] = None
+                repo = by_key[repo_key]
+                reason = "run the existing test for a checker referenced by changed roadmap prose"
+                if test_path.endswith(".py"):
+                    command = checker_test_command(
+                        by_key["workspace"], repo, test_path, reason
+                    )
+                    argv = command.argv
+                    prerequisites = command.prerequisites
+                else:
+                    argv = ("node", "--test", test_path)
+                    prerequisites = ()
+                found[(repo_key, test_path)] = {
+                    "repo": repo_key,
+                    "argv": argv,
+                    "reason": reason,
+                    "prerequisites": prerequisites,
+                }
 
     commands = []
     for repo_key, test_path in sorted(found):
-        if test_path.endswith(".py"):
-            argv = ["python3", "-m", "pytest", test_path]
-        else:
-            argv = ["node", "--test", test_path]
-        commands.append(
-            {
-                "repo": repo_key,
-                "argv": argv,
-                "reason": "run the existing test for a checker referenced by changed roadmap prose",
-            }
-        )
+        commands.append(found[(repo_key, test_path)])
     return commands
 
 
@@ -403,6 +412,7 @@ def build_plan(
                     tuple(required["argv"]),
                     by_key[required["repo"]].root,
                     required["reason"],
+                    required["prerequisites"],
                 )
                 selected_signatures.add(signature)
         by_root = {repo.root.resolve(): repo.key for repo in repositories}
@@ -432,23 +442,49 @@ def build_plan(
                 and "pytest" in command.argv
                 and command.argv[-1].endswith(".py")
             ) or (
+                repo_key == "agent"
+                and len(command.argv) == 9
+                and Path(command.argv[1]).resolve()
+                == (by_key["workspace"].root / "scripts/run_required_pytest.py").resolve()
+                and command.argv[2:5]
+                == ("--cwd", str(by_key["agent"].root), "--")
+                and command.argv[5:8] == (command.argv[0], "-m", "pytest")
+                and command.argv[-1].endswith(".py")
+            ) or (
                 command.argv[0] == "node"
                 and "--test" in command.argv
                 and command.argv[-1].endswith((".mjs", ".js"))
             )
             if not allowed:
                 raise ScopeError("The existing selector requested a non-roadmap check")
-            commands.append(
-                {"repo": repo_key, "argv": list(command.argv), "reason": command.reason}
-            )
+            planned = {
+                "repo": repo_key,
+                "argv": list(command.argv),
+                "reason": command.reason,
+                "prerequisites": [
+                    {"key": prerequisite.key, "description": prerequisite.description}
+                    for prerequisite in command.prerequisites
+                ],
+            }
+            if any(
+                prerequisite.key == DISPOSABLE_POSTGRES.key
+                for prerequisite in command.prerequisites
+            ):
+                # The advisory prose pilot has no database service. Keep it
+                # aligned with merge-ready's explicit offline subset and leave
+                # database acceptance to the required Reliability checks.
+                planned["environment"] = {
+                    "PYTEST_ADDOPTS": REPOSITORY_OFFLINE_PYTEST_ADDOPTS
+                }
+            commands.append(planned)
 
         selected_tests = {
-            (command["repo"], tuple(command["argv"]))
+            (command["repo"], command["argv"][-1])
             for command in commands
             if "pytest" in command["argv"] or "--test" in command["argv"]
         }
         for required in referenced_tests:
-            if (required["repo"], tuple(required["argv"])) not in selected_tests:
+            if (required["repo"], required["argv"][-1]) not in selected_tests:
                 raise ScopeError(
                     "The changed-file selector omitted a referenced checker test"
                 )
@@ -551,9 +587,38 @@ def run_plan(plan: dict[str, Any], *, root: Path = WORKSPACE_ROOT) -> int:
             return 2
         cwd = root if repo == "workspace" else root / ("travel-agent" if repo == "agent" else "travel-app")
         argv = command["argv"]
+        prerequisites = command.get("prerequisites", [])
+        overrides = command.get("environment", {})
+        if not isinstance(prerequisites, list) or not isinstance(overrides, dict):
+            print("::error::Invalid prerequisites in roadmap scope plan", file=sys.stderr)
+            return 2
+        requires_postgres = any(
+            isinstance(item, dict) and item.get("key") == DISPOSABLE_POSTGRES.key
+            for item in prerequisites
+        )
+        command_env = None
+        if requires_postgres:
+            expected_overrides = {
+                "PYTEST_ADDOPTS": REPOSITORY_OFFLINE_PYTEST_ADDOPTS
+            }
+            if overrides != expected_overrides:
+                print(
+                    "::error::Postgres-backed checker plan must declare the exact repository offline filter",
+                    file=sys.stderr,
+                )
+                return 2
+            command_env = dict(os.environ)
+            command_env.update(expected_overrides)
+            print(
+                "[roadmap-scope] explicit offline pytest filter excludes requires_postgres cases; "
+                "database cases were not run here"
+            )
+        elif overrides:
+            print("::error::Unexpected environment override in roadmap scope plan", file=sys.stderr)
+            return 2
         print(f"[roadmap-scope] ({repo}) {' '.join(argv)} — {command['reason']}")
         try:
-            result = subprocess.run(argv, cwd=cwd, check=False)
+            result = subprocess.run(argv, cwd=cwd, check=False, env=command_env)
         except OSError as exc:
             print(f"::error::Roadmap scope checker unavailable: {exc}", file=sys.stderr)
             return 127

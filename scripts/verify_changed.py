@@ -24,6 +24,7 @@ import sys
 import os
 from dataclasses import dataclass, field
 from pathlib import Path
+from urllib.parse import unquote, urlsplit
 
 WORKSPACE_ROOT = Path(__file__).resolve().parent.parent
 
@@ -39,6 +40,36 @@ class Repo:
     display_name: str
     root: Path
     prefix: str
+
+
+@dataclass(frozen=True)
+class Prerequisite:
+    key: str
+    description: str
+
+
+BACKEND_PYTHON = Prerequisite(
+    "backend-python-313",
+    "Python 3.13 with the travel-agent development test dependencies",
+)
+DISPOSABLE_POSTGRES = Prerequisite(
+    "lane-disposable-postgres",
+    "TEST_DATABASE_URL must target this isolated lane's local Postgres, with "
+    "TEST_DATABASE_DISPOSABLE=1 and a database separate from the Compose dev database",
+)
+PYTEST_MARKER_INVENTORY = Prerequisite(
+    "pytest-marker-inventory",
+    "the selected pytest file must be readable so its database markers can be planned",
+)
+
+_OFFLINE_MARK_EXPRESSION_TERMS = {
+    "not requires_postgres",
+    "not requires_dogfood_wedge",
+    "not requires_api_keys",
+}
+REPOSITORY_OFFLINE_PYTEST_ADDOPTS = (
+    '-m "not requires_postgres and not requires_dogfood_wedge and not requires_api_keys"'
+)
 
 
 def default_repositories() -> tuple[Repo, ...]:
@@ -156,6 +187,36 @@ def _checker_test_candidates(name: str, ext: str) -> tuple[tuple[str, str], ...]
     )
 
 
+def _backend_test_python(repo: Repo) -> str:
+    """Use the backend venv locally, or the already configured CI Python 3.13."""
+
+    venv_python = repo.root / ".venv/bin/python"
+    if venv_python.is_file():
+        return str(venv_python)
+    if sys.version_info[:2] == (3, 13):
+        return sys.executable
+    return "python3.13"
+
+
+def _checker_test_prerequisites(repo: Repo, test_path: str) -> tuple[Prerequisite, ...]:
+    if repo.key != "agent" or not test_path.endswith(".py"):
+        return ()
+
+    prerequisites = [BACKEND_PYTHON]
+    try:
+        source = (repo.root / test_path).read_text(encoding="utf-8")
+    except OSError:
+        prerequisites.append(PYTEST_MARKER_INVENTORY)
+        return tuple(prerequisites)
+
+    # Conservatively treat any use of the registered marker as a database
+    # requirement. A false positive asks for an isolated DB; a false negative
+    # could let the backend's collection guard be the first notice.
+    if re.search(r"\brequires_postgres\b", source):
+        prerequisites.append(DISPOSABLE_POSTGRES)
+    return tuple(prerequisites)
+
+
 def referenced_checker_tests(
     doc_text: str, repositories: tuple[Repo, ...]
 ) -> list[tuple[Repo, str]]:
@@ -179,6 +240,7 @@ class Command:
     argv: tuple[str, ...]
     cwd: Path
     reason: str
+    prerequisites: tuple[Prerequisite, ...] = ()
 
     @property
     def display(self) -> str:
@@ -191,10 +253,43 @@ class Selection:
     fallback_to_verify: bool = False
     fallback_reason: str | None = None
 
-    def add(self, argv: tuple[str, ...], cwd: Path, reason: str) -> None:
-        command = Command(argv=argv, cwd=cwd, reason=reason)
+    def add(
+        self,
+        argv: tuple[str, ...],
+        cwd: Path,
+        reason: str,
+        prerequisites: tuple[Prerequisite, ...] = (),
+    ) -> None:
+        command = Command(
+            argv=argv, cwd=cwd, reason=reason, prerequisites=prerequisites
+        )
         if command not in self.commands:
             self.commands.append(command)
+
+
+def checker_test_command(
+    workspace: Repo, repo: Repo, test_path: str, reason: str
+) -> Command:
+    """Build the canonical targeted-test command for a documented checker."""
+
+    prerequisites = _checker_test_prerequisites(repo, test_path)
+    if repo.key == "agent":
+        python = _backend_test_python(repo)
+        runner = workspace.root / "scripts/run_required_pytest.py"
+        argv = (
+            python,
+            str(runner),
+            "--cwd",
+            str(repo.root),
+            "--",
+            python,
+            "-m",
+            "pytest",
+            test_path,
+        )
+    else:
+        argv = ("python3", "-m", "pytest", test_path)
+    return Command(argv=argv, cwd=repo.root, reason=reason, prerequisites=prerequisites)
 
 
 def select_commands(
@@ -342,10 +437,17 @@ def select_commands(
                 doc_texts.get(doc_file, ""), repos
             ):
                 if test_path.endswith(".py"):
+                    reason = (
+                        f"{doc_file} references a checker covered by {test_path}"
+                    )
+                    command = checker_test_command(
+                        workspace, repo, test_path, reason
+                    )
                     selection.add(
-                        ("python3", "-m", "pytest", test_path),
-                        repo.root,
-                        f"{doc_file} references a checker covered by {test_path}",
+                        command.argv,
+                        command.cwd,
+                        command.reason,
+                        command.prerequisites,
                     )
                 else:
                     selection.add(
@@ -515,6 +617,112 @@ def run_full_verify(workspace: Repo) -> int:
     return subprocess.run(("make", "verify"), cwd=workspace.root).returncode
 
 
+def _offline_marker_filter_active(environ: dict[str, str]) -> bool:
+    """Recognize only the repository's explicit offline pytest filter."""
+
+    try:
+        args = shlex.split(environ.get("PYTEST_ADDOPTS", ""))
+    except ValueError:
+        return False
+    expression = None
+    for index, arg in enumerate(args):
+        if arg in {"-m", "--markexpr"} and index + 1 < len(args):
+            expression = args[index + 1]
+            break
+        if arg.startswith("--markexpr="):
+            expression = arg.partition("=")[2]
+            break
+    if expression is None:
+        return False
+    normalized = re.sub(r"[()]", " ", expression.lower())
+    terms = {
+        " ".join(term.split())
+        for term in re.split(r"\band\b", normalized)
+        if term.strip()
+    }
+    return terms == _OFFLINE_MARK_EXPRESSION_TERMS
+
+
+def _lane_postgres_prerequisite_error(
+    workspace: Repo, environ: dict[str, str]
+) -> str | None:
+    test_url = environ.get("TEST_DATABASE_URL", "").strip()
+    if not test_url or environ.get("TEST_DATABASE_DISPOSABLE") != "1":
+        return "set TEST_DATABASE_URL and TEST_DATABASE_DISPOSABLE=1 for the selected database tests"
+    if any(
+        environ.get(key)
+        for key in ("PGHOSTADDR", "PGSERVICE", "PGSERVICEFILE", "PGOPTIONS")
+    ):
+        return "unset libpq host/service/option overrides before selected database tests"
+    try:
+        target = urlsplit(test_url)
+        port = target.port
+    except ValueError:
+        return "TEST_DATABASE_URL is malformed; its value is not printed"
+    database = unquote(target.path.removeprefix("/")).strip()
+    if (
+        target.scheme not in {"postgresql", "postgresql+psycopg2"}
+        or target.hostname not in {"localhost", "127.0.0.1", "::1"}
+        or port is None
+        or not database
+        or database.lower() == "vesper"
+        or target.query
+        or target.fragment
+    ):
+        return (
+            "TEST_DATABASE_URL must identify a loopback PostgreSQL database on this "
+            "lane, without redirects, and use a database separate from the Compose dev database"
+        )
+    manifest_path = workspace.root / ".workspace-lane.json"
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        runtime = manifest["runtime"]
+        expected_port = int(runtime["postgres_port"])
+    except (OSError, ValueError, KeyError, TypeError):
+        return "this checkout has no valid isolated-lane Postgres assignment"
+    if runtime.get("ownership") != "isolated" or port != expected_port:
+        return "TEST_DATABASE_URL does not match this checkout's isolated Postgres port"
+    return None
+
+
+def _command_prerequisite_errors(
+    command: Command,
+    workspace: Repo,
+    environ: dict[str, str] | None = None,
+) -> list[str]:
+    env = os.environ if environ is None else environ
+    errors: list[str] = []
+    for prerequisite in command.prerequisites:
+        if prerequisite.key == BACKEND_PYTHON.key:
+            try:
+                version = subprocess.run(
+                    [command.argv[0], "--version"],
+                    capture_output=True,
+                    text=True,
+                    timeout=5,
+                    check=False,
+                )
+            except (OSError, subprocess.TimeoutExpired) as exc:
+                errors.append(f"Python 3.13 test interpreter is unavailable: {exc}")
+                continue
+            output = f"{version.stdout}\n{version.stderr}"
+            if version.returncode != 0 or not re.search(r"\bPython 3\.13(?:\.|\b)", output):
+                errors.append(
+                    f"selected backend test interpreter is not a working Python 3.13: {command.argv[0]}"
+                )
+        elif prerequisite.key == DISPOSABLE_POSTGRES.key:
+            if _offline_marker_filter_active(env):
+                continue
+            error = _lane_postgres_prerequisite_error(workspace, env)
+            if error:
+                errors.append(error)
+        elif prerequisite.key == PYTEST_MARKER_INVENTORY.key:
+            errors.append(
+                "cannot inspect the selected pytest marker inventory; replan before execution"
+            )
+    return errors
+
+
 def main(argv: list[str]) -> int:
     parser = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
@@ -565,6 +773,8 @@ def main(argv: list[str]) -> int:
     for command in selection.commands:
         print(f"  [{command.reason}]")
         print(f"    ({command.cwd}) $ {command.display}")
+        for prerequisite in command.prerequisites:
+            print(f"      prerequisite: {prerequisite.description}")
     if args.plan_json:
         args.plan_json.parent.mkdir(parents=True, exist_ok=True)
         plan = {
@@ -575,6 +785,13 @@ def main(argv: list[str]) -> int:
                     "cwd": str(command.cwd),
                     "argv": list(command.argv),
                     "reason": command.reason,
+                    "prerequisites": [
+                        {
+                            "key": prerequisite.key,
+                            "description": prerequisite.description,
+                        }
+                        for prerequisite in command.prerequisites
+                    ],
                 }
                 for command in selection.commands
             ],
@@ -586,9 +803,28 @@ def main(argv: list[str]) -> int:
         return run_full_verify(
             next(repo for repo in repositories if repo.key == "workspace")
         )
+    workspace = next(repo for repo in repositories if repo.key == "workspace")
     exit_code = 0
     tool_start_failed = False
     for command in selection.commands:
+        prerequisite_errors = _command_prerequisite_errors(command, workspace)
+        if prerequisite_errors:
+            for error in prerequisite_errors:
+                print(
+                    f"verify-changed: blocked selected check {command.display}: {error}",
+                    file=sys.stderr,
+                )
+            exit_code = 2
+            continue
+        if (
+            any(p.key == DISPOSABLE_POSTGRES.key for p in command.prerequisites)
+            and _offline_marker_filter_active(os.environ)
+        ):
+            print(
+                "verify-changed: the explicit offline PYTEST_ADDOPTS filter excludes "
+                "requires_postgres cases from this command; those database cases were "
+                "not run here"
+            )
         print(f"\n({command.cwd}) $ {command.display}")
         try:
             result = subprocess.run(command.argv, cwd=command.cwd).returncode
