@@ -424,6 +424,32 @@ after that seam is ready. Connectivity adoption follows a stable reader handoff.
 AP3's durable conversation and AP5's social extension are not dispatched by this
 coordination change. G2 and backend hosted acceptance remain separately blocked.
 
+**Capture foundation acceptance — October 4 UTC:** app
+[PR #228](https://github.com/fy538/travel-app/pull/228) merged at
+`225b1f1b703d572000960c0f74de57d114334f7b`. Its tree exactly matches the
+centrally tested candidate `32a6a36a16c9f39404b268e06bbfc4e5f6ca5695`, based on
+accepted app `09bed09d282ad83d423d96d73b5aa9b11f0f1d46`. Intake's CP02–CP04
+local foundation supplies versioned account-bound imports, atomic original
+publication and exact-byte readback, bounded cross-process claims and
+conservative recovery. CP05A supplies a separate draft model and revision
+validation. The existing private-host generator also identifies its
+Objective-C++ provider correctly. No app or extension caller is bound to the
+new store, and no mutable draft writer is included.
+
+Central explicit-base preflight passed in **111.070 seconds**, with **9,327 app
+tests and one snapshot**, lint/types/native-compatibility and app contract
+checks. Existing Swift model/store fixtures and private-host generator tests
+passed in 13.828 seconds; iOS-target Swift typecheck passed in 3.718 seconds;
+the normal expiry-bound live dependency audit passed in 2.294 seconds. All
+measured inputs were stable and clean. Unchanged backend/workspace test suites
+were not selected. App acceptance uses the existing founder-approved check
+window, not passing hosted app checks. Intake's earlier unchanged Life delayed
+refresh failure remains an unexplained intermittent receipt. Native App Group,
+file-protection/durability and signed-in evidence remain deferred; the session
+owner's unresolved lifecycle contract still gates mutable draft storage and
+runtime binding. These receipts do not close unfinished G0–G5. Artifact and
+Artifact Design continue the supported AP2 data and presentation handoffs.
+
 Reuse an existing idle owner chat and its suitable checkout before opening a
 new execution lane. Create another chat only with explicit human authorization;
 split a package only when file/contract ownership is disjoint and its output can
