@@ -1,5 +1,5 @@
 {
   "travel-agent": "815f72e7f5c72c86c792ef68c97d0bc88a3ea593",
-  "travel-app": "09bed09d282ad83d423d96d73b5aa9b11f0f1d46",
-  "_comment": "Accepted backend PR249 and app PR222/223/225/226/227, including private Ask route ownership, Entity accessibility/Home return and registered Entity references. Ask stays default-off. Backend PR250 acceptance tests and PR251 Collection candidate remain pending; the accepted backend implementation pin is unchanged."
+  "travel-app": "225b1f1b703d572000960c0f74de57d114334f7b",
+  "_comment": "Accepted backend PR249 and app through PR228, including private Ask route ownership, Entity accessibility/Home return and registered references, plus dormant capture import storage/claims and draft models. No new capture runtime caller or mutable draft writer is bound; native evidence remains deferred. Ask stays default-off. Backend PR250 acceptance tests and PR251 Collection candidate remain pending; the accepted backend implementation pin is unchanged."
 }
